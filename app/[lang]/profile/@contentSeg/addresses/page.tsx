@@ -18,10 +18,6 @@ const page = () => {
   const router = useRouter()
   const { dict, isRTL, addresses, loading } = useDataStore()
   const { user } = useAuthStore()
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-  console.log(user)
   
   const handleBackAction = () => {
     router.push(`/${lang}/profile`)
@@ -29,7 +25,7 @@ const page = () => {
 
   return (
     <>
-      <div className={`bottom-to-top-animation min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
+      <div className={`min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
         <div className={`p-4 md:border-b-0 border-b-7 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
           <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Addreesses</p>
           {isRTL
@@ -40,7 +36,7 @@ const page = () => {
             <AddressPicker purpose={'post'} buttonContent={`add new address`} className={`text-sm`}/>
           </span>
         </div>
-        <div className={`text-[13px] p-5 flex-1 flex justify-center gap-5 items-stretch ${isRTL ? "text-end" : "text-start"}`}>
+        <div className={`text-[13px] p-5 flex-1 flex flex-col justify-stretch gap-2 items-center ${isRTL ? "text-end" : "text-start"}`}>
           { addresses.length === 0
           ? <div className={`space-y-2 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
               <BiSolidDirections className='text-[150px] text-[var(--theme)]'/>

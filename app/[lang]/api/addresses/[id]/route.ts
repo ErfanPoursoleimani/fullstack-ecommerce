@@ -24,13 +24,25 @@ export async function PATCH(request: NextRequest, props: { params: Promise<{ id:
         where: {
             id: address.id
         },
-        data: {
+        data: body.unit 
+        ? {
             province: body.province,
             address: body.address,
             city: body.city, 
             plaque: body.plaque,
             unit: body.unit,
-            postalCode: body.postalCode
+            postalCode: body.postalCode,
+            isActive: body.isActive,
+            userId: body.userId
+        } 
+        : {
+            province: body.province,
+            address: body.address,
+            city: body.city, 
+            plaque: body.plaque,
+            postalCode: body.postalCode,
+            isActive: body.isActive,
+            userId: body.userId
         }
     })
 

@@ -29,6 +29,7 @@
     "orders": "Orders",
     "activitySummary": "Activity Summary",
 
+    "iranianRice": "Iranian Rice",
     "ERROR_MESSAGES": {
         "PHONE_NUMBER": "Please enter a valid phone number",
         "PHONE_NUMBER_AND_EMAIL": "Please enter a valid phone number or email",
@@ -86,26 +87,25 @@
         "label": "Label",
         "massUnit": "Kg",
         "products": {
+            "برنج_روس": "برنج روس",
             "برنج_کشت_دوم": "Second Crop Rice",
             "برنج_قهوه_ای": "Brown Rice",
             "برنج_طارم_عطری": "Tarom Atri Rice",
             "برنج_طارم_فجر": "Tarom Fajr Rice",
             "برنج_بسمتی": "Basmati Rice",
-            "روغن_زیتون": "Olive Oil",
-            "روغن_کنجد": "Sesame Oil",
-            "روغن_نارگیل": "Coconut Oil",
-            "آرد_برنج": "Rice Flour",
-            "برنجک": "Rice Snack",
-            "لوبیا_چیتی": "Chickpeas",
-            "عدس": "Lentils",
-            "میوه_خشک": "Dried Fruits"
+            "برنج_هندی": "Indian Rice",
+            "برنج_ژاپنی": "Japanease Rice",
+            "برنج_وحشی": "Wild Rice",
+            "برنج_سیاه": "Black Rice",
+            "برنج_دودی": "Smoked Rice",
+            "خرده_برنج": "Broken Rice"
         },
         "categories": {
-            "برنج_و_غلات": "Rice",
-            "روغن_ها": "Oils",
-            "حبوبات": "Legumes",
-            "محصولات_برنجی": "Rice Products",
-            "خشکبار": "Dried Goods"
+            "برنج_ایرانی": "Iranian",
+            "برنج_خاص": "Premium",
+            "برنج_رنگی": "Colored",
+            "برنج_وارداتی": "Imported",
+            "برنج_کشت_دوم": "Second Crop"
         }
     }
 }

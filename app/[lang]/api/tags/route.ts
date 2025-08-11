@@ -9,7 +9,8 @@ export async function GET(){
                 include: {
                     images: true
                 }
-            }
+            },
+            images: true
         }
     })
     return NextResponse.json(tags)
@@ -17,9 +18,6 @@ export async function GET(){
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const validation = tagSchema.safeParse(body)
-    if(!validation.success)
-        return NextResponse.json(validation.error.errors, {status: 400})
 
     const tag = await prisma.tag.findUnique({
         where: {

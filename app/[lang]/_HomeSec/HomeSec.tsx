@@ -12,15 +12,15 @@ const HomeSec = () => {
     const { isRTL } = useDataStore()
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col items-center min-h-700'>
       <MainView />
-      <div className={classNames({
+      <ProductsSection />
+      {/* <div className={classNames({
         "text-end flex-row-reverse": isRTL,
         "w-[100%] md:px-[4vw] md:py-10 flex items-center justify-evenly xl:gap-[4.3rem] text-[var(--light-text)]": true,
       })}>
           <LargeLogo />
-          <ProductsSection />
-      </div>
+      </div> */}
     </div>
   )
 }

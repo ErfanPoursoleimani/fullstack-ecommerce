@@ -9,6 +9,7 @@ import {
     Notification as PrismaNotification,
     User as PrismaUser,
     Cart as PrismaCart,
+    TagImage as PrismaTagImage
 } from "@prisma/client"
 
 interface CartProductCartIdNullable{
@@ -18,7 +19,7 @@ interface CartProductCartIdNullable{
     productId: number;
 }
 export type Product = ({images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct)
-export type Tag = ({products: ({images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct)[]} & PrismaTag)
+export type Tag = ({products: ({images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct)[]} & {images: PrismaTagImage[]} & PrismaTag)
 export type CartProduct = ({product: {images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct} & CartProductCartIdNullable)
 export type User = ({orders: PrismaOrder[]} & {addresses: PrismaAddress[]} & {notifications: PrismaNotification[]} & {reviews: PrismaReview[]} & PrismaUser)
 export type Cart = ({products: PrismaProduct[]} & PrismaCart)
@@ -117,26 +118,26 @@ export interface Dict {
         label: string,
         massUnit: string,
         products: {
+            
+            برنج_روس: string,
             برنج_کشت_دوم: string,
             برنج_قهوه_ای: string,
             برنج_طارم_عطری: string,
             برنج_طارم_فجر: string,
             برنج_بسمتی: string,
-            روغن_زیتون: string,
-            روغن_کنجد: string,
-            روغن_نارگیل: string,
-            آرد_برنج: string,
-            برنجک: string,
-            لوبیا_چیتی: string,
-            عدس: string,
-            میوه_خشک: string
+            برنج_هندی: string,
+            برنج_ژاپنی: string
+            برنج_وحشی: string
+            برنج_سیاه: string
+            برنج_دودی: string
+            خرده_برنج: string
         },
         categories: {
-            برنج_و_غلات: string,
-            روغن_ها: string,
-            حبوبات: string,
-            محصولات_برنجی: string,
-            خشکبار: string
+            برنج_ایرانی: string,
+            برنج_خاص: string
+            برنج_رنگی: string
+            برنج_وارداتی: string
+            برنج_کشت_دوم: string
         }
     }
 }

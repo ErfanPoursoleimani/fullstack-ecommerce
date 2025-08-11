@@ -32,7 +32,6 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
             {children}
           </main>
         {currentPath.startsWith(`/${lang}/users/login`) ? null : <BottomNavBar />}
-        <div className='md:hidden min-w-full min-h-640'></div>
     </>
   );
 }

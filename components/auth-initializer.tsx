@@ -16,6 +16,7 @@ export function AuthInitializer({
   const initialize = useAuthStore(useCallback((state) => state.initialize, []));
   const isInitialized = useAuthStore(useCallback((state) => state.isInitialized, []));
   const isLoading = useAuthStore(useCallback((state) => state.isLoading, []));
+  const user = useAuthStore(useCallback((state) => state.user, []));
 
   // Handle hydration only once
   useEffect(() => {
@@ -37,16 +38,22 @@ export function AuthInitializer({
       };
       init();
     }
-  }, [hasHydrated, initialize, lang]); // Removed isInitialized to allow reinit
+  }, [hasHydrated, initialize, lang]);
 
   // Show loading state during hydration or initialization
-  if (!hasHydrated || (!isInitialized && isLoading)) {
+/*   if (!hasHydrated || (!isInitialized)) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-      </div>
+      <>
+        <div className="flex items-center justify-center fixed top-0 left-0 min-h-screen min-w-screen z-10000 bg-white/60">
+            <div className='flex flex-col items-center justify-center bg-white gap-10 rounded-2xl p-10'>
+                <div className="animate-spin rounded-full h-15 w-15 border-b-3 text-[var(--theme)]"></div>
+                <p className='font-bold text-[var(--theme)]'>SoleimaniRice</p>
+            </div>
+        </div>
+        {children}
+      </>
     );
-  }
+  } */
 
   return <>{children}</>;
 }

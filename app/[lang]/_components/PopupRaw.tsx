@@ -12,8 +12,9 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ children, popup, className }) => {
-  if (!popup.isOpen) return null;
   const { isRTL } = useDataStore()
+  
+  if (!popup.isOpen) return null;
 
   return (
     <div

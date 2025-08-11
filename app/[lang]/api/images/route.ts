@@ -30,17 +30,14 @@ export async function POST(request: NextRequest) {
 
     const image = await prisma.image.findUnique({
         where: {
-            id: body.id
+            productId: body.productId
         }
     })
     if(image)
         return NextResponse.json({error: "Image already exists"}, {status: 400})
     const newImage = await prisma.image.create({
         data: {
-            id: body.id,
-            label: body.label,
-            url: body.url,
-            product: body.product, 
+            url: body.url, 
             productId: body.productId
         }
     })

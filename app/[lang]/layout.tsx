@@ -10,6 +10,11 @@ import ClientLayoutWrapper from "./ClientLayoutWrapper";
 import "./globals.css";
 import { DataInitializer } from '@/components/data-initializer';
 
+if (process.env.NODE_ENV === 'development') {
+  // require('events').EventEmitter.defaultMaxListeners = 15;
+  process.setMaxListeners(15);
+}
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

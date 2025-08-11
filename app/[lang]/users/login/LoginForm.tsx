@@ -23,13 +23,14 @@ const LoginForm = () => {
 
   const { redirectToReturnUrl } = useReturnUrl()
 
-  const {register, handleSubmit, control, formState: { errors, isSubmitted }} = useForm<userData>({
+  const {register, handleSubmit, control, formState: { errors, isSubmitted }, reset} = useForm<userData>({
       resolver: zodResolver(userLoginSchema)
   })
 
   const onSubmit = handleSubmit( async (data) => {
     try {
       await login(data, lang as string)
+      reset()
     } catch (error) {
       
     } finally {

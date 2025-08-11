@@ -40,7 +40,9 @@ export async function PATCH(request: NextRequest, props: { params: Promise<{ id:
         data: {
             firstName: body.firstName,
             lastName: body.lastName,
-            role: body.role
+            phoneNumber: body.phoneNumber,
+            nationalCode: body.nationalCode,
+            email: body.email
         }
     })
 

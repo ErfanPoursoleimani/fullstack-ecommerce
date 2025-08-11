@@ -9,14 +9,18 @@ export async function GET(){
             reviews: true
         }
     })
-    return NextResponse.json(products)
+    return NextResponse.json(products, {headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        }})
 }
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const validation = productSchema.safeParse(body)
+/*     const validation = productSchema.safeParse(body)
     if(!validation.success)
-        return NextResponse.json(validation.error.errors, {status: 400})
+        return NextResponse.json(validation.error.errors, {status: 400}) */
 
 /*     const product = await prisma.product.findUnique({
         where: {

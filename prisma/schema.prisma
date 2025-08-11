@@ -42,14 +42,15 @@ model User {
 }
 
 model Address {
-  id         Int    @id @default(autoincrement())
+  id         Int     @id @default(autoincrement())
   address    String
   province   String
   city       String
   postalCode String
   plaque     String
-  unit       String
-  user       User   @relation(fields: [userId], references: [id])
+  unit       String?
+  isActive   Boolean @default(false)
+  user       User    @relation(fields: [userId], references: [id])
   userId     Int
 }
 
@@ -79,7 +80,7 @@ model Product {
   stock           Int           @default(10)
   inStock         Boolean       @default(true)
   carts           CartProduct[]
-  images          Image[]
+  images          Image[]       @relation("ProductImages")
   tag             Tag           @relation(fields: [tagId], references: [id])
   tagId           Int
   reviews         Review[]
@@ -99,10 +100,10 @@ model Review {
 }
 
 model Tag {
-  id       Int       @id @default(autoincrement())
-  label    String    @unique
-  image    String    @default("https://i.imgur.com/JQMqjf4.jpeg")
+  id       Int        @id @default(autoincrement())
+  label    String     @unique
   products Product[]
+  images   TagImage[]
 }
 
 model CartProduct {
@@ -128,8 +129,14 @@ model Order {
 
 model Image {
   id        Int     @id @default(autoincrement())
-  label     String
   url       String
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation("ProductImages", fields: [productId], references: [id], onDelete: Cascade)
   productId Int     @unique
+}
+
+model TagImage {
+  id    Int    @id @default(autoincrement())
+  url   String
+  tag   Tag    @relation(fields: [tagId], references: [id])
+  tagId Int
 }

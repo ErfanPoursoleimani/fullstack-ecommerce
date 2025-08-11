@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loading = ({ className }: { className: string }) => {
   return (
-      <span className={`loading loading-dots ${className}`}></span>
+      <span className={`loading loading-spinner ${className}`}></span>
   )
 }
 

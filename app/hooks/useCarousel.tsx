@@ -33,12 +33,10 @@ interface UseCarouselReturn {
     className: string
   }
   getSlideProps: (index: number) => {
-    key: number
     className: string
     'data-active': boolean
   }
   getDotProps: (index: number) => {
-    key: number
     onClick: () => void
     className: string
     'aria-label': string
@@ -165,15 +163,13 @@ export function useCarousel({
   }), [currentIndex])
 
   const getSlideProps = useCallback((index: number) => ({
-    key: index,
     className: 'w-full h-full flex-shrink-0',
     'data-active': index === currentIndex
   }), [currentIndex])
 
   const getDotProps = useCallback((index: number) => ({
-    key: index,
     onClick: () => goToSlide(index),
-    className: `w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+    className: `w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
       index === currentIndex 
         ? 'bg-white scale-110' 
         : 'bg-white/50 hover:bg-white/75'

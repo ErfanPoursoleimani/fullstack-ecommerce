@@ -46,8 +46,7 @@ const PhoneNavBar = () => {
         const baseAdminLinks = [
             {id: 1, label: "home", selectedIcon: <RiHome9Fill className='text-[#555] text-2xl' />, unselectedIcon: <RiHome9Line className='text-2xl' />, href: `/${lang}/admin/dashboard`},
             {id: 2, label: "products", selectedIcon:  <PiShoppingBagFill className='text-[#555] text-2xl' />, unselectedIcon: <PiShoppingBagLight className='text-2xl' />, href: `/${lang}/admin/dashboard/products`},
-            {id: 3, label: "users", selectedIcon:<FaUser className='text-[#555] text-2xl' />, unselectedIcon: <FaRegUser className='text-2xl' /> , href: `/${lang}/admin/dashboard/users`},
-            {id: 4, label: "categories", selectedIcon: <BiSolidCategory className='text-[#555] text-2xl' />, unselectedIcon: <BiCategory className='text-2xl' />, href: `/${lang}/admin/dashboard/tags` },
+            {id: 3, label: "users", selectedIcon:<FaUser className='text-[#555] text-2xl' />, unselectedIcon: <FaRegUser className='text-2xl' /> , href: `/${lang}/admin/dashboard/users`}
         ]
 
         // Create new array with translated labels

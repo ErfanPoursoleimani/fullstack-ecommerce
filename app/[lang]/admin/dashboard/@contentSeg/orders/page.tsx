@@ -51,7 +51,7 @@ const page = () => {
   }
 
   return (
-    <div className={`bottom-to-top-animation min-h-100 max-md:fixed max-md:min-h-full max-md:w-full max-md:bg-white max-md:p-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
+    <div className={`min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white max-md:p-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className={`md:mx-5 md:my-5 flex justify-between items-center h-10 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
             <p className='font-medium md:border-b-3 border-yellow-400 md:pb-4'>Orders</p>
             {isRTL 

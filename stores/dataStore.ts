@@ -45,6 +45,8 @@ interface DataStore {
     setLang: (lang: string) => void;
     setCartId: (cartId: number | null) => void;
     setIsAuthenticated: (isAuthenticated: boolean) => void
+    removeProduct: (productId: number) => void
+    addProduct: (product: Product) => void
     
     // API Actions
     fetchTags: (lang: string) => Promise<void>;
@@ -150,26 +152,25 @@ const initialDict: Dict = {
         label: "Label",
         massUnit: "Kg",
         products: {
+            برنج_روس: "برنج روس",
             برنج_کشت_دوم: "Second Crop Rice",
             برنج_قهوه_ای: "Brown Rice",
             برنج_طارم_عطری: "Tarom Atri Rice",
             برنج_طارم_فجر: "Tarom Fajr Rice",
             برنج_بسمتی: "Basmati Rice",
-            روغن_زیتون: "Olive Oil",
-            روغن_کنجد: "Sesame Oil",
-            روغن_نارگیل: "Coconut Oil",
-            آرد_برنج: "Rice Flour",
-            برنجک: "Rice Snack",
-            لوبیا_چیتی: "Chickpeas",
-            عدس: "Lentils",
-            میوه_خشک: "Dried Fruits"
+            برنج_هندی: "Indian Rice",
+            برنج_ژاپنی: "Japanease Rice",
+            "برنج_وحشی": "Wild Rice",
+            "برنج_سیاه": "Black Rice",
+            "برنج_دودی": "Smoked Rice",
+            "خرده_برنج": "Broken Rice"
         },
-        categories: {
-            برنج_و_غلات: "Rice",
-            روغن_ها: "Oils",
-            حبوبات: "Legumes",
-            محصولات_برنجی: "Rice Products",
-            خشکبار: "Dried Goods"
+        "categories": {
+            "برنج_ایرانی": "Iranian Rice",
+            "برنج_خاص": "Premium Rice",
+            "برنج_رنگی": "Colored Rice",
+            "برنج_وارداتی": "Imported Rice",
+            "برنج_کشت_دوم": "Second Crop Rice"
         }
     }
 };
@@ -330,6 +331,14 @@ export const useDataStore = create<DataStore>()((set, get) => ({
             set({ error: err as string, loading: false });
         }
     },
+
+    removeProduct: (productId: number) => set((state) => ({
+        products: state.products.filter(p => p.id !== productId)
+    })),
+    
+    addProduct: (product) => set((state) => ({
+        products: [...state.products, product]
+    })),
 
     fetchNotifications: async (lang: string, userId?: number | null) => {
         try {

@@ -27,6 +27,8 @@
     "recommendations": "Empfehlungen",
     "orders": "Bestellungen",
     "activitySummary": "Aktivitätszusammenfassung",
+
+    "iranianRice": "Iranischer Reis",
     "ERROR_MESSAGES":{
         "PHONE_NUMBER": "Bitte geben Sie eine gültige Telefonnummer ein",
         "PHONE_NUMBER_AND_EMAIL": "Bitte geben Sie eine gültige Telefonnummer oder E-Mail-Adresse ein",
@@ -84,26 +86,25 @@
         "label": "Titel",
         "massUnit": "Kg",
         "products": {
+            "برنج_روس": "برنج روس",
             "برنج_بسمتی": "Basmati Reis",
             "برنج_کشت_دوم": "Reis der zweiten Ernte",
             "برنج_قهوه_ای": "Brauner Reis",
             "برنج_طارم_عطری": "Tarom Atri Reis",
             "برنج_طارم_فجر": "Tarom Fajr Reis",
-            "روغن_زیتون": "Olivenöl",
-            "روغن_کنجد": "Sesamöl",
-            "روغن_نارگیل": "Kokosöl",
-            "آرد_برنج": "Reismehl",
-            "برنجک": "Reis Snack",
-            "لوبیا_چیتی": "Kichererbsen",
-            "عدس": "Linsen",
-            "میوه_خشک": "Trockenfrüchte"
+            "برنج_هندی": "Indischer Reis",
+            "برنج_ژاپنی": "Japanischer Reis",
+            "برنج_وحشی": "Wildreis",
+            "برنج_سیاه": "Schwarzer Reis",
+            "برنج_دودی": "Geräucherter Reis",
+            "خرده_برنج": "Bruchreis"
         },
         "categories": {
-            "برنج_و_غلات": "Reis",
-            "روغن_ها": "Öle",
-            "حبوبات": "Hülsenfrüchte",
-            "محصولات_برنجی": "Reisprodukte",
-            "خشکبار": "Trockenwaren"
+            "برنج_ایرانی": "Iranischer",
+            "برنج_خاص": "Premium",
+            "برنج_رنگی": "Farbiger",
+            "برنج_وارداتی": "Importierter",
+            "برنج_کشت_دوم": "Zweite Ernte"
         }
     }
 }

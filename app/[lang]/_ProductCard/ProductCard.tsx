@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 
 
-const ProductCard =  ({ product, buttonBg = "--theme" }: { product: Product, buttonBg: string} ) => {
+const ProductCard =  ({ product, buttonBg = "--theme", className = 'xl:min-w-60 xl:min-h-80 md:min-w-55 md:min-h-70 min-h-50 min-w-35' }: { product: Product, buttonBg: string, className?: string} ) => {
 
   const router = useRouter()
   const { lang } = useParams()
@@ -57,10 +57,7 @@ const ProductCard =  ({ product, buttonBg = "--theme" }: { product: Product, but
   return (
         <div
         ref={cardRef}
-        className={classNames({
-          'text-left': !(isRTL),
-          'text-right': isRTL,
-          'md:min-w-50 md:min-h-70 min-h-50 min-w-35 bg-cover text-[var(--light-text)] flex justify-center items-center overflow-clip select-none': true})}
+        className={`${isRTL ? "text-right" : "text-left"} ${className} bg-cover text-[var(--light-text)] flex justify-center items-center overflow-clip select-none`}
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -73,7 +70,7 @@ const ProductCard =  ({ product, buttonBg = "--theme" }: { product: Product, but
             transition: isHovered ? 'none' : 'transform 2s ease-out'
           }}
         >
-          <div className={`md:p-4 p-3 z-3 w-full h-[50%] fixed bottom-0 flex flex-col justify-between bg-[#00000075] backdrop-blur-[4px] text-[var(--light-text)]`}>
+          <div className={`md:p-4 p-2 z-3 w-full h-[50%] xl:h-[45%] fixed bottom-0 flex flex-col justify-between bg-[#00000075] backdrop-blur-[4px] text-[var(--light-text)]`}>
             <h2 className="truncate md:text-[22px] text-[17px]">{products[label as keyof typeof products]}</h2>
             <div
               className={`
@@ -81,7 +78,7 @@ const ProductCard =  ({ product, buttonBg = "--theme" }: { product: Product, but
                 ${isRTL ? "flex-row-reverse" : "flex-row"}
               `}
             >
-              <PricingAndButton product={product} buttonBg={buttonBg}/>
+              <PricingAndButton className={className} product={product} buttonBg={buttonBg}/>
             </div>
           </div>
         </div>

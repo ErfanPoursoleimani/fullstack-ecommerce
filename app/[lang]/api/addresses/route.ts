@@ -31,7 +31,8 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(validation.error.errors, {status: 400})
 
     const newAddress = await prisma.address.create({
-        data: {
+        data: body.unit 
+        ? {
             province: body.province,
             address: body.address,
             city: body.city, 
@@ -39,7 +40,16 @@ export async function POST(request: NextRequest) {
             unit: body.unit,
             postalCode: body.postalCode,
             userId: body.userId
+        } 
+        : {
+            province: body.province,
+            address: body.address,
+            city: body.city, 
+            plaque: body.plaque,
+            postalCode: body.postalCode,
+            userId: body.userId
         }
+
     })
     return NextResponse.json(newAddress, {status: 201})
 }

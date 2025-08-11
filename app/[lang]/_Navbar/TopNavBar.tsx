@@ -64,7 +64,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
     <>
       <nav className={`
         ${className}
-        flex flex-col justify-center items-between fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 z-102 lg:px-[10%] px-3 pt-3 ${!isBodyVisible ? "pb-3" : null}
+        flex flex-col justify-center items-stretch fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 max-md:z-102 z-103 lg:px-[10%] px-3 pt-3 ${!isBodyVisible ? "pb-3" : null}
         `}
       >
         <div
@@ -90,12 +90,12 @@ const DesktopNavBar = ({ className }: { className: string }) => {
             <LanguageDropdown />
           </div>
           <div
-            className='flex justify-center items-center flex-1 md:flex-initial gap-5'
+            className='flex justify-stretch items-center flex-1 gap-5'
             style={{
               flexDirection: !isRTL ? 'row' : 'row-reverse'
             }}
           >
-            <Link href={`/${lang}`} className={`font-extrabold text-[var(--theme)] text-2xl hidden md:inline-block ${isRTL ? "text-[18px]" : null}`}>{logo}</Link>
+            <Link href={`/${lang}`} className={`font-extrabold text-[var(--theme)] text-xl xl:text-2xl hidden md:inline-block ${isRTL ? "max-xl:text-[18px]" : null}`}>{logo}</Link>
             <SearchBar />
           </div>
         </div>

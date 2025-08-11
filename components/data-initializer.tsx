@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDataStore } from '../stores/dataStore';
 import { useAuthStore } from '@/stores/authStore';
 
@@ -12,6 +12,7 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
     children,
     lang = 'en',
 }) => {
+
     // Track previous auth state to detect changes
     const prevAuthRef = useRef<{
         userId: number | null;
@@ -36,6 +37,11 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
     const dataLoading = useDataStore((state) => state.loading);
     const dataReset = useDataStore((state) => state.reset);
 
+    const [hasHydrated, setHasHydrated] = useState(false);
+    useEffect(() => {
+        setHasHydrated(true);
+    }, []);
+
     // Main effect that handles initialization and reinitialization
     useEffect(() => {
         if (!authIsInitialized) return;
@@ -54,17 +60,10 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
         const shouldInitialize = isFirstInit || authChanged;
 
         if (shouldInitialize) {
-            console.log('Initializing data store:', {
-                reason: isFirstInit ? 'first-init' : 'auth-changed',
-                prevAuth,
-                currentAuth
-            });
-
             const init = async () => {
                 try {
                     // If user logged out, reset the store first
                     if (prevAuth.isAuthenticated && !currentAuth.isAuthenticated) {
-                        console.log('User logged out, resetting data store');
                         dataReset();
                     }
 
@@ -91,6 +90,20 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
         dataReset,
         lang
     ]);
+
+/*     if (!hasHydrated) {
+        return (
+        <>
+            <div className="flex items-center justify-center fixed top-0 left-0 min-h-screen min-w-screen z-10000 bg-white/60">
+                <div className='flex flex-col items-center justify-center bg-white gap-10 rounded-2xl p-10'>
+                    <div className="animate-spin rounded-full h-15 w-15 border-b-3 text-[var(--theme)]"></div>
+                    <p className='font-bold text-[var(--theme)]'>SoleimaniRice</p>
+                </div>
+            </div>
+            {children}
+        </>
+        );
+    } */
 
     return <>{children}</>;
 };

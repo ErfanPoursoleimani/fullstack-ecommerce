@@ -4,7 +4,7 @@ import { Product } from '@/types/types'
 import { useParams } from 'next/navigation'
 import CartButton from './CartButton'
 
-const PricingAndButton = ({ product, buttonBg }: { product: Product, buttonBg: string }) => {
+const PricingAndButton = ({ product, buttonBg, className }: { product: Product, buttonBg: string, className?: string }) => {
 
     const { lang } = useParams()
     const { dict, cartProducts, isRTL } = useDataStore()
@@ -39,13 +39,14 @@ const PricingAndButton = ({ product, buttonBg }: { product: Product, buttonBg: s
       {!product.stock
       ? <p 
           className={`
+            ${className !== 'xl:min-w-60 xl:min-h-80 md:min-w-55 md:min-h-70 min-h-50 min-w-35' ? "hidden" : ""}
             w-[50%] md:w-[50%] min-md:h-12 h-10  py-1 md:py-3 select-none flex justify-center items-center rounded-[7px] md:text-[12px] text-[8px]
-            bg-[var(${buttonBg})] text-[var(--theme)] px-1 border-b-2
+            bg-[var(--theme2)] [var(${buttonBg === "--theme" ? "--theme2" : "--theme"})] text-white px-1
           `}
         > 
           Out of stock
         </p>
-      : <CartButton product={product} buttonBg={buttonBg}/>
+      : <CartButton className={className !== 'xl:min-w-60 xl:min-h-80 md:min-w-55 md:min-h-70 min-h-50 min-w-35' ? "hidden" : ""} product={product} buttonBg={buttonBg}/>
       }
     </>
   )

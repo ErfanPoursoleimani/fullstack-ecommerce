@@ -32,7 +32,6 @@ export default function NavSeg() {
           {id: 1, label: "orders", icon: <IoBagOutline className='text-[20px]' />, href: `/${lang}/admin/dashboard/orders`},
           {id: 2, label: "products", icon: <BiDirections className='text-[20px]' />, href: `/${lang}/admin/dashboard/products`},
           {id: 3, label: "users", icon: <IoMdNotifications className='text-[20px]' />, href: `/${lang}/admin/dashboard/users`},
-          {id: 4, label: "tags", icon: <FaRegUser className='text-[20px]' />, href: `/${lang}/admin/dashboard/tags` },
       ]
 
       // Create new array with translated labels
@@ -45,7 +44,7 @@ export default function NavSeg() {
   }, [dict, lang])
 
   return (
-    <div className={`min-w-full min-h-full md:min-w-[25%] md:min-h-[70vh] md:border-1 border-neutral-300 rounded-[10px]`}>
+    <div className={`min-w-full min-h-full md:min-w-[25%] md:min-h-[70vh] md:border-1 bg-white border-neutral-300 rounded-[10px]`}>
       <div className='border-b-9 md:border-b-1 border-neutral-200 px-4'>
         <div className={`flex justify-between items-center py-5 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
           <span className={`flex flex-col justify-between gap-1 ${isRTL ? "items-end" : "items-start"}`}>
@@ -59,7 +58,7 @@ export default function NavSeg() {
         <OrdersDefault className={`block md:hidden pt-3`}/>
       </div>
       <ul className={`px-4 text-[14px] flex flex-col`}>
-        <Link href={`/${lang}/profile`} 
+        <Link href={`/${lang}/admin/dashboard`} 
           className={`
             hidden py-4 border-b-1 border-neutral-100 md:flex justify-between items-center
             ${isRTL ? "flex-row-reverse" : "flex-row"}

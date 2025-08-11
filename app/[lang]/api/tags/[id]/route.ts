@@ -7,9 +7,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function PATCH(request: NextRequest, props: { params: Promise<{ id: string }>}) {
     const params = await props.params;
     const body = await request.json()
-    const validation = tagSchema.safeParse(body)
-    if(!validation.success)
-        return NextResponse.json(validation.error.format(), { status: 400})
 
     const tag = await prisma.tag.findUnique({
         where: {
@@ -25,7 +22,6 @@ export async function PATCH(request: NextRequest, props: { params: Promise<{ id:
             id: tag.id
         },
         data: {
-            id: body.id,
             label: body.label,
         }
     })

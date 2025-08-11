@@ -6,7 +6,7 @@ const page = () => {
 
 
   return (
-    <div className="relative top-[105px]">
+    <div className="relative top-[103px]">
       <HomeSec />
       {/* <Footer /> */}
       <div className="h-14 md:hidden"></div>

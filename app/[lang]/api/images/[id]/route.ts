@@ -25,10 +25,7 @@ export async function PATCH(request: NextRequest, props: { params: Promise<{ id:
             id: image.id
         },
         data: {
-            id: body.id,
-            label: body.label,
             url: body.url,
-            product: body.product, 
             productId: body.productId
         }
     })

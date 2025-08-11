@@ -87,7 +87,7 @@ export default function NavSeg() {
             className={`
               py-4 border-b-1 border-neutral-100 flex justify-between items-center
               ${isRTL ? "flex-row-reverse" : "flex-row"}
-              ${currentPath === link.href ? "font-bold" : null }
+              ${currentPath.startsWith(link.href) ? "font-bold" : null }
             `}
           >
             <li

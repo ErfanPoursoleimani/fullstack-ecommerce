@@ -85,18 +85,21 @@ export const userLoginSchema = z.object({
 })
 
 export const userSchema = z.object({
-    phoneNumber: z.string().min(1, REQUIRED).nullish().transform((value) => value || null),
-    email: z.string().email(EMAIL).nullish().transform((value) => value || null),
-    firstName: z.string().min(3, FIRST_NAME).nullish().transform((value) => value || null),
-    lastName: z.string().min(3, LAST_NAME).nullish().transform((value) => value || null),
+    // phoneNumber: z.string().min(1, REQUIRED).max(11),
+    nationalCode: z.string().min(1, REQUIRED).max(10).nullable().transform((value) => value || null),
+    email: z.string().nullish().transform((value) => value || null),
+    firstName: z.string().min(3, FIRST_NAME).nullable().transform((value) => value || null),
+    lastName: z.string().min(3, LAST_NAME).nullable().transform((value) => value || null),
 })
 
 export const cartSchema = z.object({
 })
 
 export const imageSchema = z.object({
-    label: z.string().min(1, 'نام عکس نمیتواند خالی باشد').max(255),
-    url: z.string().min(1, 'آدرس عکس نمیتواند خالی باشد').max(255),
+    url: z.string().min(1, REQUIRED).max(255),
+})
+export const tagImageSchema = z.object({
+    url: z.string().min(1, REQUIRED).max(255),
 })
 
 export const cartProductSchema = z.object({
@@ -112,6 +115,7 @@ export const productSchema = z.object({
     originalPriceFa: z.number().min(1, REQUIRED),
     priceFa: z.number().min(1, REQUIRED),
     stock: z.number().min(1, REQUIRED),
+    url: z.string().min(1, REQUIRED),
     description: z.string().min(1, REQUIRED)
 })
 
@@ -128,10 +132,11 @@ export const addressSchema = z.object({
   city: z.string().min(1, REQUIRED),
   address: z.string().min(1, REQUIRED),
   plaque: z.string().min(1, REQUIRED),
-  unit: z.string().min(1, REQUIRED),
+  unit: z.string().nullable().transform((value) => value || null),
   postalCode: z.string().min(10, POSTAL_CODE),
 })
 
 export const tagSchema = z.object({
-
+  label: z.string().min(1, REQUIRED),
+  url: z.string().min(1, REQUIRED)
 })

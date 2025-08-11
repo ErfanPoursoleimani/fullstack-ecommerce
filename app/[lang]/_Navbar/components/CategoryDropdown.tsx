@@ -2,7 +2,7 @@ import useDataStore from '@/stores/dataStore';
 import classNames from 'classnames';
 import { Amphora, Bean, Citrus, Tractor, Wheat } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import { BiCategory } from 'react-icons/bi';
 import ProductCard from '../../_ProductCard/ProductCard';
 import NavArrows from '../../_components/NavArrows';
@@ -15,6 +15,8 @@ const options = [
 ];
   
 const CategoryDropdown: React.FC = () => {
+
+  const listRef = useRef<HTMLDivElement>(null!)
   
   const router = useRouter()
   const currentPath = usePathname()
@@ -31,21 +33,15 @@ const CategoryDropdown: React.FC = () => {
     setIsTagOpen(true)
   }
 
-  const handleTagIcon = (label: string): ReactNode => {
+/*   const handleTagIcon = (label: string): ReactNode => {
     switch (label) {
-      case 'برنج_و_غلات':
+      case 'برنج_ایرانی':
         return <Tractor size={'1rem'} />
-      case "روغن_ها":
-        return <Amphora size={'1rem'} />
-      case "حبوبات":
-        return <Bean size={'1rem'} />
-      case "محصولات_برنجی":
-        return <Wheat size={'1rem'} />
-      case "خشکبار":
-        return <Citrus size={'1rem'} />
+      case "برنج_خارجی":
+        return <Tractor size={'1rem'} />
     }
     return null
-  }
+  } */
 
   return (
         <div className='hidden md:block'>
@@ -84,7 +80,7 @@ const CategoryDropdown: React.FC = () => {
             </button>
             {isOpen &&
               <div 
-                className={`absolute top-[100%] border-t-1 border-neutral-200 flex max-w-[70vw] min-h-[50vh]
+                className={`absolute top-[100%] border-t-1 border-neutral-200 flex max-w-[70vw] min-h-[30vh]
                   ${isRTL ? "flex-row-reverse" : "flex-row"}
                 `}
                 onMouseEnter={() => setIsOpen(true)}
@@ -101,7 +97,6 @@ const CategoryDropdown: React.FC = () => {
                       `}
                       onMouseEnter={() => handleEnterTag(tag)}
                     >
-                      {handleTagIcon(tag.label)}
                       {dict.product.categories[tag.label as keyof typeof dict.product.categories]}
                     </p>
                   ))}
@@ -112,18 +107,19 @@ const CategoryDropdown: React.FC = () => {
                   `}>
                       {/* <h2 className='font-bold mb-3 mx-5 text-[23px]'>{dict.product.categories[tagHover && tagHover.label as keyof typeof dict.product.categories]}</h2> */}
                       <div
+                      ref={listRef}
                       className={classNames({
-                          "flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-5": true,
+                          "flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide p-5": true,
                           "flex-row-reverse": isRTL,
                           "flex-row": !(isRTL),
                       })}>
                           {/* <h2 className='hidden md:flex flex-col justify-center items-center self-stretch px-2 text-center mx-13 text-[40px] font-bold'>{dict.product.categories[tagHover && tagHover.label as keyof typeof dict.product.categories]}</h2> */}
                           {tagHover && tagHover.products.map((product) => (
-                              <ProductCard key={product.id} product={product} buttonBg={'--theme2'}/>
+                              <ProductCard className='min-h-65 min-w-50' key={product.id} product={product} buttonBg={'--theme2'}/>
                           ))}
                           {/* <SeeAllProducts arrowDirection={`${isRTL ? "toLeft" : "toRight"}`} /> */}
                       </div>
-                      <NavArrows />
+                      <NavArrows list={listRef}/>
                   </div>
                 }
               </div>

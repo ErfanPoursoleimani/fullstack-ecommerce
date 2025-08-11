@@ -17,11 +17,7 @@ const PhoneView = () => {
 
     const product = products.filter((product) => product.id === parseInt(id as string))[0]
 
-    if (!product) {
-        notFound()
-    }
-
-    const { priceFa, description, label, stock } = product!
+    const { priceFa, description, label, stock } = product
 
   return (
     <div className='md:hidden w-full relative top-[103px] -z-2'>
@@ -35,9 +31,9 @@ const PhoneView = () => {
       <div 
         className={`
           w-full bg-neutral-100 flex flex-col gap-1
-          ${isRTL ? "text-end" : "text-start"}`
-      }>
-        <div className='bg-white rounded-t-3xl min-h-45 flex flex-col justify-evenly p-5'>
+          ${isRTL ? "text-end" : "text-start"}`}
+      >
+        <div className='bg-white rounded-t-3xl flex flex-col gap-5 p-5'>
           <div className={`flex justify-between ${isRTL ? 'flex-row-reverse' : "flex-row"}`}>
             <p className={`text-neutral-400 underline underline-offset-3 text-[13px] flex gap-[2px] items-center`}>
               {/* <span className={`text-[11px]`}>{isRTL ? <MdArrowBackIos/> : <MdArrowForwardIos/>}</span> */}
@@ -71,7 +67,7 @@ const PhoneView = () => {
         </div>
         <div className={`bg-white p-5 space-y-4`}>
           <h2 className={`font-medium text-[17]`}>About Product</h2>
-          <p className='text-[15px] text-neutral-800'>{product.description}</p>
+          <p className='text-[13px] text-neutral-800 px-3'>{product.description}</p>
         </div>
         <div className={`bg-white p-5 space-y-4 flex flex-col`}>
           <h2 className={`font-medium text-[17]`}>Reviews</h2>
@@ -88,19 +84,19 @@ const PhoneView = () => {
         </div>
         <div className={`bg-white p-5 space-y-4 flex flex-col`}>
           <h2 className={`font-medium text-[17]`}>Similar Products</h2>
-          <div className='flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth'>
+          <div className={`${isRTL ? "flex-row-reverse" : ""} flex gap-1 overflow-x-auto scrollbar-hide scroll-smooth`}>
 
               {tags.find((tag) => tag.id === product.tagId)!.products.filter((p) => p.id !== product.id).length === 0
-              ?  <p className='self-center mb-4 text-[15px] text-neutral-400'>no similar product exists</p>
+              ?  <p className='self-center mb-4 text-[15px] text-neutral-400'>No similar products exist</p>
               : tags.find((tag) => tag.id === product.tagId)!.products.filter((p) => p.id !== product.id).map((product) => (
                   <ProductCard buttonBg='--theme' key={product.id} product={product}/>
                 ))
               }
           </div>
         </div>
-        <div className={`bg-white p-5 overflow-x-auto w-full space-y-4 flex flex-col mb-[142px]`}>
+        <div className={`bg-white p-5 space-y-4 flex flex-col mb-13 overflow-hidden`}>
           <h2 className={`font-medium text-[17]`}>Recommendation</h2>
-          <div className='flex gap-2 w-full overflow-x-auto scrollbar-hide scroll-smooth'>
+          <div className={`${isRTL ? "flex-row-reverse" : ""} flex gap-1 overflow-x-auto scrollbar-hide scroll-smooth`}>
             {tags.filter((tag) => tag.id !== product.tagId).map((tag) => (
               <React.Fragment key={tag.id}>
                 {tag.products.filter((p) => p.id !== product.id).map((product) => (
@@ -111,9 +107,7 @@ const PhoneView = () => {
           </div>
         </div>
       </div>
-      <div className='fixed bottom-14 bg-white px-4 py-3 w-full flex justify-between'>
-        <ProductCard buttonBg='--theme' product={product}/>
-      </div>
+      <div className=''></div>
     </div>
   )
 }

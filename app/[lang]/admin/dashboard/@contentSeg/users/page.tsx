@@ -26,35 +26,18 @@ const page = () => {
           {isRTL
             ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} />
             : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }
-          <span className={`items-center justify-center gap-3 hidden md:flex text-red-500`}>
-            <FaPlus />
-            <ProductPicker purpose={'post'} buttonContent={`add new user`} className={`text-sm`}/>
-          </span>
         </div>
-        <div className={`text-[13px] p-5 flex-1 flex flex-col justify-stretch gap-5 items-center ${isRTL ? "text-end" : "text-start"}`}>
+        <div className={`text-[13px] divide-y-1 divide-neutral-300 p-5 max-md:p-2 flex-1 flex flex-col justify-stretch gap-3 items-center ${isRTL ? "text-end" : "text-start"}`}>
           { users.length === 0
           ? <div className={`space-y-2 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
               <BiSolidDirections className='text-[150px] text-[var(--theme)]'/>
-              <p>No users added</p>
-              <ProductPicker purpose={'post'} buttonContent='add an user' className={`p-4 border-1 border-[var(--theme)] rounded-[7px] md:text-sm text-[0.8rem] md:text-md text-[var(--theme)]`}/>
+              <p>No users signed up</p>
+              {/* <ProductPicker purpose={'post'} buttonContent='add an user' className={`p-4 border-1 border-[var(--theme)] rounded-[7px] md:text-sm text-[0.8rem] md:text-md text-[var(--theme)]`}/> */}
             </div>
           : users.map((user) => (
             <UserCard key={user.id} user={user}/>
           ))}
         </div>
-      </div>
-      <div className={`${users.length === 0 ? 'hidden' : ""}`}>
-        <span className={`fixed bottom-20 left-[4vw] items-center justify-center gap-3 md:hidden flex text-white bg-[var(--theme)] rounded-full p-4 z-103`}>
-          { loading
-            ? <Loading className=''/>
-            : (
-                <>
-                  <FaPlus className='text-white'/>
-                  <ProductPicker purpose={'post'} buttonContent={`add new user`} className={``}/>
-                </>
-              )
-          }
-        </span>
       </div>
     </>
   )
