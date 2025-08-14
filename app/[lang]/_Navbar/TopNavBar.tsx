@@ -3,7 +3,7 @@ import { useAuthStore } from '@/stores/authStore';
 import useDataStore from '@/stores/dataStore';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { PiShoppingBagFill } from "react-icons/pi";
 import { SignInButton } from '../_components';
 import Footer from './components/Footer';
@@ -27,39 +27,45 @@ const DesktopNavBar = ({ className }: { className: string }) => {
   const isBodyVisible = useScrollDirection(100);
   const isFooterVisible = useScrollDirection(100);
   
-  const navLinks: {id: number, label: string, href: string}[] = [
-    {id: 1, label: "home", href: `/${lang}#home`},
-    {id: 2, label: "products", href: `/${lang}#products`},
-    {id: 3, label: "contact", href: `/${lang}#contact`},
-    {id: 4, label: "about", href: `/${lang}#about`},
-  ]
+  const navLinks = useMemo(() => {
+    
+    const baseNavLinks = [
+      {id: 1, label: "home", href: `/${lang}#home`},
+      {id: 2, label: "products", href: `/${lang}#products`},
+      {id: 3, label: "contact", href: `/${lang}#contact`},
+      {id: 4, label: "about", href: `/${lang}#about`},
+    ]
+    
+    // Create new array with translated labels
+    const translatedLinks = baseNavLinks.map(link => ({
+      ...link,
+      label: (dict[link.label as keyof typeof dict] as string) || link.label
+    }))
+    
+    return translatedLinks
+  }, [dict, lang])
   
-  const adminNavLinks: {id: number, label: string, href: string}[] =  [
+  const adminNavLinks = useMemo(() => {
+    
+    const baseNavLinks = [
     {id: 1, label: "home", href: `/${lang}#home`},
     {id: 3, label: "products", href:  `/${lang}#products`},
     {id: 2, label: "orders", href: `/${lang}#orders`},
   ]
+    
+    // Create new array with translated labels
+    const translatedLinks = baseNavLinks.map(link => ({
+      ...link,
+      label: (dict[link.label as keyof typeof dict] as string) || link.label
+    }))
+    
+    return translatedLinks
+  }, [dict, lang])
   
-  useEffect(() => {
-    adminNavLinks.map((elem) => (
-      elem.label = dict.links[elem.label as keyof typeof dict.links]
-    ))
-    navLinks.map((elem) => (
-      elem.label = dict.links[elem.label as keyof typeof dict.links]
-    ))
-  }, [lang])
-  
-  adminNavLinks.map((elem) => (
-    elem.label = dict.links[elem.label as keyof typeof dict.links]
-  ))
-  navLinks.map((elem) => (
-    elem.label = dict.links[elem.label as keyof typeof dict.links]
-  ))
   
   !(isRTL) ? null : (navLinks.sort((a, b) => navLinks.indexOf(b) - navLinks.indexOf(a)), adminNavLinks.sort((a, b) => adminNavLinks.indexOf(b) - adminNavLinks.indexOf(a)))
   
-
-
+  
   return (
     <>
       <nav className={`
