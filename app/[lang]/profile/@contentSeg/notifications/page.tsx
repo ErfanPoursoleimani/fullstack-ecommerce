@@ -1,6 +1,6 @@
 "use client"
-import { useAuthStore } from '@/stores/authStore'
-import useDataStore from '@/stores/dataStore'
+import { useAuthStore } from '@/app/stores/authStore'
+import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
 import { MdArrowBackIos, MdArrowForwardIos, MdNotifications } from 'react-icons/md'
 

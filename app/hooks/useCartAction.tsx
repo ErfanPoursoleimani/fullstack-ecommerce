@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useCallback, useMemo } from 'react';
-import useDataStore from '@/stores/dataStore';
-import { CartProduct, Product } from '@/types/types';
-import { useAuthStore } from '@/stores/authStore';
+import useDataStore from '@/app/stores/dataStore';
+import { CartProduct, Product } from '@/app/types/types';
+import { useAuthStore } from '@/app/stores/authStore';
 
 type CartItem = CartProduct
 

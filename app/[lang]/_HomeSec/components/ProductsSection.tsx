@@ -1,5 +1,5 @@
 "use client"
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import classNames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
 import NavArrows from '../../_components/NavArrows'

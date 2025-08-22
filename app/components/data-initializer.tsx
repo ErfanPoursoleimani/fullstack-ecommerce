@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react';
 import { useDataStore } from '../stores/dataStore';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/app/stores/authStore';
 
 interface DataInitializerProps {
     children: React.ReactNode;

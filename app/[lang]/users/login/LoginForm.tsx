@@ -1,14 +1,14 @@
 'use client'
 import { useReturnUrl } from '@/app/hooks/useReturnUrl'
-import { useAuthStore } from '@/stores/authStore'
+import { useAuthStore } from '@/app/stores/authStore'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { Controller, useForm } from 'react-hook-form'
 import { FaArrowRight } from 'react-icons/fa6'
 import { z } from 'zod'
-import { userLoginSchema } from '../../../../validation/validationSchemas'
+import { userLoginSchema } from '../../../validation/validationSchemas'
 import { useParams, useRouter } from 'next/navigation'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 
 type userData = z.infer<typeof userLoginSchema>
 

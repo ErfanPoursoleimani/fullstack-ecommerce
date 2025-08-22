@@ -1,6 +1,6 @@
 "use client"
 import Loading from '@/app/[lang]/_components/Loading'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
 import { BiSolidDirections } from 'react-icons/bi'
 import { FaPlus } from 'react-icons/fa6'

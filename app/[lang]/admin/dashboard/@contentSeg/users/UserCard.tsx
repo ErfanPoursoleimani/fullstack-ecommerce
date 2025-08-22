@@ -1,6 +1,6 @@
 'use client'
-import useDataStore from '@/stores/dataStore'
-import { Product, User } from '@/types/types'
+import useDataStore from '@/app/stores/dataStore'
+import { Product, User } from '@/app/types/types'
 import { useParams } from 'next/navigation'
 
 const UserCard = ({user}: {user: User}) => {

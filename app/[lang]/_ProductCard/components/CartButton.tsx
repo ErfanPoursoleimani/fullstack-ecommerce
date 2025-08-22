@@ -1,6 +1,6 @@
 import Loading from '@/app/[lang]/_components/Loading'
 import { useCartAction } from '@/app/hooks/useCartAction'
-import { Product } from '@/types/types'
+import { Product } from '@/app/types/types'
 import { ShoppingCart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { FaMinus, FaPlus, FaTrashCan } from 'react-icons/fa6'

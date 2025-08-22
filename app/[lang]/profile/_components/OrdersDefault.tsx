@@ -1,5 +1,5 @@
 'use client'
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { IoIosCloudDone } from "react-icons/io";

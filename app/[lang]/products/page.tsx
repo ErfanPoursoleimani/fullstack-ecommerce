@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import ProductCard from '../_ProductCard/ProductCard'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 
 const page = () => {
 

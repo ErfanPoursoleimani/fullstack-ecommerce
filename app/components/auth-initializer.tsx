@@ -1,5 +1,5 @@
 'use client'
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/app/stores/authStore';
 import { useEffect, useState, useRef, useCallback } from 'react';
 
 export function AuthInitializer({ 

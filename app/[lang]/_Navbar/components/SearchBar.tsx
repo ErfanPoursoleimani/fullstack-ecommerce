@@ -4,10 +4,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { LuSearch } from 'react-icons/lu'
 import Popup from './PopUp'
 import SmallLogo from '../../_components/SmallLogo'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import ProductCard from '../../_ProductCard/ProductCard'
 import Link from 'next/link'
-import { Product } from '@/types/types'
+import { Product } from '@/app/types/types'
 
 const SearchBar = () => {
 

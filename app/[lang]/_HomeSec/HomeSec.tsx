@@ -1,5 +1,5 @@
 'use client'
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import classNames from 'classnames';
 import { useParams } from 'next/navigation';
 import LargeLogo from '../_components/LargeLogo';

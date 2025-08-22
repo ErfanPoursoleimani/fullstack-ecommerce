@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import { useCarousel } from '@/app/hooks/useCarousel';
 import classNames from 'classnames';
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 
 const MainView = () => {
 

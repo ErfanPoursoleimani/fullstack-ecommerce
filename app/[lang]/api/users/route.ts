@@ -41,7 +41,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ lan
         })
         
         const lang = (await params).lang
-        const { data: { cart: { id: cartId } } } = await axios.post(`http://localhost:3000/${lang}/api/carts`, { userId: newUser.id })
+        const { data: { cart: { id: cartId } } } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${lang}/api/carts`, { userId: newUser.id })
 
         newUser = await prisma.user.update({
             where: {

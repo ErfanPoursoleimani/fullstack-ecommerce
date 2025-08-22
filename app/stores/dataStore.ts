@@ -1,4 +1,4 @@
-import { Address, CartProduct, Dict, Product, Review, Notification ,Tag, User } from '@/types/types';
+import { Address, CartProduct, Dict, Product, Review, Notification ,Tag, User } from '@/app/types/types';
 import { Cart, Image, Order } from '@prisma/client';
 import axios from 'axios';
 import { create } from 'zustand';

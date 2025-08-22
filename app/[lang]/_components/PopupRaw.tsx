@@ -3,7 +3,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { usePopup, useConfirmationPopup, useAlertPopup } from '@/app/hooks/usePopup';
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 
 interface PopupProps {
   children: React.ReactNode;

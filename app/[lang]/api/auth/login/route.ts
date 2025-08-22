@@ -1,4 +1,4 @@
-import { userLoginSchema } from '@/validation/validationSchemas';
+import { userLoginSchema } from '@/app/validation/validationSchemas';
 import axios from "axios";
 import { SignJWT } from 'jose';
 import { cookies } from "next/headers";
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest, { params }: {params: Promise<{l
         return NextResponse.json(validation.error.errors, {status: 400})
     
     try {
-        const { data } = await axios.post(`http://localhost:3000/${lang}/api/users`, body)
+        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${lang}/api/users`, body)
         const userId = data.user.id
         const cartId = data.user.cartId
         const role = data.user.role

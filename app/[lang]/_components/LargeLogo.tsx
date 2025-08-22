@@ -1,7 +1,7 @@
 'use client'
 import classNames from 'classnames'
 import React from 'react'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 
 const LargeLogo = () => {
 

@@ -1,5 +1,5 @@
 'use client'
-import useDataStore from "@/stores/dataStore";
+import useDataStore from "@/app/stores/dataStore";
 import { useParams, useRouter } from "next/navigation";
 import { LiaOpencart } from "react-icons/lia";
 import InCartProduct from "./components/InCartProduct";

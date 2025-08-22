@@ -1,4 +1,4 @@
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import React from 'react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'

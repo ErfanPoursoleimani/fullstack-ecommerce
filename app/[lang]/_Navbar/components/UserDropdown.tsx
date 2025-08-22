@@ -1,6 +1,6 @@
 'use client'
-import { useAuthStore } from '@/stores/authStore'
-import useDataStore from '@/stores/dataStore'
+import { useAuthStore } from '@/app/stores/authStore'
+import useDataStore from '@/app/stores/dataStore'
 import Link from 'next/link'
 
 import { useParams, usePathname, useRouter } from 'next/navigation'
@@ -79,7 +79,7 @@ const UserDropdown = () => {
     <div ref={dropdownRef} className={`relative hidden md:flex flex-col ${isRTL ? "items-start" : "items-end" }`}>
         <div 
             onClick={() => setIsOpen(!isOpen)} 
-            className={`hidden md:flex items-center p-2 rounded-[10px] ${ isOpen && "bg-[#5eff0050]" }`}
+            className={`hidden md:flex items-center p-2 rounded-[10px] ${ isOpen && "bg-[#ff8f3350]" }`}
         >
             <FaRegUser className='text-[23px]'/>
             <MdArrowDropDown className='text-xl'/>

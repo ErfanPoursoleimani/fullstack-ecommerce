@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/client";
-import { productSchema } from "@/validation/validationSchemas";
+import { productSchema } from "@/app/validation/validationSchemas";
 import { Image } from "@prisma/client";
 import axios from "axios";
 import { revalidatePath, revalidateTag } from 'next/cache'

@@ -1,10 +1,10 @@
 import React from 'react'
 import CategoryDropdown from './CategoryDropdown'
 import RegionDropdown from './RegionDropdown'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import { useParams, usePathname } from 'next/navigation'
 import { Link } from 'lucide-react'
-import { useAuthStore } from '@/stores/authStore'
+import { useAuthStore } from '@/app/stores/authStore'
 
 const Footer = () => {
 

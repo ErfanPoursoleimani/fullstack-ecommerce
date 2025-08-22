@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDataStore } from '@/stores/dataStore';
+import { useDataStore } from '@/app/stores/dataStore';
 
 export const useStoreWithHydration = <T,>(
     selector: (state: any) => T,

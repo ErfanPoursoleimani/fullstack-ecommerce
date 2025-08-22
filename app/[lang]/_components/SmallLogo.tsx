@@ -1,5 +1,5 @@
 'use client'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import React from 'react'
 
 const SmallLogo = ({ style }: { style: {}}) => {

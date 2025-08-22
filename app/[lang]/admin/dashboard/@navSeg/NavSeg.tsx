@@ -1,7 +1,7 @@
 'use client'
 // import { useAuthSelectors, useAuthActions } from '@/stores/authStore'
-import { useAuthStore } from '@/stores/authStore';
-import useDataStore from '@/stores/dataStore';
+import { useAuthStore } from '@/app/stores/authStore';
+import useDataStore from '@/app/stores/dataStore';
 import Link from 'next/link';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useMemo } from 'react';

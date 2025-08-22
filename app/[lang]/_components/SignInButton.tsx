@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
 

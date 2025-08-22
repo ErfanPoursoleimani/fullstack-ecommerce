@@ -1,7 +1,7 @@
 'use client';
-import { DataInitializer } from '@/components/data-initializer';
-import { useAuthStore } from '@/stores/authStore';
-import { useDataStore } from '@/stores/dataStore';
+import { DataInitializer } from '@/app/components/data-initializer';
+import { useAuthStore } from '@/app/stores/authStore';
+import { useDataStore } from '@/app/stores/dataStore';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import BottomNavBar from './_Navbar/BottomNavBar';

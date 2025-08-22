@@ -1,5 +1,5 @@
 'use client'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import { notFound, useParams } from 'next/navigation'
 import React from 'react'
 import Image from 'next/image'

@@ -1,6 +1,6 @@
 'use client'
-import { useAuthStore } from '@/stores/authStore';
-import { useDataStore } from '@/stores/dataStore';
+import { useAuthStore } from '@/app/stores/authStore';
+import { useDataStore } from '@/app/stores/dataStore';
 
 export const useManualReinit = () => {
   const authRefresh = useAuthStore(state => state.refreshSession);

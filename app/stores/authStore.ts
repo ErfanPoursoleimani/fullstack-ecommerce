@@ -3,7 +3,7 @@ import axios from 'axios'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 import { devtools } from 'zustand/middleware'
-import { User } from '@/types/types'
+import { User } from '@/app/types/types'
 import useDataStore from './dataStore'
 import { Role } from '@prisma/client'
 

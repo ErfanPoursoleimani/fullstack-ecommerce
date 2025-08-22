@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDownIcon } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { Value } from '@radix-ui/themes/components/data-list';
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 
 interface Option {
   value: string;

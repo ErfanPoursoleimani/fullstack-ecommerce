@@ -1,10 +1,10 @@
 'use client'
-import { Product } from '@/types/types';
+import { Product } from '@/app/types/types';
 import { useParams, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import PricingAndButton from './components/PricingAndButton';
 import classNames from 'classnames';
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import Link from 'next/link';
 
 

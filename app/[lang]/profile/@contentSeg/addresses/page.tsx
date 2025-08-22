@@ -1,7 +1,7 @@
 "use client"
 import { AddressPicker } from '@/app/[lang]/_components/AddressPicker'
-import { useAuthStore } from '@/stores/authStore'
-import useDataStore from '@/stores/dataStore'
+import { useAuthStore } from '@/app/stores/authStore'
+import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { BiSolidDirections } from 'react-icons/bi'

@@ -2,14 +2,14 @@
 import { usePopup } from '@/app/hooks/usePopup'
 import React, { ReactNode, useState } from 'react'
 import Popup from '@/app/[lang]/_components/PopupRaw'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import { z } from 'zod'
-import { addressSchema, userSchema } from '@/validation/validationSchemas'
+import { addressSchema, userSchema } from '@/app/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
-import { useAuthStore } from '@/stores/authStore'
+import { useAuthStore } from '@/app/stores/authStore'
 import Loading from '@/app/[lang]/_components/Loading'
 
 type userData = z.infer<typeof userSchema>

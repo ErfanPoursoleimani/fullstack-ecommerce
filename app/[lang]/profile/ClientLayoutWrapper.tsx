@@ -1,7 +1,7 @@
 'use client';
 import { ReactNode } from 'react';
 import OrdersDefault from './_components/OrdersDefault';
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import { useParams, usePathname } from 'next/navigation';
 
 interface Props {

@@ -1,6 +1,6 @@
 
-import useDataStore from '@/stores/dataStore'
-import { Product } from '@/types/types'
+import useDataStore from '@/app/stores/dataStore'
+import { Product } from '@/app/types/types'
 import { useParams } from 'next/navigation'
 import CartButton from './CartButton'
 

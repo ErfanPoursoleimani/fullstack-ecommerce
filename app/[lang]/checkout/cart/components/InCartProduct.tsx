@@ -1,10 +1,10 @@
 import PricingAndButton from '@/app/[lang]/_ProductCard/components/PricingAndButton'
-import { CartProduct } from '@/types/types'
+import { CartProduct } from '@/app/types/types'
 import { useParams } from 'next/dist/client/components/navigation'
 import classnames from 'classnames'
 import Image from 'next/image'
 import React from 'react'
-import useDataStore from '@/stores/dataStore'
+import useDataStore from '@/app/stores/dataStore'
 import { TypeOf } from 'zod'
 import CartButton from '@/app/[lang]/_ProductCard/components/CartButton'
 

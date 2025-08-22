@@ -1,7 +1,7 @@
 "use client"
-import { useAuthStore } from '@/stores/authStore'
-import useDataStore from '@/stores/dataStore'
-import { userLoginSchema } from '@/validation/validationSchemas'
+import { useAuthStore } from '@/app/stores/authStore'
+import useDataStore from '@/app/stores/dataStore'
+import { userLoginSchema } from '@/app/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { FaRegEdit } from 'react-icons/fa'

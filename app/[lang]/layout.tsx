@@ -1,4 +1,4 @@
-import { AuthInitializer } from '@/components/auth-initializer';
+import { AuthInitializer } from '@/app/components/auth-initializer';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -8,12 +8,7 @@ import { CookiesProvider } from "next-client-cookies/server";
 import { Geist, Geist_Mono, Noto_Sans_Arabic, Roboto, Rubik } from "next/font/google";
 import ClientLayoutWrapper from "./ClientLayoutWrapper";
 import "./globals.css";
-import { DataInitializer } from '@/components/data-initializer';
-
-if (process.env.NODE_ENV === 'development') {
-  // require('events').EventEmitter.defaultMaxListeners = 15;
-  process.setMaxListeners(15);
-}
+import { DataInitializer } from '@/app/components/data-initializer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

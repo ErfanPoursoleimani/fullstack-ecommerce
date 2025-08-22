@@ -1,4 +1,4 @@
-import useDataStore from '@/stores/dataStore';
+import useDataStore from '@/app/stores/dataStore';
 import classNames from 'classnames';
 import { Amphora, Bean, Citrus, Tractor, Wheat } from 'lucide-react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
@@ -6,7 +6,7 @@ import React, { ReactNode, useRef, useState } from 'react';
 import { BiCategory } from 'react-icons/bi';
 import ProductCard from '../../_ProductCard/ProductCard';
 import NavArrows from '../../_components/NavArrows';
-import { Tag } from '@/types/types'
+import { Tag } from '@/app/types/types'
 
 const options = [
   { value: 'ir', label: 'Iran' },

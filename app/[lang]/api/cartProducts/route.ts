@@ -1,4 +1,4 @@
-import { cartProductSchema } from "@/validation/validationSchemas";
+import { cartProductSchema } from "@/app/validation/validationSchemas";
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
