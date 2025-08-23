@@ -159,11 +159,11 @@ export function useCarousel({
       transform: `translateX(-${currentIndex * 100}%)`,
       transition: 'transform 0.5s ease-in-out'
     },
-    className: 'flex w-full h-full'
+    className: 'flex w-full'
   }), [currentIndex])
 
   const getSlideProps = useCallback((index: number) => ({
-    className: 'w-full h-full flex-shrink-0',
+    className: 'flex-shrink-0',
     'data-active': index === currentIndex
   }), [currentIndex])
 

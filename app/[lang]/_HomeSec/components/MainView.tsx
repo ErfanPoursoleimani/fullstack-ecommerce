@@ -58,15 +58,15 @@ const {
   return (
     <div className={`w-[100vw] flex flex-col items-center pb-5 max-md:px-3 space-y-5 md:space-y-10`}>
       {/* Main Carousel */}
-      <div {...getSliderProps()}>
+      <div {...getSliderProps()} className=''>
 
         {/* Slides Container */}
         <div {...getSlidesContainerProps()}>
-          <Image {...getSlideProps(0)} className='h-50 md:h-80 max-md:rounded-2xl xl:h-100 min-w-full object-cover' src={'/images/flat-lay-bowl-with-condiments.jpg'} width={10000} height={1000} alt={''} />
-          <Image {...getSlideProps(1)} className='h-50 md:h-80 max-md:rounded-2xl xl:h-100 min-w-full object-cover' src={'/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg'} width={10000} height={1000} alt={''} />
-          <Image {...getSlideProps(3)} className='h-50 md:h-80 max-md:rounded-2xl xl:h-100 min-w-full object-cover' src={'/images/ricefield2.jpg'} width={10000} height={1000} alt={''} />
-          <Image {...getSlideProps(2)} className='h-50 md:h-80 max-md:rounded-2xl xl:h-100 min-w-full object-cover' src={'/images/ricespoons.jpg'} width={10000} height={1000} alt={''} />
-          {/* <Image {...getSlideProps(4)} className='h-50 md:h-80 max-md:rounded-2xl xl:h-100 min-w-full object-cover' src={'/images/riceplantcloseup.jpg'} width={10000} height={1000} alt={''} /> */}
+          <Image {...getSlideProps(0)} className='h-50 md:h-80 max-md:rounded-2xl min-w-full object-cover' src={'/images/flat-lay-bowl-with-condiments.jpg'} width={10000} height={1000} alt={''} />
+          <Image {...getSlideProps(1)} className='h-50 md:h-80 max-md:rounded-2xl min-w-full object-cover' src={'/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg'} width={10000} height={1000} alt={''} />
+          <Image {...getSlideProps(3)} className='h-50 md:h-80 max-md:rounded-2xl min-w-full object-cover' src={'/images/ricefield2.jpg'} width={10000} height={1000} alt={''} />
+          <Image {...getSlideProps(2)} className='h-50 md:h-80 max-md:rounded-2xl min-w-full object-cover' src={'/images/ricespoons.jpg'} width={10000} height={1000} alt={''} />
+          {/* <Image {...getSlideProps(4)} className='h-50 md:h-80 max-md:rounded-2xl min-w-full object-cover' src={'/images/riceplantcloseup.jpg'} width={10000} height={1000} alt={''} /> */}
         </div>
 
         {/* Navigation Arrows */}
