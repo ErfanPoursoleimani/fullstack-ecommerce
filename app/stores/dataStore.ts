@@ -420,9 +420,9 @@ export const useDataStore = create<DataStore>()((set, get) => ({
             get().fetchProducts(lang),
             get().fetchOrders(lang),
             get().fetchImages(lang),
-            get().fetchNotifications(lang, userId),
+            // get().fetchNotifications(lang, userId),
             get().fetchAddresses(lang, userId),
-            get().fetchReviews(lang, userId),
+            // get().fetchReviews(lang, userId),
             get().fetchDict(lang),
             get().fetchCartProducts(lang, isAuthenticated, cartId),
         ];

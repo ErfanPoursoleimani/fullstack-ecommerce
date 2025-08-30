@@ -15,18 +15,28 @@ const DesktopView = () => {
   const { priceFa, description, label, stock } = product
   return (
     <div className='hidden md:flex justify-center mt-[103px] min-w-[100vw] min-h-[calc(100vh-103px)]'>
-      <div className={`flex justify-stretch gap-5 p-10 xl:p-20 w-full max-w-[1200px] h-max ${isRTL ? "flex-row-reverse" : ""}`}>
+      <div className={`flex justify-stretch gap-5 p-10 xl:p-20 w-full max-w-[1400px] h-max ${isRTL ? "flex-row-reverse" : ""}`}>
         <Image className='w-max h-max rounded-2xl' src={product.images[0].url} alt={''} width={200} height={100} />
         <div className={`flex flex-1 gap-10 flex-col justify-between ${isRTL ? "items-end" : null}`}>
           <h1 className='text-2xl font-medium'>{dict.product.products[product.label as keyof typeof dict.product.products]}</h1>
-          <p>{product.description}</p>
+          <p className={`text-[0.8rem] ${isRTL ? "text-right" : ""}`}>{product.description}</p>
           <div className={`flex items-end gap-5 max-sm:hidden ${isRTL ? "flex-row-reverse" : ""}`}>
             <div
               className={`flex justify-stretch w-30 gap-3
                 ${ isRTL ? "items-end" : "items-start" }
                 `}
             >
-              <CartButton className={"flex-1 border-1 border-neutral-200"} product={product} buttonBg={'--theme'}/>
+              {!product.stock
+                ? <p 
+                    className={`
+                      select-none flex justify-center items-center rounded-[7px] text-[15px]
+                      bg-[var(--theme2)]  text-white w-full py-3
+                    `}
+                  > 
+                    Out of stock
+                  </p>
+                : <CartButton className={"flex-1 border-1 border-neutral-200"} product={product} buttonBg={'--theme'}/>
+              }
             </div>
             <div className={`flex flex-col ${isRTL ? "items-end" : ""}`}>
               <div

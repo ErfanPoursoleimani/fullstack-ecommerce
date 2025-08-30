@@ -8,9 +8,9 @@ export async function GET(req: NextRequest){
     let reviews 
     if(userId){
         reviews = await prisma.review.findMany({
-            where: userId
+/*             where: userId
             ? { userId: parseInt(userId) }
-            : {},
+            : {}, */
             include: {
                 user: true, 
                 product: true

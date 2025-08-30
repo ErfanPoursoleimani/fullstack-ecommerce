@@ -12,7 +12,7 @@ import { RiHome9Fill, RiHome9Line } from "react-icons/ri";
 
 
 
-const PhoneNavBar = () => {
+const PhoneNavBar = ({className}: { className?: string}) => {
 
     const currentPath = usePathname()
 
@@ -65,7 +65,7 @@ const PhoneNavBar = () => {
 
   return (
     
-    <nav className='fixed w-[100%] border-t-1 border-[#d4d4d4] text-[var(--dark-text)] bg-[var(--background)] bottom-0 h-14 z-102 flex md:hidden justify-between items-center'>
+    <nav className={`${className} fixed w-[100%] border-t-1 border-[#d4d4d4] text-[var(--dark-text)] bg-[var(--background)] bottom-0 h-14 z-102 flex md:hidden justify-between items-center`}>
       {role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`) ? adminNavLinks.map((elem) => (
         <Link key={elem.id} className='w-[calc(100%/3)] text-[#9e9e9e] flex flex-col items-center justify-center gap-1' href={elem.href}>
             {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}

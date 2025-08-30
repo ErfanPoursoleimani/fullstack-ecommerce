@@ -2,6 +2,7 @@
 import Footer from "./Footer";
 import HomeSec from "./_HomeSec/HomeSec";
 
+
 const page = () => {
 
 
@@ -9,7 +10,6 @@ const page = () => {
     <div className="relative top-[103px]">
       <HomeSec />
       {/* <Footer /> */}
-      <div className="h-14 md:hidden"></div>
     </div>
   )
 }

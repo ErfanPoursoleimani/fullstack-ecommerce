@@ -1,14 +1,13 @@
 'use client'
 import useDataStore from '@/app/stores/dataStore'
-import { notFound, useParams } from 'next/navigation'
-import React from 'react'
 import Image from 'next/image'
-import { Share2 } from 'lucide-react'
+import { useParams } from 'next/navigation'
+import React from 'react'
 import { FaStar } from 'react-icons/fa6'
+import { IoShareSocialOutline } from "react-icons/io5"
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
-import { IoShareSocialOutline } from "react-icons/io5";
-import PricingAndButton from '@/app/[lang]/_ProductCard/components/PricingAndButton';
 import ProductCard from '../../_ProductCard/ProductCard'
+import CartButton from '../../_ProductCard/components/CartButton'
 
 const PhoneView = () => {
 
@@ -16,12 +15,14 @@ const PhoneView = () => {
     const { products, dict, tags, isRTL } = useDataStore()
 
     const product = products.filter((product) => product.id === parseInt(id as string))[0]
-
+    const currency = dict.product.currency
+    const massUnit = dict.product.massUnit
     const { priceFa, description, label, stock } = product
 
   return (
-    <div className='md:hidden w-full relative top-[103px] -z-2'>
-      <div className={`w-full sticky top-[103px] -z-1 flex items-center overflow-x-auto scrollbar-hide scroll-smooth`}>
+    <div className='md:hidden w-full relative top-[103px]'>
+      
+      <div className={`w-full sticky top-[103px] -z-2 flex items-center overflow-x-auto scrollbar-hide scroll-smooth`}>
         {product.images.map((image) => (
           <div key={image.id} className='min-w-full bg-neutral-100 min-h-full flex justify-center'>
             <Image className='' key={image.id} src={image.url} width={200} height={200} alt='product image'/>
@@ -46,7 +47,7 @@ const PhoneView = () => {
             <span className={`flex gap-1`}>
               <FaStar className='text-yellow-400'/>
               <p className={`text-[13px]`}>
-                {product.reviews.length === 0
+                {product.reviews && product.reviews.length === 0
                  ? "No Reviews"
                  : product.reviews.reduce((sum, review) => review.rating, 0) / product.reviews.length
                 }
@@ -107,7 +108,60 @@ const PhoneView = () => {
           </div>
         </div>
       </div>
-      <div className=''></div>
+      <div className={`fixed w-full bottom-0 flex flex-row-reverse items-center justify-between bg-white gap-5 px-5 py-4 ${isRTL ? "flex-row" : ""}`}>
+        <div
+          className={`flex justify-stretch w-30
+            ${ isRTL ? "items-end" : "items-start" }
+            `}
+        >
+          {!product.stock
+            ? <p 
+                className={`
+                  select-none flex justify-center items-center rounded-[7px] text-[15px]
+                  bg-[var(--theme2)]  text-white w-full py-3
+                `}
+              > 
+                Out of stock
+              </p>
+            : <CartButton className={"flex-1 border-1 border-neutral-200"} product={product} buttonBg={'--theme'}/>
+          }
+        </div>
+        <div className={`flex flex-col ${isRTL ? "items-end" : ""}`}>
+          <div
+            className={` 
+              flex justify-center items-center text-[var(--theme)] text-[13px]
+              ${isRTL ? "justify-end flex-row-reverse" : "justify-start"}
+              `}
+              >
+            <h2>{product.originalPriceFa - product.priceFa}</h2>
+            <div className={`
+              flex justify-center md:text-[11px] text-[10px] gap-[2px]
+              ${isRTL ? 'items-start flex-row-reverse' : 'items-end'}
+            `}
+            >
+              <span>{currency} </span>
+              <span>discount</span>
+            </div>
+          </div>
+          <div
+            className={` 
+              flex justify-center items-center
+              ${isRTL ? "justify-end flex-row-reverse" : "justify-start"}
+              `}
+              >
+            <h2>{product.priceFa}</h2>
+            <div className={`
+              flex justify-center md:text-[11px] text-[9px] gap-[5px]
+              ${isRTL ? 'items-start flex-row-reverse' : 'items-end'}
+            `}
+            >
+              <span>{currency} </span>
+              <span>/</span>
+              <span>{massUnit}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,6 @@
 'use client';
-import { DataInitializer } from '@/app/components/data-initializer';
-import { useAuthStore } from '@/app/stores/authStore';
-import { useDataStore } from '@/app/stores/dataStore';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import BottomNavBar from './_Navbar/BottomNavBar';
@@ -15,23 +14,39 @@ interface ClientLayoutWrapperProps {
 export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrapperProps) {
   
   const currentPath = usePathname()
+  useEffect(() => {
+    // Initialize Lenis with new autoRaf option
+    const lenis = new Lenis({
+      autoRaf: true, // 🆕 New feature - handles RAF automatically
+      lerp: 0.1,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
 
+    // Listen for scroll events
+    lenis.on('scroll', (e) => {
+      console.log(e);
+    });
+
+    // Cleanup
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <>
-        {
-        currentPath.startsWith(`/${lang}/users/login`) /* || 
-        currentPath.startsWith(`/${lang}/profile`)   */
-        ? null 
-        : <TopNavBar 
-        className={`
-            ${currentPath.startsWith(`/${lang}/profile`) ? "hidden md:flex" : null}
-          `}/>
-        }
+        {currentPath.startsWith(`/${lang}/users/login`) ? null : <TopNavBar className={`${currentPath.startsWith(`/${lang}/profile`) ? "hidden md:flex" : null}`}/>}
           <main>
             {children}
           </main>
-        {currentPath.startsWith(`/${lang}/users/login`) ? null : <BottomNavBar />}
+        {currentPath.startsWith(`/${lang}/users/login`) ? null : <BottomNavBar className={`${currentPath.startsWith(`/${lang}/products/`) ? "hidden md:fixed" : null}`} />}
     </>
   );
 }

@@ -50,7 +50,7 @@ const ProductCard =  ({ product, buttonBg = "--theme", className = 'xl:min-w-60 
   };
 
   const handleClick = (event: any) => {
-    // router.push(`/${lang}/products/${id}`)
+    router.push(`/${lang}/products/${id}`)
   }
 
   

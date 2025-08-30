@@ -8,9 +8,9 @@ export async function GET(req: NextRequest){
     let notifications 
     if(userId){
         notifications = await prisma.notification.findMany({
-            where: userId
+/*             where: userId
             ? { userId: parseInt(userId) }
-            : {},
+            : {}, */
             include: {
                 user: true,
             }

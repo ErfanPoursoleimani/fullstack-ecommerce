@@ -165,7 +165,7 @@ export const useAuthStore = create<AuthState>()(
             state.error = error instanceof Error ? error.message : 'Login failed'
             state.isLoading = false
           })
-          throw error // Re-throw so components can handle it
+          throw error 
         }
       },
 
