@@ -22,10 +22,10 @@ const PhoneNavBar = ({className}: { className?: string}) => {
     
     const navLinks = useMemo(() => {
         const baseNavLinks = [
-            {id: 1, label: "home", selectedIcon: <RiHome9Fill className='text-[#555] text-2xl' />, unselectedIcon: <RiHome9Line className='text-2xl' />, href: `/${lang}`},
-            {id: 2, label: "products", selectedIcon: <BiSolidCategory className='text-[#555] text-2xl' />, unselectedIcon: <BiCategory className='text-2xl' />, href: `/${lang}/products`},
-            {id: 3, label: "cart", selectedIcon: <PiShoppingBagFill className='text-[#555] text-2xl' />, unselectedIcon: <PiShoppingBagLight className='text-2xl' />, href: `/${lang}/checkout/cart`},
-            {id: 4, label: "profile", selectedIcon: <FaUser className='text-[#555] text-2xl' />, unselectedIcon: <FaRegUser className='text-2xl' />, href: `/${lang}/profile` },
+            {id: 1, label: "home", selectedIcon: <RiHome9Fill className='text-[#555] text-xl' />, unselectedIcon: <RiHome9Line className='text-xl' />, href: `/${lang}`},
+            {id: 2, label: "products", selectedIcon: <BiSolidCategory className='text-[#555] text-xl' />, unselectedIcon: <BiCategory className='text-xl' />, href: `/${lang}/products`},
+            {id: 3, label: "cart", selectedIcon: <PiShoppingBagFill className='text-[#555] text-xl' />, unselectedIcon: <PiShoppingBagLight className='text-xl' />, href: `/${lang}/checkout/cart`},
+            {id: 4, label: "profile", selectedIcon: <FaUser className='text-[#555] text-xl' />, unselectedIcon: <FaRegUser className='text-xl' />, href: `/${lang}/profile` },
         ]
 
         // Create new array with translated labels
@@ -44,9 +44,10 @@ const PhoneNavBar = ({className}: { className?: string}) => {
 
     const adminNavLinks = useMemo(() => {
         const baseAdminLinks = [
-            {id: 1, label: "home", selectedIcon: <RiHome9Fill className='text-[#555] text-2xl' />, unselectedIcon: <RiHome9Line className='text-2xl' />, href: `/${lang}/admin/dashboard`},
-            {id: 2, label: "products", selectedIcon:  <PiShoppingBagFill className='text-[#555] text-2xl' />, unselectedIcon: <PiShoppingBagLight className='text-2xl' />, href: `/${lang}/admin/dashboard/products`},
-            {id: 3, label: "users", selectedIcon:<FaUser className='text-[#555] text-2xl' />, unselectedIcon: <FaRegUser className='text-2xl' /> , href: `/${lang}/admin/dashboard/users`}
+            {id: 1, label: "user", selectedIcon: <RiHome9Fill className='text-[#555] text-xl' />, unselectedIcon: <RiHome9Line className='text-xl' />, href: `/${lang}`},
+            {id: 3, label: "products", selectedIcon:  <BiSolidCategory className='text-[#555] text-xl' />, unselectedIcon: <BiCategory className='text-xl' />, href: `/${lang}/admin/dashboard/products`},
+            {id: 4, label: "orders", selectedIcon:  <PiShoppingBagFill className='text-[#555] text-xl' />, unselectedIcon: <PiShoppingBagLight className='text-xl' />, href: `/${lang}/admin/dashboard/orders`},
+            {id: 5, label: "users", selectedIcon:<FaUser className='text-[#555] text-xl' />, unselectedIcon: <FaRegUser className='text-xl' /> , href: `/${lang}/admin/dashboard/users`}
         ]
 
         // Create new array with translated labels
@@ -65,16 +66,16 @@ const PhoneNavBar = ({className}: { className?: string}) => {
 
   return (
     
-    <nav className={`${className} fixed w-[100%] border-t-1 border-[#d4d4d4] text-[var(--dark-text)] bg-[var(--background)] bottom-0 h-14 z-102 flex md:hidden justify-between items-center`}>
+    <nav className={`${className} fixed w-[100%] border-neutral-200 shadow-2xl ${role === "ADMIN" && currentPath.startsWith(`/${lang}/admin/dashboard`) ? "bg-black text-white" : "bg-white text-[#9e9e9e] border-t-1" } bottom-0 h-12 z-102 flex md:hidden justify-between items-center`}>
       {role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`) ? adminNavLinks.map((elem) => (
-        <Link key={elem.id} className='w-[calc(100%/3)] text-[#9e9e9e] flex flex-col items-center justify-center gap-1' href={elem.href}>
+        <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
             {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
-            <span className='text-[11px]'>{elem.label}</span>
+            <span className='text-[0.6rem]'>{elem.label}</span>
         </Link>
       )) : navLinks.map((elem) => (
-        <Link key={elem.id} className='w-[calc(100%/3)] text-[#9e9e9e] flex flex-col items-center justify-center gap-1' href={elem.href}>
+        <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
             {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
-            <span className='text-[11px]'>{elem.label}</span>
+            <span className='text-[0.6rem]'>{elem.label}</span>
         </Link>
       ))}
     </nav>

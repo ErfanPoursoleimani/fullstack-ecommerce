@@ -5,8 +5,7 @@ import { useParams } from 'next/navigation'
 
 const UserCard = ({user}: {user: User}) => {
 
-    const { lang } = useParams()
-    const { isRTL, fetchAddresses } = useDataStore()
+    const { isRTL } = useDataStore()
 
   return (
     <div className={`flex flex-col gap-2 ${isRTL ? "items-end" : "items-start"} justify-between items-center text-neutral-700 w-full p-3 h-max`}>

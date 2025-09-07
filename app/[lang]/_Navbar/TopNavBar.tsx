@@ -70,7 +70,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
     <>
       <nav className={`
         ${className}
-        flex flex-col justify-center items-stretch fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 max-md:z-102 z-103 lg:px-[10%] px-3 pt-3 ${!isBodyVisible ? "pb-3" : null}
+        flex flex-col justify-center items-stretch fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 max-md:z-102 z-103 lg:px-[10%] px-3 pt-3 pb-3
         `}
       >
         <div

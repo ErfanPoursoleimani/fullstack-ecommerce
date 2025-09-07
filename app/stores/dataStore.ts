@@ -175,7 +175,6 @@ const initialDict: Dict = {
     }
 };
 
-// Define initial state as a constant to reuse in reset function
 const initialState = {
     users: [],
     carts: [],
@@ -196,7 +195,7 @@ const initialState = {
     isAuthenticated: false,
 };
 
-// SSR-safe cookie manager (only for cookies, no localStorage)
+
 const cookieManager = {
     get: (name: string) => {
         if (typeof window === 'undefined') return null;
@@ -215,7 +214,6 @@ const cookieManager = {
     delete: (name: string, path: string = '/', domain?: string) => {
         if (typeof window === 'undefined') return;
         try {
-            // Set the cookie with an expired date to delete it
             let cookieString = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path};`;
             
             // Add domain if specified
@@ -451,7 +449,6 @@ export const useDataStore = create<DataStore>()((set, get) => ({
     }
 }));
 
-// Export individual selectors for better performance
 export const selectProducts = (state: DataStore) => state.products;
 export const selectCartProducts = (state: DataStore) => state.cartProducts;
 export const selectNotifications = (state: DataStore) => state.notifications;

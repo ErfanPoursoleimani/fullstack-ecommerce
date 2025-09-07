@@ -91,13 +91,13 @@ const {
 
       <div className='px-5 flex flex-wrap items-stretch justify-center md:gap-4 gap-2 max-w-320 w-full'>
         {tags.map((tag, i) => (
-          <div key={tag.id} {...tagGetSliderProps()} className={`relative xl:max-w-55 md:max-w-50 sm:max-w-50 xs:max-w-33 max-w-30 overflow-hidden ${i === 1 ? "max-xs:hidden" : ""} hover:scale-102 transition`}>
+          <div key={tag.id} {...tagGetSliderProps()} className={`relative xl:max-w-50 md:max-w-50 sm:max-w-50 xs:max-w-33 max-w-30 overflow-hidden ${i === 1 ? "max-xs:hidden" : ""} hover:scale-102 transition`}>
             <div {...tagGetSlidesContainerProps()} className='flex h-full w-full'>
               {tag.images.map((image, index) => (
                 <Image key={image.id} {...tagGetSlideProps(index)} className='rounded-2xl h-full w-full' src={image.url} width={1000} height={1} alt={''} />
               ))}
             </div>
-            <div className={`md:p-4 p-3 z-3 w-full h-full rounded-2xl absolute bottom-0 flex flex-col justify-center items-center bg-[#000000a6] text-[var(--light-text)] text-[0.8rem] xs:text-[0.9rem] sm:text-[1.3rem] md:text-[1.7rem]`}>{dict.product.categories[tag.label as keyof typeof dict.product.categories]}</div>
+            <div className={`md:p-4 p-3 z-3 w-full h-full rounded-2xl absolute bottom-0 flex flex-col justify-center items-center bg-[#181818a6] text-[var(--light-text)] text-[0.8rem] xs:text-[0.9rem] sm:text-[1.3rem] md:text-[1.7rem]`}>{dict.product.categories[tag.label as keyof typeof dict.product.categories]}</div>
           </div>
         ))}
       </div>

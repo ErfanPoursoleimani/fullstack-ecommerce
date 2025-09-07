@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
             plaque: body.plaque,
             unit: body.unit,
             postalCode: body.postalCode,
+            isActive: body.isActive,
             userId: body.userId
         } 
         : {
@@ -47,6 +48,7 @@ export async function POST(request: NextRequest) {
             city: body.city, 
             plaque: body.plaque,
             postalCode: body.postalCode,
+            isActive: body.isActive,
             userId: body.userId
         }
 

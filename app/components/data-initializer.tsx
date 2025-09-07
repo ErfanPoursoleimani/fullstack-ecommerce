@@ -38,6 +38,7 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
     const dataReset = useDataStore((state) => state.reset);
 
     const [hasHydrated, setHasHydrated] = useState(false);
+    const [isDataInitialized, setIsDataInitialized] = useState(false);
     useEffect(() => {
         setHasHydrated(true);
     }, []);
@@ -73,6 +74,8 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
                     // Update refs after successful initialization
                     prevAuthRef.current = currentAuth;
                     hasInitializedRef.current = true;
+
+                    setIsDataInitialized(true)
                     
                 } catch (error) {
                     console.error('Data store initialization failed:', error);
@@ -91,7 +94,7 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
         lang
     ]);
 
-/*     if (!hasHydrated) {
+    if (!hasHydrated/*  || dataLoading */ || !isDataInitialized) {
         return (
         <>
             <div className="flex items-center justify-center fixed top-0 left-0 min-h-screen min-w-screen z-10000 bg-white/60">
@@ -103,7 +106,7 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
             {children}
         </>
         );
-    } */
+    }
 
     return <>{children}</>;
 };

@@ -17,10 +17,6 @@ const options = [
 const CategoryDropdown: React.FC = () => {
 
   const listRef = useRef<HTMLDivElement>(null!)
-  
-  const router = useRouter()
-  const currentPath = usePathname()
-  const { lang } = useParams()
 
   const { tags, dict, isRTL } = useDataStore()
 

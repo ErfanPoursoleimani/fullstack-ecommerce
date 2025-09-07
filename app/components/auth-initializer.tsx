@@ -41,7 +41,7 @@ export function AuthInitializer({
   }, [hasHydrated, initialize, lang]);
 
   // Show loading state during hydration or initialization
-/*   if (!hasHydrated || (!isInitialized)) {
+  if (!hasHydrated || !isInitialized || isLoading) {
     return (
       <>
         <div className="flex items-center justify-center fixed top-0 left-0 min-h-screen min-w-screen z-10000 bg-white/60">
@@ -53,7 +53,7 @@ export function AuthInitializer({
         {children}
       </>
     );
-  } */
+  }
 
   return <>{children}</>;
 }

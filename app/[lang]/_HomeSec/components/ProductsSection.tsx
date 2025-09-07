@@ -19,10 +19,10 @@ const ProductsSection = () => {
     }
 
   return (
-    <div className='relative w-full shadow- py-5 flex justify-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
+    <div className='relative w-full py-5 flex justify-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
         <div className="w-full max-w-350 flex flex-col text-white justify-center bg-white space-y-4 xl:rounded-2xl">
             <div className="bottom-to-top-animation flex flex-col justify-center w-full relative overflow-x-auto z-2 ">
-                <h2 className={`text-black ${isRTL ? "text-right" : "text-left"} mb-5 mx-5 md:hidden font-bold text-[20px]`}>Iranian Rice</h2>
+                <h2 className={`text-black ${isRTL ? "text-right" : "text-left"} mb-2 px-5 md:hidden font-bold text-[1.1rem] bg-neutral-100 p-2`}>Iranian Rice</h2>
                 <div
                 ref={list1}
                 className={classNames({
@@ -45,7 +45,7 @@ const ProductsSection = () => {
                 <NavArrows list={list1}/>
             </div>
             <div className="bottom-to-top-animation flex flex-col justify-center w-full relative overflow-x-auto z-2">
-                <h2 className={`text-black ${!isRTL ? "text-left" : "text-right"} mb-5 mx-5 md:hidden font-bold text-[20px]`}>{dict.otherProducts}</h2>
+                <h2 className={`text-black ${!isRTL ? "text-right" : "text-left"} mb-2 px-5 md:hidden font-bold text-[1.1rem] bg-neutral-100 p-2`}>{dict.otherProducts}</h2>
                 <div
                 ref={list2}
                 className={classNames({

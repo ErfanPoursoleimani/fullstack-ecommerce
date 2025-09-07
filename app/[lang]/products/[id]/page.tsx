@@ -1,7 +1,7 @@
 'use client'
 import useDataStore from '@/app/stores/dataStore'
 import { notFound, useParams } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { Share2 } from 'lucide-react'
 import { FaStar } from 'react-icons/fa6'
@@ -17,11 +17,10 @@ const page = () => {
     const { id } = useParams()
     const { products } = useDataStore()
 
-    const product = products.filter((product) => product.id === parseInt(id as string))[0]
-
-    if (!product) {
-        notFound()
-    }
+    let product = null
+    useEffect(() => {
+      product = products.filter((product) => product.id === parseInt(id as string))[0]
+    }, [])
 
   return (
     <>

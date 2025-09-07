@@ -22,7 +22,7 @@ const page = () => {
     <>
       <div className={`bottom-to-top-animation min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
         <div className={`p-4 md:border-b-0 border-b-7 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Addreesses</p>
+          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Users</p>
           {isRTL
             ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} />
             : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }

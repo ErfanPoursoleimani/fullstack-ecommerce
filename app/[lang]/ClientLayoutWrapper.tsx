@@ -13,7 +13,10 @@ interface ClientLayoutWrapperProps {
 
 export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrapperProps) {
   
-  const currentPath = usePathname()
+  let currentPath = usePathname()
+
+
+
   useEffect(() => {
     // Initialize Lenis with new autoRaf option
     const lenis = new Lenis({
@@ -42,11 +45,27 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
 
   return (
     <>
-        {currentPath.startsWith(`/${lang}/users/login`) ? null : <TopNavBar className={`${currentPath.startsWith(`/${lang}/profile`) ? "hidden md:flex" : null}`}/>}
-          <main>
-            {children}
-          </main>
-        {currentPath.startsWith(`/${lang}/users/login`) ? null : <BottomNavBar className={`${currentPath.startsWith(`/${lang}/products/`) ? "hidden md:fixed" : null}`} />}
+        {currentPath.startsWith(`/${lang}/users/login`) 
+          ? null 
+          : <TopNavBar 
+              className={`
+                ${currentPath.startsWith(`/${lang}/profile`) ? "hidden md:flex" : null} 
+                ${currentPath.startsWith(`/${lang}/checkout/shipping`) ? "hidden" : null}
+                ${currentPath.startsWith(`/${lang}/checkout/payment`) ? "hidden" : null}
+            `}/>
+        }
+                  <main>
+                    {children}
+                  </main>
+        {currentPath.startsWith(`/${lang}/users/login`) 
+          ? null 
+          : <BottomNavBar 
+              className={`
+                ${currentPath.startsWith(`/${lang}/products/`) ? "hidden md:fixed" : null} 
+                ${currentPath.startsWith(`/${lang}/checkout/shipping`) ? "hidden" : null}
+                ${currentPath.startsWith(`/${lang}/checkout/payment`) ? "hidden" : null}
+            `} />
+        }
     </>
   );
 }

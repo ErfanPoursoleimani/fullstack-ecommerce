@@ -1,23 +1,18 @@
 "use client"
 import { AddressPicker } from '@/app/[lang]/_components/AddressPicker'
-import { useAuthStore } from '@/app/stores/authStore'
+import Loading from '@/app/[lang]/_components/Loading'
 import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
-import { useEffect } from 'react'
 import { BiSolidDirections } from 'react-icons/bi'
-import { SlLocationPin } from "react-icons/sl";
-import { HiDotsVertical } from "react-icons/hi";
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
 import { FaPlus } from 'react-icons/fa6'
-import AddressCard from './AddressCard'
-import Loading from '@/app/[lang]/_components/Loading'
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
+import AddressCard from '../../../_components/AddressCard'
 
 const page = () => {
 
   const { lang } = useParams()
   const router = useRouter()
-  const { dict, isRTL, addresses, loading } = useDataStore()
-  const { user } = useAuthStore()
+  const { isRTL, addresses, loading } = useDataStore()
   
   const handleBackAction = () => {
     router.push(`/${lang}/profile`)
@@ -55,7 +50,7 @@ const page = () => {
             : (
                 <>
                   <FaPlus className='text-white'/>
-                  <AddressPicker purpose={'post'} buttonContent={`add new address`} className={``}/>
+                  <AddressPicker purpose={'post'} buttonContent={`add new address`} className={`text-[0.9rem]`}/>
                 </>
               )
           }

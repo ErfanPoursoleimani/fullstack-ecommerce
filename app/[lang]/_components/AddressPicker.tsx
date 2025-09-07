@@ -7,19 +7,19 @@ import { addressSchema } from '@/app/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import Popup from './PopupRaw'
 
 type addressData = z.infer<typeof addressSchema>
 
-export const AddressPicker = ({purpose, addressId, className, buttonContent, address}: { purpose: string, addressId?: string, className: string, buttonContent: ReactNode, address?: Address}) => {
+export const AddressPicker = ({purpose, addressId, className, buttonContent, address}: { purpose: "post" | "patch", addressId?: string, className: string, buttonContent: ReactNode, address?: Address}) => {
   const popup = usePopup()
   const { lang } = useParams()
-  const { isRTL, fetchAddresses, loading } = useDataStore()
+  const { isRTL, addresses, fetchAddresses, loading } = useDataStore()
   const { userId } = useAuthStore()
-  const router = useRouter()
+  const [addedAddress, setAddedAddress] = useState<Address>(null!)
 
   const {register, handleSubmit, control, formState: { errors, isSubmitted }, reset} = useForm<addressData>({
       resolver: zodResolver(addressSchema),
@@ -30,10 +30,20 @@ export const AddressPicker = ({purpose, addressId, className, buttonContent, add
     try {
       let dataWithUserId
       if(userId){
-        dataWithUserId = {...data, userId}
+        dataWithUserId = {...data, userId, isActive: true}
       }
-      purpose === 'post' ? await axios.post(`/${lang}/api/addresses`, dataWithUserId) : purpose === "patch" ? await axios.patch(`/${lang}/api/addresses/${addressId}`, dataWithUserId) : null
+      for (let i = 0; i < addresses.length; i++) {
+          await axios.patch(`/${lang}/api/addresses/${addresses[i].id}`, {...addresses[i], isActive: false})
+      }
+      if(purpose === 'post') {
+        const { data }: { data: Address} = await axios.post(`/${lang}/api/addresses`, dataWithUserId)
+        setAddedAddress(data)
+      } else {
+        await axios.patch(`/${lang}/api/addresses/${addressId}`, dataWithUserId)
+      }
+      
       await fetchAddresses(lang as string, userId)
+
       popup.closePopup()
       reset()
     } catch (error) {
@@ -41,9 +51,6 @@ export const AddressPicker = ({purpose, addressId, className, buttonContent, add
     } finally {
     }
   })
-
-
-
 
   return (
     <>

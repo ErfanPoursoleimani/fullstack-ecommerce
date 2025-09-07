@@ -1,26 +1,20 @@
-import PricingAndButton from '@/app/[lang]/_ProductCard/components/PricingAndButton'
 import { CartProduct } from '@/app/types/types'
-import { useParams } from 'next/dist/client/components/navigation'
-import classnames from 'classnames'
-import Image from 'next/image'
-import React from 'react'
-import useDataStore from '@/app/stores/dataStore'
-import { TypeOf } from 'zod'
 import CartButton from '@/app/[lang]/_ProductCard/components/CartButton'
+import useDataStore from '@/app/stores/dataStore'
+import Image from 'next/image'
 
 const InCartProduct = ({ cartProduct }: {cartProduct: CartProduct}) => {
-    const { lang } = useParams()
     const { isRTL, dict } = useDataStore()
     const currency = dict.product.currency
     const massUnit = dict.product.massUnit
 
   return (
-    <div className='space-y-3'>
+    <div className='space-y-3 flex flex-col items-start '>
       <div className={`flex gap-5 ${isRTL ? 'justify-end flex-row-reverse' : null} items-stretch`}>
         <Image className='rounded-xl' src={cartProduct.product.images[0].url} alt={cartProduct.product.label} width={110} height={50} />
         <div className={`flex flex-1 gap-4 flex-col justify-between ${isRTL ? "items-end" : null}`}>
-          <h1 className='text-xl'>{dict.product.products[cartProduct.product.label as keyof typeof dict.product.products]}</h1>
-          <div className={`flex items-end gap-5 max-sm:hidden ${isRTL ? "flex-row-reverse" : ""}`}>
+          <h1 className='text-xl truncate'>{dict.product.products[cartProduct.product.label as keyof typeof dict.product.products]}</h1>
+          <div className={`flex items-end gap-5 max-xs:hidden ${isRTL ? "flex-row-reverse" : ""}`}>
             <div
               className={`flex justify-stretch w-30 gap-3
                 ${ isRTL ? "items-end" : "items-start" }
@@ -66,7 +60,7 @@ const InCartProduct = ({ cartProduct }: {cartProduct: CartProduct}) => {
           </div>
         </div>
       </div>
-      <div className={`flex items-center gap-5 sm:hidden ${isRTL ? "" : "flex-row-reverse"}`}>
+      <div className={`flex items-center gap-5 xs:hidden ${isRTL ? "" : "flex-row-reverse"}`}>
         <div className={`flex flex-col ${isRTL ? "items-end" : ""}`}>
           <div
             className={` 

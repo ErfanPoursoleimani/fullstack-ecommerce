@@ -1,39 +1,27 @@
 import { AuthInitializer } from '@/app/components/auth-initializer';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import { DataInitializer } from '@/app/components/data-initializer';
 import type { Metadata } from "next";
 import { CookiesProvider } from "next-client-cookies/server";
-import { Geist, Geist_Mono, Noto_Sans_Arabic, Roboto, Rubik } from "next/font/google";
+import { Noto_Sans_Arabic, Vazirmatn } from 'next/font/google';
 import ClientLayoutWrapper from "./ClientLayoutWrapper";
 import "./globals.css";
-import { DataInitializer } from '@/app/components/data-initializer';
+import { MessagesProvider } from '@/app/contexts/MessagesContext';
+import { MessagesContainer } from '@/app/components/ui/MessagesContainer';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const vazirmatn = Vazirmatn({
+  subsets: ['arabic', 'latin'],
+  display: 'swap',
+  variable: '--font-vazirmatn'
+})
 
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-});
+// Alternative: Noto Sans Arabic (supports Persian well)
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ['arabic'],
+  display: 'swap',
+  variable: '--font-noto-arabic'
+})
 
-const noto_sans_arabic = Noto_Sans_Arabic({
-  variable: "--font-roboto",
-  subsets: ["arabic"],
-});
-
-const rubik = Rubik({
-  variable: "--font-roboto",
-  subsets: ["arabic"],
-});
 
 export const metadata: Metadata = {
   title: "Berenj Poursoleimani",
@@ -46,16 +34,19 @@ export default async function RootLayout({children, params}: {children: React.Re
   
 
   return (
-    <html lang={lang}>
+    <html lang={lang} className={vazirmatn.variable}>
       <body
-        className={`overflow-x-hidden select-none ${geistSans.variable} ${rubik.variable} ${geistMono.variable} ${roboto.variable} ${noto_sans_arabic.variable} antialiased`}
-        style={{fontFamily: "Rubik", color: "var(--text)"}}
+        className={`overflow-x-hidden select-none antialiased ${vazirmatn.className}`}
+        style={{color: "var(--text)"}}
       >
         <CookiesProvider>
           <AuthInitializer lang={lang}>
             <DataInitializer lang={lang}>
               <ClientLayoutWrapper lang={lang}>
-                {children}
+                <MessagesProvider>
+                  {children}
+                  <MessagesContainer position="top-center" />
+                </MessagesProvider>
               </ClientLayoutWrapper>
             </DataInitializer>
           </AuthInitializer>
