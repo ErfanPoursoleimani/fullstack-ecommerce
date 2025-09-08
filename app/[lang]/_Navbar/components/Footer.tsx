@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <footer 
-        className={`lg:px-[10%] px-3 flex items-stretch gap-2 h-12 ${role === "USER" ? "max-md:hidden" : ""}`}
+        className={`lg:px-[10%] px-3 flex items-stretch gap-2 h-12 ${role === "USER" || !role ? "max-md:hidden" : ""}`}
         style={{
           justifyContent: 
             isRTL ? 'justify-end' : 'justify-start',
