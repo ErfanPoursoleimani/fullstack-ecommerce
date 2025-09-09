@@ -69,16 +69,16 @@ const CategoryDropdown: React.FC = () => {
                       `}
                     />
                   <span className="block truncate">
-                    Categories
+                    {dict.categories}
                   </span>
                 </span>
                 <span className='text-[12px] text-[#8f8f8f]'>|</span>
               </div>
             </button>
             {isOpen &&
-              <AnimatedBox  animation={`${isRTL ? "fadeIn" : "fadeIn"}`}>
+              <AnimatedBox className=''>
                 <div
-                  className={`absolute top-[100%] border-t-1 border-neutral-200 flex max-w-[70vw] min-h-[30vh]
+                  className={`absolute top-[100%] ${isRTL ? "right-0" : ""} border-t-1 border-neutral-200 flex max-w-[70vw] min-h-[30vh]
                     ${isRTL ? "flex-row-reverse" : "flex-row"}
                   `}
                   onMouseEnter={() => setIsOpen(true)}

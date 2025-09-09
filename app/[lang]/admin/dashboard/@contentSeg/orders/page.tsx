@@ -53,7 +53,7 @@ const page = () => {
   return (
     <div className={`min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white max-md:p-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className={`md:mx-5 md:my-5 flex justify-between items-center h-10 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-            <p className='font-medium md:border-b-3 border-yellow-400 md:pb-4'>Orders</p>
+            <p className='font-medium md:border-b-3 border-yellow-400 md:pb-4'>{dict.orders}</p>
             {isRTL 
               ? <MdArrowBackIos className='md:hidden' onClick={handleBackAction} /> 
               : <MdArrowForwardIos className='md:hidden' onClick={handleBackAction} /> }
@@ -68,7 +68,7 @@ const page = () => {
          !(orders)
         ? <div className={`space-y-5 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
             <FiPackage className='text-[150px]'/>
-            <p>هنوز هیچ سفارشی ندادید</p>
+            <p>{dict.noOrdersHistory}</p>
           </div>
         : orders && !(orders.filter((order: Order) => order.status === orderStatusFilter))
         ?  <div className='text-[15px] min-h-60 flex-1 flex justify-center items-center '>

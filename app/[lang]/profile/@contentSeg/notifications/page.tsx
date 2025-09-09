@@ -18,7 +18,7 @@ const page = () => {
   return (
     <div className={`bottom-to-top-animation min-h-100 max-md:fixed max-md:min-h-full max-md:w-full max-md:bg-white p-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className={`pb-5 mb-5 border-b-1 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-        <p className='font-medium'>My Notifications</p>
+        <p className='font-medium'>{dict.notifications}</p>
         {isRTL 
           ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} /> 
           : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }
@@ -27,7 +27,7 @@ const page = () => {
         { !(user?.notifications)
         ? <div className={`space-y-5 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
             <MdNotifications className='text-[150px]'/>
-            <p>You have no notifications </p>
+            <p>{dict.youHaveNoNotifications}</p>
           </div>
         : user?.notifications && user?.notifications.map((notification) => (
           <div className={`border-1 border-[#a2fff3] text-[#79ddd0] w-full rounded-xl p-5 h-max`} key={notification.id}>

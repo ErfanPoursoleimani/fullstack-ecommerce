@@ -18,7 +18,7 @@ const Popup: React.FC<PopupProps> = ({ children, popup, className }) => {
 
   return (
     <div
-      className={`${className} fixed w-full h-full top-0 flex justify-center items-center bg-[#000000b2] animate-in fade-in duration-200`}
+      className={`${className} fixed w-full h-full top-0 flex justify-center items-center bg-[#000000b2]`}
       onClick={popup.handleOverlayClick}
       role="dialog"
       aria-modal="true"
@@ -27,9 +27,8 @@ const Popup: React.FC<PopupProps> = ({ children, popup, className }) => {
       <div
         ref={popup.popupRef}
         className={`
-          relative w-full md:max-w-150 max-md:min-h-[100vh] max-h-full overflow-hidden
+          relative w-full md:max-w-150 h-[100vh] md:max-h-max overflow-y-auto scrollbar- scroll-smooth
           bg-white md:rounded-lg shadow-xl border-2 ${popup.variantClasses}
-          animate-in zoom-in-95 duration-200
           focus:outline-none focus:ring-2 focus:ring-offset-2
         `}
         tabIndex={-1}
@@ -59,7 +58,7 @@ const Popup: React.FC<PopupProps> = ({ children, popup, className }) => {
         )}
 
         {/* Content */}
-        <div className="p-4 overflow-y-auto">
+        <div className="p-4">
           {children}
         </div>
       </div>

@@ -7,12 +7,13 @@ import { BiSolidDirections } from 'react-icons/bi'
 import { FaPlus } from 'react-icons/fa6'
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
 import AddressCard from '../../../_components/AddressCard'
+import { Didact_Gothic } from 'next/font/google'
 
 const page = () => {
 
   const { lang } = useParams()
   const router = useRouter()
-  const { isRTL, addresses, loading } = useDataStore()
+  const { isRTL, addresses, loading, dict } = useDataStore()
   
   const handleBackAction = () => {
     router.push(`/${lang}/profile`)
@@ -22,7 +23,7 @@ const page = () => {
     <>
       <div className={`min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
         <div className={`p-4 md:border-b-0 border-b-7 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Addreesses</p>
+          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>{dict.addresses}</p>
           {isRTL
             ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} />
             : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }
@@ -35,7 +36,7 @@ const page = () => {
           { addresses.length === 0
           ? <div className={`space-y-2 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
               <BiSolidDirections className='text-[150px] text-[var(--theme)]'/>
-              <p>No addresses added</p>
+              <p></p>
               <AddressPicker purpose={'post'} buttonContent='add an address' className={`p-4 border-1 border-[var(--theme)] rounded-[7px] md:text-sm text-[0.8rem] md:text-md text-[var(--theme)]`}/>
             </div>
           : addresses.map((address) => (

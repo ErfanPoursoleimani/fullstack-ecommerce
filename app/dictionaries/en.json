@@ -12,11 +12,8 @@
     "region": "Region",
     "unitedArabEmirates": "United Arab Emirates",
     "iran": "Iran",
-    "addresses": "Addresses",
-    "notifications": "Notifications",
     "accountDetails": "Account Details",
     "logout": "Logout",
-    "ordersHistory": "Orders History",
     "myOrders": "My Orders",
     "inProgress": "In Progress",
     "canceled": "Canceled",
@@ -26,7 +23,6 @@
     "reviews": "Reviews",
     "similarProducts": "Similar Products",
     "recommendations": "Recommendations",
-    "orders": "Orders",
     "activitySummary": "Activity Summary",
 
     "iranianRice": "Iranian Rice",
@@ -87,7 +83,7 @@
         "label": "Label",
         "massUnit": "Kg",
         "products": {
-            "برنج_روس": "برنج روس",
+            "برنج_روس": "Russian Rice",
             "برنج_کشت_دوم": "Second Crop Rice",
             "برنج_قهوه_ای": "Brown Rice",
             "برنج_طارم_عطری": "Tarom Atri Rice",
@@ -107,5 +103,58 @@
             "برنج_وارداتی": "Imported",
             "برنج_کشت_دوم": "Second Crop"
         }
-    }
+    },
+
+    "finalSum": "Final Sum",
+    "productsPrice": "Products Price",
+    "discount": "Discount",
+    "completeTheOrder": "Complete the Order",
+    "postalCode": "Postal Code",
+    "reciever": "Receiver",
+    "buyDirectlyFromTheStore": "Buy Directly from the Store",
+    "shipToIsfahan": "Ship to Isfahan",
+    "otherCities": "Other Cities",
+    "fee": "Fee",
+    "continue": "Continue",
+    "shipping": "Shipping",
+    "and": "And",
+    "address": "Address",
+    "pay": "Pay",
+    "payment": "Payment",
+    "payOnTheSpot": "Pay on the Spot",
+    "payOnTheSpotUsingCashOrCreditCard": "Pay on the Spot Using Cash or Credit Card",
+    "payOnline": "Pay Online",
+    "zarinPal": "ZarinPal",
+    "portal": "Portal",
+    "transferTheMoney": "Transfer the Money",
+    "TransferTo": "Transfer To",
+    "free": "Free",
+    "categories": "Categories",
+    "ordersHistory": "Orders History",
+    "noOrdersHistory": "No Orders History",
+    "youHaveNoNotifications": "You Have No Notifications",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "fullName": "Full Name",
+    "nationalCode": "National Code",
+    "orders": "Orders",
+    "addresses": "Addresses",
+    "users": "Users",
+    "notifications": "Notifications",
+    "products": "Products",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "delete": "Delete",
+    "province": "Province",
+    "city": "City",
+    "plate": "Plate",
+    "unit": "Unit"
+
+
+
+
+
+
 }

@@ -30,7 +30,7 @@ const page = () => {
     <>
       <div className={`min-h-100 max-md:absolute -top-30 max-md:top-0 max-md:min-h-full max-md:w-full bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
         <div className={`p-4 md:border-b-0 border-b-7 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Products</p>
+          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>{dict.products}</p>
           {isRTL
             ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} />
             : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }

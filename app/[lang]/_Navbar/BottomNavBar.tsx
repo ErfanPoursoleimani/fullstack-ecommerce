@@ -46,7 +46,7 @@ const PhoneNavBar = ({className}: { className?: string}) => {
         const baseAdminLinks = [
             {id: 1, label: "user", selectedIcon: <RiHome9Fill className='text-[#555] text-xl' />, unselectedIcon: <RiHome9Line className='text-xl' />, href: `/${lang}`},
             {id: 3, label: "products", selectedIcon:  <BiSolidCategory className='text-[#555] text-xl' />, unselectedIcon: <BiCategory className='text-xl' />, href: `/${lang}/admin/dashboard/products`},
-            {id: 4, label: "orders", selectedIcon:  <PiShoppingBagFill className='text-[#555] text-xl' />, unselectedIcon: <PiShoppingBagLight className='text-xl' />, href: `/${lang}/admin/dashboard/orders`},
+            {id: 4, label: "Orders", selectedIcon:  <PiShoppingBagFill className='text-[#555] text-xl' />, unselectedIcon: <PiShoppingBagLight className='text-xl' />, href: `/${lang}/admin/dashboard/orders`},
             {id: 5, label: "users", selectedIcon:<FaUser className='text-[#555] text-xl' />, unselectedIcon: <FaRegUser className='text-xl' /> , href: `/${lang}/admin/dashboard/users`}
         ]
 

@@ -65,7 +65,7 @@ const Shoppingcart = () => {
         >
           <span className={`text-neutral-400 hidden md:flex md:w-full justify-between items-center ${isRTL ? "flex-row-reverse" : null}`}>
               <span className={`flex gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
-                <p>products price</p>
+                <p>{dict.productsPrice}</p>
                 <p>{`(${cartProducts.length})`}</p>
               </span>
             <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
@@ -74,14 +74,14 @@ const Shoppingcart = () => {
             </div>
           </span>
           <span className={`flex flex-col md:flex-row md:w-full ${isRTL ? "md:flex-row-reverse" : ""} md:justify-between md:items-center`}>
-            <p className="max-md:text-neutral-400 text-[0.8rem]">final sum</p>
+            <p className="max-md:text-neutral-400 text-[0.8rem]">{dict.finalSum}</p>
             <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
               <p>{cartProducts.reduce((sum, elem) => elem.product.priceFa, 0)}</p>
               <span className="text-[10px]">{currency}</span>
             </div>
           </span>
           <span className={`hidden md:flex md:w-full justify-between items-center ${isRTL ? "flex-row-reverse" : null} text-[var(--theme)]`}>
-            <p>Amount of discount</p>
+            <p>{dict.discount}</p>
             <div className={`flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
               <span className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
                 <p>{discountAmmount}</p>
@@ -92,7 +92,7 @@ const Shoppingcart = () => {
           </span>
           <Link href={`/${lang}/checkout/shipping`} className="w-[50%] md:w-full">
             <button className={`w-full py-3 text-[0.9rem] max-sm:text-[0.9rem] cursor-pointer rounded-xl bg-red-500 font-medium text-white`}>
-              complete the order
+              {dict.completeTheOrder}
             </button>
           </Link>
         </div>

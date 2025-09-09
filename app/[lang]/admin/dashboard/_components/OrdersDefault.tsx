@@ -17,7 +17,7 @@ const OrdersDefault = ({ className }: { className: string }) => {
     <div className={`${className} min-h-60 md:p-5 py-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className={`mb-5 flex justify-between items-end h-10 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
         <div className='self-stretch border-b-3 border-b-[#0ca6ff]'>
-            <p className='font-medium'>Orders</p>
+            <p className='font-medium'>{dict.orders}</p>
         </div>
         <Link href={`/${lang}/profile/orders`} className={`text-[13px] text-[#00b4ab] flex items-center gap-1 ${isRTL ? "flex-row-reverse" : '' }`}>
             <p>{dict.seeAllProducts}</p>

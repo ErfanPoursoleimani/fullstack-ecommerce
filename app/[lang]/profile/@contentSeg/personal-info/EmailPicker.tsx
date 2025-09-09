@@ -17,7 +17,7 @@ type userData = z.infer<typeof userSchema>
 export const EmailPicker = ({className, buttonContent}: {className: string, buttonContent: ReactNode}) => {
   const popup = usePopup()
   const { lang } = useParams()
-  const { isRTL, loading } = useDataStore()
+  const { isRTL, loading, dict } = useDataStore()
   const { userId, user, initialize } = useAuthStore()
   const router = useRouter()
 
@@ -53,18 +53,18 @@ export const EmailPicker = ({className, buttonContent}: {className: string, butt
       </button>
       <Popup popup={popup} className={`top-0 left-0 z-103 text-neutral-800`}>
         <form onSubmit={onSubmit}>
-          <div className={`flex flex-col gap-5 md:text-sm text-[0.8rem] mb-25`}>
+          <div className={`flex flex-col gap-5 md:text-sm text-[0.8rem] mb-30 max-md:mb-35`}>
             <div className='flex flex-col items-stretch flex-1 space-y-3'>
-              <p className={`px-1 ${isRTL ? 'self-end' : "self-start"}`}>Email</p>
+              <p className={`px-1 ${isRTL ? 'self-end' : "self-start"}`}>{dict.email}</p>
               <div>
                 <input {...register('email')} defaultValue={user?.email!} className={`w-full md:border-1 max-md:focus:border-b-3 max-md:focus:border-[var(--theme)] outline-0 border-neutral-300 focus:border-[var(--theme)] rounded-[7px] max-md:bg-neutral-200 h-12 p-3`} type="search" />
                 <p className='text-red-600 px-1 text-[12px] mt-2'>{errors.email?.message}</p>
               </div>
             </div>
           </div>
-          <div className={`absolute bg-white bottom-14 md:bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300 z-103`}>
+          <div className={`max-md:fixed bg-white bottom-11 md:bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300 z-103`}>
             <button disabled={isSubmitted} className={`bg-[var(--theme)] p-3 w-full rounded-[7px] text-white text-[1rem]`}>
-              Confirm
+              {dict.confirm}
             </button>
           </div>
         </form>

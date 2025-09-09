@@ -36,7 +36,7 @@ const InCartProduct = ({ cartProduct }: {cartProduct: CartProduct}) => {
                 `}
                 >
                   <span>{currency} </span>
-                  <span>discount</span>
+                  <span>{dict.discount}</span>
                 </div>
               </div>
               <div
@@ -75,7 +75,7 @@ const InCartProduct = ({ cartProduct }: {cartProduct: CartProduct}) => {
             `}
             >
               <span>{currency} </span>
-              <span>discount</span>
+              <span>{dict.discount}</span>
             </div>
           </div>
           <div

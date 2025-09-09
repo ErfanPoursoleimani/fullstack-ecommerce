@@ -22,7 +22,7 @@ const page = () => {
     <>
       <div className={`bottom-to-top-animation min-h-100 max-md:absolute max-md:min-h-full max-md:w-full max-md:bg-white flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
         <div className={`p-4 md:border-b-0 border-b-7 border-neutral-200 flex justify-between items-center ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>Users</p>
+          <p className='font-medium md:border-b-3 border-red-500 md:pb-4'>{dict.users}</p>
           {isRTL
             ? <MdArrowBackIos className='self-start md:hidden' onClick={handleBackAction} />
             : <MdArrowForwardIos className='self-start md:hidden' onClick={handleBackAction} /> }
@@ -31,7 +31,7 @@ const page = () => {
           { users.length === 0
           ? <div className={`space-y-2 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
               <BiSolidDirections className='text-[150px] text-[var(--theme)]'/>
-              <p>No users signed up</p>
+              <p>No users</p>
               {/* <ProductPicker purpose={'post'} buttonContent='add an user' className={`p-4 border-1 border-[var(--theme)] rounded-[7px] md:text-sm text-[0.8rem] md:text-md text-[var(--theme)]`}/> */}
             </div>
           : users.map((user) => (

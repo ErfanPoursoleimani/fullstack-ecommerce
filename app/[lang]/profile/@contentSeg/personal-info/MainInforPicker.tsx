@@ -17,7 +17,7 @@ type userData = z.infer<typeof userSchema>
 export const MainInfoPicker = ({className, buttonContent}: {className: string, buttonContent: ReactNode}) => {
   const popup = usePopup()
   const { lang } = useParams()
-  const { isRTL, loading } = useDataStore()
+  const { isRTL, loading, dict } = useDataStore()
   const { userId, user, initialize, setUser } = useAuthStore() // Make sure setUser is available
   const router = useRouter()
 
@@ -27,7 +27,6 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
 
   const onSubmit = handleSubmit( async (data) => {
     try {
-      // Make the API call
       const response = await axios.patch(`/${lang}/api/users/${userId}`, {
         ...data, 
         email: user?.email, 
@@ -37,25 +36,15 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
           'Cache-Control': 'no-cache',
         }
       })
-      
-      // Alternative: Re-initialize the auth store to fetch fresh data
       if (initialize) {
         await initialize(lang as string)
       }
-      
-      // Refresh the router to update server components
       router.refresh()
-      
-      // Close the popup
       popup.closePopup()
-      
-      // Reset the form
       reset()
       
     } catch (error) {
       console.log(error)
-    } finally {
-      // Any cleanup code
     }
   })
 
@@ -73,17 +62,17 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
       </button>
       <Popup popup={popup} className={`top-0 left-0 z-103 text-neutral-800`}>
         <form onSubmit={onSubmit}>
-          <div className={`flex flex-col gap-5 md:text-sm text-[0.8rem] mb-25`}>
+          <div className={`flex flex-col gap-5 md:text-sm text-[0.8rem] mb-15 max-md:mb-35`}>
             <div className={`flex justify-stretch items-center gap-5 max-sm:justify-center max-sm:items-stretch`}>
               <span className={`flex flex-col items-stretch flex-1 space-y-3`}>
-                <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>Firstname</span> <span className='text-red-600'>*</span></p>
+                <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>{dict.firstName}</span> <span className='text-red-600'>*</span></p>
                 <div>
                   <input {...register('firstName')} defaultValue={user?.firstName!} className={`w-full md:border-1 max-md:focus:border-b-3 max-md:focus:border-[var(--theme)] outline-0 border-neutral-300 focus:border-[var(--theme)] rounded-[7px] max-md:bg-neutral-200 h-12 p-3`} type="search" />
                   <p className='text-red-600 px-1 text-[12px] mt-2'>{errors.firstName?.message}</p>
                 </div>
               </span>
               <span className={`flex flex-col items-stretch flex-1 space-y-3`}>
-                <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>Lastname</span> <span className='text-red-600'>*</span></p>
+                <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>{dict.lastName}</span> <span className='text-red-600'>*</span></p>
                 <div>
                   <input {...register('lastName')} defaultValue={user?.lastName!} className={`w-full md:border-1 max-md:focus:border-b-3 max-md:focus:border-[var(--theme)] outline-0 border-neutral-300 focus:border-[var(--theme)] rounded-[7px] max-md:bg-neutral-200 h-12 p-3`} type="search" />
                   <p className='text-red-600 px-1 text-[12px] mt-2'>{errors.lastName?.message}</p>
@@ -91,14 +80,14 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
               </span>
             </div>
             <div className='flex flex-col items-stretch flex-1 space-y-3'>
-              <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>National Code</span> <span className='text-red-600'>*</span></p>
+              <p className={`px-1 flex gap-1 ${isRTL ? 'self-end flex-row-reverse' : "self-start"}`}><span>{dict.nationalCode}</span> <span className='text-red-600'>*</span></p>
               <div>
                 <input {...register('nationalCode')} defaultValue={user?.nationalCode!} className={`w-full md:border-1 max-md:focus:border-b-3 max-md:focus:border-[var(--theme)] outline-0 border-neutral-300 focus:border-[var(--theme)] rounded-[7px] max-md:bg-neutral-200 h-12 p-3`} type="search" />
                 <p className='text-red-600 px-1 text-[12px] mt-2'>{errors.nationalCode?.message}</p>
               </div>
             </div>
           </div>
-          <div className={`absolute bg-white bottom-14 md:bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300 z-103`}>
+          <div className={`max-md:fixed bg-white bottom-11 md:bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300 z-103`}>
             <button disabled={isSubmitted} className={`bg-[var(--theme)] p-3 w-full rounded-[7px] text-white text-[1rem]`}>
               Confirm
             </button>

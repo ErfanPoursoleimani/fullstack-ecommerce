@@ -2,6 +2,7 @@ import useDataStore from '@/app/stores/dataStore'
 import { useSettingsStore } from '@/app/stores/settingsStore'
 import { useMemo } from 'react'
 import ContinueButton from './components/ContinueButton'
+import { DirectionalLight } from 'three/src/Three.Core.js'
 
 const FeesAndButton = () => {
     const { isRTL,dict, cartProducts } = useDataStore()
@@ -26,7 +27,7 @@ const FeesAndButton = () => {
         <div className='divide-y-1 divide-gray-200 text-[0.7rem] w-full'>
         <span className={`${isRTL ? "flex-row-reverse" : ""} w-full py-4 flex justify-between gap-5`}>
             <span className={`flex gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
-            <p>products price</p>
+            <p>{dict.productsPrice}</p>
             <p>{`(${cartProducts.length})`}</p>
             </span>
             <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
@@ -35,14 +36,14 @@ const FeesAndButton = () => {
             </div>
         </span>
         <span className={`${isRTL ? "flex-row-reverse" : ""} w-full py-4 flex justify-between gap-5`}>
-            <span>Shipping fee</span>
+            <span>{dict.shipping} {dict.fee}</span>
             <div className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
-            <p>{shippingMethod === "online" ? "200000" : "Free"}</p>
+            <p>{shippingMethod === "online" ? "200000" : `${dict.free}`}</p>
             <span className="text-[10px]">{shippingMethod === "online" ? currency : null}</span>
             </div>
         </span>
         <span className={`${isRTL ? "flex-row-reverse" : ""} w-full py-4 flex justify-between gap-5`}>
-            <p>Discount</p>
+            <p>{dict.discount}</p>
             <div className={`flex items-center gap-1 ${isRTL ? "flex-row-reverse" : ""}`}>
             <span className={`flex items-center ${isRTL ? "flex-row-reverse" : ""}`}>
                 <p>{discountAmmount}</p>

@@ -7,7 +7,7 @@ import { FaMoneyBillTransfer, FaRegCreditCard } from 'react-icons/fa6';
 
 const PaymentMethod = () => {
     const { paymentMethod, setPaymentMethod } = useSettingsStore()
-    const { isRTL } = useDataStore()
+    const { isRTL, dict } = useDataStore()
   return (
     <div>
       <div className='w-full flex-1 px-5 flex flex-col divide-y- divide-gray-300 md:border-1 border-neutral-300 rounded-[7px]'>
@@ -16,10 +16,10 @@ const PaymentMethod = () => {
             <button className={`${paymentMethod === "inPerson" ? "text-cyan-500" : "text-neutral-500"} flex flex-col gap-3 ${isRTL ? "justify-end mr-3" : "ml-3"}`}>
                 <div className={`flex gap-2 items-center ${isRTL ? "flex flex-row-reverse" : ""}`}>
                   <AiOutlineShop className='text-[1.1rem]'/>
-                  <p className='font-medium text-[1rem]'>Pay on the spot</p>
+                  <p className='font-medium text-[1rem]'>{dict.payOnTheSpot}</p>
                 </div>
                 <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                  <span className={`${isRTL? "text-end" : "text-start"}`}>Pay with creditCard or cash on the spot</span>
+                  <span className={`${isRTL? "text-end" : "text-start"}`}>{dict.payOnTheSpotUsingCashOrCreditCard}</span>
                 </div>
             </button>
           </div>
@@ -28,12 +28,12 @@ const PaymentMethod = () => {
             <button className={`${paymentMethod === "debitCard" ? "text-cyan-500" : "text-neutral-500"} flex flex-col gap-3 ${isRTL ? "justify-end mr-3" : "ml-3"}`}>
                 <div className={`flex gap-2 items-center ${isRTL ? "flex flex-row-reverse" : ""}`}>
                     <FaRegCreditCard className='text-[1.1rem]'/>
-                    <p className='font-medium text-[1rem]'>Pay online</p>
+                    <p className='font-medium text-[1rem]'>{dict.payOnline}</p>
                 </div>
                 <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                  <span>Portal</span>
+                  <span>{dict.portal}</span>
                   <span>:</span>
-                  <p>Zarin Pal</p>
+                  <p>{dict.zarinPal}</p>
                 </div>
             </button>
           </div>
@@ -42,10 +42,10 @@ const PaymentMethod = () => {
             <button className={`${paymentMethod === "transfer" ? "text-cyan-500" : "text-neutral-500"} flex flex-col gap-3 ${isRTL ? "justify-end mr-3" : "ml-3"}`}>
                 <div className={`flex gap-2 items-center ${isRTL ? "flex flex-row-reverse" : ""}`}>
                   <FaMoneyBillTransfer className='text-[1.1rem]'/>
-                  <p className='font-medium text-[1rem]'>Transfer the money</p>
+                  <p className='font-medium text-[1rem]'>{dict.transferTheMoney}</p>
                 </div>
                 <div className={`flex gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
-                  <span>Transfer to</span>
+                  <span>{dict.TransferTo}</span>
                   <span>:</span>
                   <span>
                       <p>6037998247480709</p>

@@ -54,14 +54,14 @@ const page = () => {
   return (
     <div className={`bottom-to-top-animation min-h-100 max-md:fixed max-md:min-h-full max-md:w-full max-md:bg-white max-md:p-5 flex flex-col flex-1 justify-stretch md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className={`md:mx-5 md:my-5 flex justify-between items-center h-10 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-            <p className='font-medium md:border-b-3 border-red-600 md:pb-4'>Orders History</p>
+            <p className='font-medium md:border-b-3 border-red-600 md:pb-4'>{dict.ordersHistory}</p>
             {isRTL 
               ? <MdArrowBackIos className='md:hidden' onClick={handleBackAction} /> 
               : <MdArrowForwardIos className='md:hidden' onClick={handleBackAction} /> }
       </div>
       <div className={`flex text-[13px] justify-stretch border-b-1 border-neutral-200`}>
         {navLinks.map((link) => (
-          <Link key={link.id} className={`flex-1 flex justify-center items-center min-h-10 ${ searchParams.get('activeTab') === link.searchParamsValue ? "text-blue-600 border-b-2 border-blue-600" : null }`} href={link.href}>{link.label}</Link>
+          <Link key={link.id} className={`flex-1 flex justify-center items-center min-h-10 ${ searchParams.get('activeTab') === link.searchParamsValue ? "text-yellow-600 border-b-2 border-yellow-600" : null }`} href={link.href}>{link.label}</Link>
         ))}
       </div> 
       <div className={`text-[13px] flex-1 flex justify-center gap-5 items-stretch ${isRTL ? "text-end" : "text-start"}`}>
@@ -69,7 +69,7 @@ const page = () => {
          !(user?.orders)
         ? <div className={`space-y-5 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
             <FiPackage className='text-[150px]'/>
-            <p>هنوز هیچ سفارشی ندادید</p>
+            <p>{dict.noOrdersHistory}</p>
           </div>
         : user?.orders && !(user?.orders.filter((order: Order) => order.status === orderStatusFilter))
         ?  <div className='text-[15px] min-h-60 flex-1 flex justify-center items-center '>
@@ -90,8 +90,7 @@ const page = () => {
                   <p>کد سفارش</p>
                 </span>
                 <span>
-                  {/* {order.} */}
-                  <p>مبلغ</p>
+                  <p>{dict.fee}</p>
                 </span>
               </div>
             </div>

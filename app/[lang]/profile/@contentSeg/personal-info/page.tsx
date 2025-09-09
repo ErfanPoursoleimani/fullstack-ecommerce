@@ -48,14 +48,14 @@ const page = () => {
     <div className={`flex-1 min-h-40 max-md:fixed max-md:min-h-[100%] max-md:w-full max-md:bg-white md:border-1 border-neutral-300 rounded-[10px] ${isRTL ? "text-end" : null}`}>
       <div className={`md:hidden h-15 px-5 border-b-7 border-neutral-200 flex items-center gap-2 ${isRTL ? "flex-row-reverse" : ""}`}>
         <span onClick={handleBack}>{!isRTL ? <MdArrowBackIos/> : <MdArrowForwardIos/>}</span>
-        <p>Account details</p>
+        <p>{dict.accountDetails}</p>
       </div>
       <div className={`p-5 pt-0 flex flex-col max-md:min-h-100`}>
 
         <div className={`flex max-md:flex-col `}>
           <div className={`h-20 flex justify-between items-center max-md:border-b-1 border-neutral-200 md:flex-1 px-4 ${ isRTL ? "flex-row-reverse" : null }`}>
             <div className={`flex flex-col gap-1 ${isRTL ? "items-end" : ""}`}>
-              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>Full name</span>
+              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>{dict.fullName}</span>
               <span className={``}>{`${user?.firstName ? user?.firstName : ""} ${user?.lastName ? user?.lastName : ""}`}</span>
             </div>
             <span onClick={() => handelOpenEditInfo()}>
@@ -64,7 +64,7 @@ const page = () => {
           </div>
           <div className={`h-20 flex justify-between items-center max-md:border-b-1 md:flex-1 px-4 md:border-l-1 border-neutral-200 ${isRTL ? "flex-row-reverse" : null }`}>
             <div className={`flex flex-col gap-1 ${isRTL ? "items-end" : ""}`}>
-              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>National code</span>
+              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>{dict.nationalCode}</span>
               <span className={`${user?.nationalCode || "hidden"}`}>{user?.nationalCode}</span>
             </div>
             <span onClick={() => handelOpenEditInfo()}>
@@ -75,7 +75,7 @@ const page = () => {
         <div className={`flex max-md:flex-col md:border-t-1 border-neutral-200`}>
           <div className={`h-20 flex justify-between items-center max-md:border-b-1 border-neutral-200 md:flex-1 px-4 ${isRTL ? "flex-row-reverse" : null }`}>
             <div className={`flex flex-col gap-1 ${isRTL ? "items-end" : ""}`}>
-              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>PhoneNumber</span>
+              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>{dict.phoneNumber}</span>
               <span className={`${user?.phoneNumber || "hidden"}`}>{user?.phoneNumber}</span>
             </div>
             <span onClick={() => handelOpenEditInfo()}>
@@ -84,7 +84,7 @@ const page = () => {
           </div>
           <div className={`h-20 flex justify-between items-center max-md:border-b-1  md:flex-1 px-4 md:border-l-1 border-neutral-200 ${isRTL ? "flex-row-reverse" : null }`}>
             <div className={`flex flex-col gap-1 ${isRTL ? "items-end" : ""}`}>
-              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>Email</span>
+              <span className={`md:text-[15px] text-[13px] text-neutral-400`}>{dict.email}</span>
               <span className={`${user?.email || "hidden"}`}>{user?.email}</span>
             </div>
             <span onClick={() => handelOpenEditEmail()}>
