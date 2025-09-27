@@ -48,7 +48,7 @@ const ProductInfo = ({product, tagId}: {product: Product, tagId: number}) => {
             <HiDotsVertical onClick={() => setIsOptionsOpen(!isOptionsOpen)} className='text-[22px]'/>
             {isOptionsOpen &&
               <>
-                <ul className={`pb-6 pt-5 md:pb-0 md:pt-0 md:absolute fixed bottom-13 left-0 md:top-8 z-104 h-max min-w-full md:min-w-60 flex shadow-xl flex-col border-1 text-[0.8rem] md:text-[1rem] border-neutral-200 rounded-t-3xl md:rounded-[7px] bg-white ${isRTL ? "" : "right-0 md:-left-60"}`}>
+                <ul className={`pb-6 pt-5 md:pb-0 md:pt-0 md:absolute fixed bottom-11 left-0 md:top-8 z-104 h-max min-w-full md:min-w-60 flex shadow-xl flex-col border-1 text-[0.8rem] md:text-[1rem] border-neutral-200 rounded-t-3xl md:rounded-[7px] bg-white ${isRTL ? "" : "right-0 md:-left-60"}`}>
                   <p className={`md:hidden px-4 py-5 text-[1rem] text-black`}>Product' settings</p>
                   <li onClick={handleDeleteProduct} className={`select-none w-full md:p-4 px-4 py-3 text-red-600 flex items-center gap-3 ${isRTL ? "flex-row-reverse" : ""} md:border-b-1 border-neutral-200`}>
                       <FaRegTrashAlt className={`text-[1.1rem]`}/>

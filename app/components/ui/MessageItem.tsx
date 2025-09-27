@@ -29,7 +29,7 @@ export const MessageItem = ({ message, onRemove }: MessageItemProps) => {
   };
 
   return (
-    <div className={`p-6 mx-2 rounded-lg border shadow-sm mb-3 ${getBgColor()}`}>
+    <div className={`p-6 mx-2 rounded-lg border mb-3 shadow-2xl ${getBgColor()}`}>
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0 mt-0.5">
           {getIcon()}

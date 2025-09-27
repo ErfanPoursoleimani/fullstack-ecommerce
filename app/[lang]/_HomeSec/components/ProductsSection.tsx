@@ -30,7 +30,7 @@ const ProductsSection = () => {
                     "flex-row-reverse": isRTL,
                     "flex-row": !(isRTL),
                 })}>
-                    <h2 className={`${isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
+                    <h2 className={`text-yellow-400 ${isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
                         <span className={`text-[40px]`}>Iranian</span>
                         <span className={``}>Rice</span>
                     </h2>
@@ -53,7 +53,7 @@ const ProductsSection = () => {
                     "flex-row-reverse": !isRTL,
                     "flex-row": (isRTL),
                 })}>
-                    <h2 className={`${!isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
+                    <h2 className={`text-yellow-400 ${!isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
                         <span className={`text-[48px]`}>Other</span>
                         <span className={`text-[30px]`}>Products</span>
                     </h2>

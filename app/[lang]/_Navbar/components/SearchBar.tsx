@@ -13,7 +13,7 @@ const SearchBar = () => {
 
     const { lang } = useParams()
     const { dict, isRTL, products } = useDataStore()
-    const { search, in: inn, logo } = dict
+    const { search, in: inn } = dict
     
     const [ isActive, setIsActive ] = useState(false)
     const [basicQuery, setBasicQuery] = useState('');

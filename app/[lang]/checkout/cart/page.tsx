@@ -91,7 +91,7 @@ const Shoppingcart = () => {
             </div>
           </span>
           <Link href={`/${lang}/checkout/shipping`} className="w-[50%] md:w-full">
-            <button className={`w-full py-3 text-[0.9rem] max-sm:text-[0.9rem] cursor-pointer rounded-xl bg-red-500 font-medium text-white`}>
+            <button className={`w-full py-3 text-[0.9rem] max-sm:text-[0.9rem] cursor-pointer rounded-xl bg-[var(--theme)] font-medium text-white`}>
               {dict.completeTheOrder}
             </button>
           </Link>

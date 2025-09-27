@@ -28,7 +28,7 @@ export const MessagesProvider = ({ children }: MessagesProviderProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const addMessage = useCallback((params: CreateMessageParams) => {
-    const id = `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const id = `msg-${Date.now()}-${Math.random().toString(36)}`;
     const duration = params.duration || 5000;
 
     const newMessage: Message = {

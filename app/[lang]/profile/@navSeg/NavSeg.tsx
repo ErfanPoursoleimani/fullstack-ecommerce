@@ -50,7 +50,7 @@ export default function NavSeg() {
   }, [dict, lang])
 
   return (
-    <div className={`min-w-full min-h-full md:min-w-[25%] md:min-h-[70vh] md:border-1 border-neutral-300 rounded-[10px]`}>
+    <div className={`sticky md:top-30 min-w-full min-h-full md:min-w-[25%] md:min-h-[70vh] md:border-1 border-neutral-300 rounded-[10px]`}>
       <div className='border-b-9 md:border-b-1 border-neutral-200 px-4'>
         <div className={`flex justify-between items-center py-5 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
           <span className={`flex flex-col justify-between gap-1 ${isRTL ? "items-end" : "items-start"}`}>

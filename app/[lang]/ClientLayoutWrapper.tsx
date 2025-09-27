@@ -21,9 +21,9 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
     // Initialize Lenis with new autoRaf option
     const lenis = new Lenis({
       autoRaf: true, // 🆕 New feature - handles RAF automatically
-      lerp: 0.1,
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // lerp: 0.1,
+      // duration: 1.2,
+      // easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,

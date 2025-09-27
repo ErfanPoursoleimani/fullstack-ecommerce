@@ -70,7 +70,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
     <>
       <nav className={`
         ${className}
-        flex flex-col justify-center items-stretch fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 max-md:z-102 z-103 lg:px-[10%] px-3 pt-3 ${!isFooterVisible ? "pb-3" : role === "USER" || !role ? "max-md:pb-3" : ""}
+        flex flex-col justify-center z-104 items-stretch fixed w-[100%] ${!isBodyVisible ? 'border-b-1' : null} border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] top-0 z-103 lg:px-[10%] px-3 pt-3 ${!isFooterVisible ? "pb-3" : "max-md:pb-3"}
         `}
       >
         <div
@@ -108,7 +108,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
       </nav>
       <nav className={`
         ${className}
-        flex flex-col top-[54px] justify-center items-between fixed w-[100vw] border-b-1 border-[#7979793f] text-[var(--dark-text)] bg-[var(--background)] z-101 ${isFooterVisible ? 'translate-y-0' : '-translate-y-full'}
+        flex flex-col top-[54px] justify-center items-between fixed w-[100vw] shadow-xs text-[var(--dark-text)] bg-[var(--background)] md:z-103 z-102 ${isFooterVisible ? 'translate-y-0' : '-translate-y-full'}
         `}
       >
         <Footer/>

@@ -43,7 +43,7 @@ const CategoryDropdown: React.FC = () => {
   return (
         <div className='hidden md:block'>
           <div className={`relative z-10 h-full flex flex-col 
-              ${isRTL ? "items-end" : "items-start"}
+              ${isRTL ? "" : "items-start"}
             `}
           >
             <button
@@ -57,7 +57,7 @@ const CategoryDropdown: React.FC = () => {
                 className={`flex items-center gap-3
                   ${isRTL ? "flex-row-reverse" : "flex-row"}
                 `}
-                >
+              >
                 <span
                   className={`flex items-center gap-1
                     ${isRTL ? "flex-row-reverse" : "flex-row"}

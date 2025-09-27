@@ -111,7 +111,7 @@ export const AddressPicker = ({purpose, addressId, className, buttonContent, add
               </div>
             </div>
           </div>
-          <div className={`max-md:fixed bg-white bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300 z-103`}>
+          <div className={`max-md:fixed bg-white bottom-0 left-0 w-full border-t-1 p-4 border-neutral-300`}>
             <button disabled={isSubmitted} className={`bg-[var(--theme)] p-3 w-full rounded-[7px] text-white text-[1rem]`}>
               {dict.confirm} {dict.and} {dict.continue}
             </button>
