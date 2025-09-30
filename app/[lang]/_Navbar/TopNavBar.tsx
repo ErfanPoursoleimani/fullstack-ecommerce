@@ -22,7 +22,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
   const { lang } = useParams()
   const { isAuthenticated, role } = useAuthStore()
   const { dict, isRTL } = useDataStore()
-  const { logo, selectYourRegion } = dict
+  const { logo } = dict
 
   const isBodyVisible = useScrollDirection(100);
   const isFooterVisible = useScrollDirection(100);

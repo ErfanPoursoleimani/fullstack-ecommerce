@@ -52,6 +52,7 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
                 ${currentPath.startsWith(`/${lang}/profile`) ? "hidden md:flex" : null} 
                 ${currentPath.startsWith(`/${lang}/checkout/shipping`) ? "hidden" : null}
                 ${currentPath.startsWith(`/${lang}/checkout/payment`) ? "hidden" : null}
+                ${currentPath.startsWith(`/${lang}/admin`) ? "max-md:hidden" : null}
             `}/>
         }
                   <main>
