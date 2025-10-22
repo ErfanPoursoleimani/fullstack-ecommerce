@@ -100,7 +100,9 @@ const {
             {tags.map((tag, i) => (
             <div key={tag.id} {...tagGetSliderProps()} className={`relative xl:max-w-45 md:max-w-40 sm:max-w-37 xs:max-w-33 max-w-30 overflow-hidden ${i === 1 ? "max-xs:hidden" : ""} hover:scale-102 transition`}>
                 <div {...tagGetSlidesContainerProps()} className='flex h-full w-full'>
-                <Image {...tagGetSlideProps(0)} className='rounded-2xl h-full w-full' src={tag.images[0].url} width={1000} height={1} alt={''} />
+                {tag.images.map((image: any, index: any) => (
+                    <Image key={image.id} {...tagGetSlideProps(index)} className='rounded-2xl h-full w-full' src={image.url} width={1000} height={1} alt={''} />
+                ))}
                 </div>
                 <div className='w-full h-full absolute inset-0 bg-[#020202a2] rounded-2xl z-2'></div>
                 <div className={`bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent md:p-4 p-3 z-3 w-full h-full rounded-2xl absolute bottom-0 flex flex-col justify-center items-center text-[0.8rem] xs:text-[0.9rem] sm:text-[1.3rem] md:text-[1.4rem] xl:text-[1.5rem] text-medium`}>
