@@ -22,7 +22,7 @@ const PricingAndButton = ({ product, buttonBg, className }: { product: Product, 
       >
         <p className={`md:text-[19px] text-[13px]`}>{priceFa}</p>
         <div className={`flex items-center gap-[2px] ${isRTL ? "flex-row-reverse" : ""}`}>
-          <span className={`md:text-[12px] text-[10px] line-through text-neutral-100 decoration-red-500`}>
+          <span className={`md:text-[12px] text-[10px] line-through text- decoration-red-500`}>
             {`${originalPriceFa}`}
             {/* {`${originalPriceFa} (${Math.floor(priceFa/(originalPriceFa-priceFa))}%)`} */}
           </span>

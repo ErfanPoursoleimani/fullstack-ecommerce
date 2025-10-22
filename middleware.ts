@@ -60,7 +60,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Protected routes - need to account for locale prefix
-  const protectedPaths = ['/profile', '/admin']
+  const protectedPaths = ['/profile', '/admin', '/checkout/shipping', '/checkout/payment']
   const isProtectedPath = protectedPaths.some(path => 
     locales.some(locale => 
       pathname.startsWith(`/${locale}${path}`)

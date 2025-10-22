@@ -3,6 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import CartButton from '../../_ProductCard/components/CartButton'
+import Footer from '../../_components/Footer'
 
 const DesktopView = () => {
   const { id } = useParams()
@@ -14,7 +15,7 @@ const DesktopView = () => {
 
   const { priceFa, description, label, stock } = product
   return (
-    <div className='hidden md:flex justify-center mt-[103px] min-w-[100vw] min-h-[calc(100vh-103px)]'>
+    <div className='hidden md:flex md:flex-col items-center mt-[103px] min-w-[100vw] min-h-[calc(100vh-103px)]'>
       <div className={`flex justify-stretch gap-5 p-10 xl:p-20 w-full max-w-[1400px] h-max ${isRTL ? "flex-row-reverse" : ""}`}>
         <Image className='w-max h-max rounded-2xl' src={product.images[0].url} alt={''} width={200} height={100} />
         <div className={`flex flex-1 gap-10 flex-col justify-between ${isRTL ? "items-end" : null}`}>
@@ -76,6 +77,7 @@ const DesktopView = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

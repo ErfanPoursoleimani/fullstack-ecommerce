@@ -2,6 +2,7 @@
 import React from 'react'
 import ProductCard from '../_ProductCard/ProductCard'
 import useDataStore from '@/app/stores/dataStore'
+import Footer from '../_components/Footer'
 
 const page = () => {
 
@@ -16,7 +17,7 @@ const page = () => {
     });
 
   return (
-    <div className='relative top-[80px] flex justify-center items-center py-5'>
+    <div className='relative top-[80px] flex flex-col justify-center items-center pt-5'>
       <div className='max-w-[1400px] flex flex-col'>
         <div className='w-full flex flex-col justify-center items-center gap-5 bg-[var(--theme] p-3 md:rounded-[15px]'>
           <h2 className='font-bold text-[20px]'>{dict.product.categories[tags[0].label as keyof typeof dict.product.categories]}</h2>
@@ -39,6 +40,7 @@ const page = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

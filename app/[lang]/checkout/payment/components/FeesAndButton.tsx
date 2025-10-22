@@ -2,23 +2,26 @@ import useDataStore from '@/app/stores/dataStore'
 import { useSettingsStore } from '@/app/stores/settingsStore'
 import React, { useMemo } from 'react'
 import PayButton from './components/PayButton'
+import { useRouter } from 'next/navigation'
 
 const FeesAndButton = () => {
     const { isRTL, dict, cartProducts } = useDataStore()
     const { shippingMethod } = useSettingsStore()
-
 
     const currency = dict.product.currency
     
     const sum = useMemo(() => {
     return cartProducts.reduce((sum, elem) => sum += elem.product.originalPriceFa, 0)
     }, [cartProducts])
+
     const finalSum = useMemo(() => {
     return cartProducts.reduce((sum, elem) => sum += elem.product.priceFa, 0)
     }, [cartProducts])
+
     const discountAmmount = useMemo(() => {
     return cartProducts.reduce((sum, elem) => sum += elem.product.originalPriceFa, 0) - cartProducts.reduce((sum, elem) => elem.product.priceFa, 0)
     }, [cartProducts])
+
     const discountPercentage = useMemo(() => {
     return Math.floor(cartProducts.reduce((sum, elem) => sum += elem.product.originalPriceFa, 0) / (cartProducts.reduce((sum, elem) => elem.product.originalPriceFa, 0) - cartProducts.reduce((sum, elem) => elem.product.priceFa, 0)))
     }, [cartProducts])
@@ -69,7 +72,7 @@ const FeesAndButton = () => {
               </div>
             </span>
           </div>
-          <PayButton />
+          <PayButton finalSum={finalSum}/>
         </div>
       // </div>
   )

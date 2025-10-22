@@ -1,6 +1,6 @@
 'use client';
 import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
+// import 'lenis/dist/lenis.css';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 import BottomNavBar from './_Navbar/BottomNavBar';
@@ -17,7 +17,7 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
 
 
 
-  useEffect(() => {
+/*   useEffect(() => {
     // Initialize Lenis with new autoRaf option
     const lenis = new Lenis({
       autoRaf: true, // 🆕 New feature - handles RAF automatically
@@ -32,16 +32,11 @@ export default function ClientLayoutWrapper({ children, lang }: ClientLayoutWrap
       infinite: false,
     });
 
-    // Listen for scroll events
-    lenis.on('scroll', (e) => {
-      console.log(e);
-    });
-
     // Cleanup
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, []); */
 
   return (
     <>

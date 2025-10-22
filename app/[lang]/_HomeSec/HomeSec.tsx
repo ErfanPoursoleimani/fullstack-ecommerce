@@ -1,5 +1,5 @@
 'use client'
-import Footer from './components/Footer';
+import Footer from '../_components/Footer';
 import MainView from './components/MainView';
 import ProductsSection from './components/ProductsSection';
 

@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import NavArrows from '../../_components/NavArrows'
 import ProductCard from '../../_ProductCard/ProductCard'
 import SeeAllProducts from './SeeAllProducts'
+import { useCarousel } from '@/app/hooks/useCarousel'
+import Image from 'next/image';
 
 const ProductsSection = () => {
 
@@ -19,7 +21,7 @@ const ProductsSection = () => {
     }
 
   return (
-    <div className='relative w-full py-5 flex justify-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
+    <div className='relative w-full pt-5 pb-30 flex flex-col items-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
         <div className="w-full max-w-350 flex flex-col text-white justify-center bg-white space-y-4 xl:rounded-2xl">
             <div className="bottom-to-top-animation flex flex-col justify-center w-full relative overflow-x-auto z-2 ">
                 <h2 className={`text-black ${isRTL ? "text-right" : "text-left"} mb-2 px-5 md:hidden font-bold text-[1.1rem] bg-neutral-100 p-2`}>Iranian Rice</h2>
@@ -30,7 +32,7 @@ const ProductsSection = () => {
                     "flex-row-reverse": isRTL,
                     "flex-row": !(isRTL),
                 })}>
-                    <h2 className={`text-white ${isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
+                    <h2 className={`text-white border-b-5 ${isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
                         <span className={`text-[40px]`}>Iranian</span>
                         <span className={``}>Rice</span>
                     </h2>
@@ -53,7 +55,7 @@ const ProductsSection = () => {
                     "flex-row-reverse": !isRTL,
                     "flex-row": (isRTL),
                 })}>
-                    <h2 className={`text-white ${!isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
+                    <h2 className={`text-white border-b-5 ${!isRTL ? "rounded-r-2xl" : "rounded-l-2xl"} bg-[var(--theme2)] min-w-60 hidden md:flex flex-col justify-center items-center self-stretch text-center px-10 text-[60px] font-bold`}>
                         <span className={`text-[48px]`}>Other</span>
                         <span className={`text-[30px]`}>Products</span>
                     </h2>
