@@ -25,6 +25,7 @@
     "bcryptjs": "^3.0.2",
     "classnames": "^2.5.1",
     "delay": "^6.0.0",
+    "eslint-config-next": "^16.0.0",
     "i18next": "^25.2.1",
     "immer": "^10.1.1",
     "jose": "^6.0.12",
@@ -63,7 +64,7 @@
     "@types/sequelize": "^4.28.20",
     "@types/three": "^0.178.1",
     "daisyui": "^5.0.27",
-    "eslint": "^9.32.0",
+    "eslint": "^9.38.0",
     "prisma": "^6.12.0",
     "tailwindcss": "^4",
     "typescript": "^5"
