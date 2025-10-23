@@ -1,8 +1,11 @@
 {
-  "app": "soleimanirice",
+  "app": "soleymanirice",
   "port": 3000,
   "build": {
     "location": "iran"
+  },
+  "node": {
+    "version": "22"
   },
   "disks":[
         {
