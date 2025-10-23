@@ -37,7 +37,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
     ]
     
     // Create new array with translated labels
-    const translatedLinks = baseNavLinks.map(link => ({
+    const translatedLinks = baseNavLinks.map((link: {id: number, label: string, href: string}) => ({
       ...link,
       label: (dict[link.label as keyof typeof dict] as string) || link.label
     }))
@@ -54,7 +54,7 @@ const DesktopNavBar = ({ className }: { className: string }) => {
   ]
     
     // Create new array with translated labels
-    const translatedLinks = baseNavLinks.map(link => ({
+    const translatedLinks = baseNavLinks.map((link: {id: number, label: string, href: string}) => ({
       ...link,
       label: (dict[link.label as keyof typeof dict] as string) || link.label
     }))

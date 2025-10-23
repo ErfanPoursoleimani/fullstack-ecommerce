@@ -3,7 +3,7 @@ import { useAuthStore } from '@/app/stores/authStore';
 import useDataStore from '@/app/stores/dataStore';
 import Link from 'next/link';
 import { useParams, usePathname } from 'next/navigation';
-import { useMemo } from 'react';
+import { Component, ReactNode, useMemo } from 'react';
 import { BiCategory, BiSolidCategory } from "react-icons/bi";
 import { FaRegUser, FaUser } from "react-icons/fa6";
 import { PiShoppingBagFill, PiShoppingBagLight } from 'react-icons/pi';
@@ -29,7 +29,7 @@ const PhoneNavBar = ({className}: { className?: string}) => {
         ]
 
         // Create new array with translated labels
-        const translatedLinks = baseNavLinks.map(link => ({
+        const translatedLinks = baseNavLinks.map((link: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => ({
             ...link,
             label: dict.links?.[link.label as keyof typeof dict.links] || link.label
         }))
@@ -51,7 +51,7 @@ const PhoneNavBar = ({className}: { className?: string}) => {
         ]
 
         // Create new array with translated labels
-        const translatedLinks = baseAdminLinks.map(link => ({
+        const translatedLinks = baseAdminLinks.map((link: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => ({
             ...link,
             label: dict.links?.[link.label as keyof typeof dict.links] || link.label
         }))
@@ -67,12 +67,12 @@ const PhoneNavBar = ({className}: { className?: string}) => {
   return (
     
     <nav className={`${className} fixed w-[100%] border-neutral-200 shadow-2xl ${role === "ADMIN" && currentPath.startsWith(`/${lang}/admin/dashboard`) ? "bg-black text-white" : "bg-white text-[#9e9e9e] border-t-1" } bottom-0 h-12 z-102 flex md:hidden justify-between items-center`}>
-      {role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`) ? adminNavLinks.map((elem) => (
+      {role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`) ? adminNavLinks.map((elem: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => (
         <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
             {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
             <span className='text-[0.6rem]'>{elem.label}</span>
         </Link>
-      )) : navLinks.map((elem) => (
+      )) : navLinks.map((elem: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => (
         <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
             {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
             <span className='text-[0.6rem]'>{elem.label}</span>

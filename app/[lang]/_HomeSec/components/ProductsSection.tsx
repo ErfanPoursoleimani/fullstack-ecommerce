@@ -7,6 +7,7 @@ import ProductCard from '../../_ProductCard/ProductCard'
 import SeeAllProducts from './SeeAllProducts'
 import { useCarousel } from '@/app/hooks/useCarousel'
 import Image from 'next/image';
+import { Product, Tag } from '@/app/types/types'
 
 const ProductsSection = () => {
 
@@ -36,10 +37,10 @@ const ProductsSection = () => {
                         <span className={`text-[40px]`}>Iranian</span>
                         <span className={``}>Rice</span>
                     </h2>
-                    {tags[0].products.map((product) => (
+                    {tags[0].products.map((product: Product) => (
                         <ProductCard key={product.id} product={product} buttonBg={'--theme'}/>
                     ))}
-                    {tags[3].products.map((product) => (
+                    {tags[3].products.map((product: Product) => (
                         <ProductCard key={product.id} product={product} buttonBg={'--theme'}/>
                     ))}
                     <SeeAllProducts arrowDirection={`${isRTL ? "toLeft" : "toRight"}`} />
@@ -59,8 +60,8 @@ const ProductsSection = () => {
                         <span className={`text-[48px]`}>Other</span>
                         <span className={`text-[30px]`}>Products</span>
                     </h2>
-                    {tags.filter((_, i) => (i !== 0 && i !== 3)).map((tag) => (
-                      tag.products.map((product) => (
+                    {tags.filter((_, i) => (i !== 0 && i !== 3)).map((tag: Tag) => (
+                      tag.products.map((product: Product) => (
                         <ProductCard key={product.id} product={product} buttonBg={'--theme'}/>
                     ))
                     ))}

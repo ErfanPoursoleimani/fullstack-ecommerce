@@ -1,5 +1,6 @@
 import { useCarousel } from '@/app/hooks/useCarousel';
 import useDataStore from '@/app/stores/dataStore';
+import { Tag } from '@/app/types/types';
 import Image from 'next/image';
 
 const MainView = () => {
@@ -97,7 +98,7 @@ const {
             </div>
         </div>
         <div className='px-5 flex flex-wrap items-stretch justify-center md:gap-4 gap-2 max-w-320 w-full'>
-            {tags.map((tag, i) => (
+            {tags.map((tag: Tag, i: number) => (
             <div key={tag.id} {...tagGetSliderProps()} className={`relative xl:max-w-45 md:max-w-40 sm:max-w-37 xs:max-w-33 max-w-30 overflow-hidden ${i === 1 ? "max-xs:hidden" : ""} hover:scale-102 transition`}>
                 <div {...tagGetSlidesContainerProps()} className='flex h-full w-full'>
                 {tag.images.map((image: any, index: any) => (

@@ -6,7 +6,7 @@ import React, { ReactNode, useRef, useState } from 'react';
 import { BiCategory } from 'react-icons/bi';
 import ProductCard from '../../_ProductCard/ProductCard';
 import NavArrows from '../../_components/NavArrows';
-import { Tag } from '@/app/types/types'
+import { Product, Tag } from '@/app/types/types'
 import AnimatedBox from '@/app/components/ui/AnimatedBox';
 
 const options = [
@@ -85,7 +85,7 @@ const CategoryDropdown: React.FC = () => {
                   onMouseLeave={() => setIsOpen(false)}
                 >
                   <div className='bg-[#e7e7e7]'>
-                    {tags.map((tag, i) => (
+                    {tags.map((tag: Tag, i: number) => (
                       <p
                         key={tag.id}
                         className={`flex items-center gap-2 truncate px-6 py-6 cursor-pointer border-x-1 border-[#c7c7c7]
@@ -112,7 +112,7 @@ const CategoryDropdown: React.FC = () => {
                             "flex-row": !(isRTL),
                         })}>
                             {/* <h2 className='hidden md:flex flex-col justify-center items-center self-stretch px-2 text-center mx-13 text-[40px] font-bold'>{dict.product.categories[tagHover && tagHover.label as keyof typeof dict.product.categories]}</h2> */}
-                            {tagHover && tagHover.products.map((product) => (
+                            {tagHover && tagHover.products.map((product: Product) => (
                                 <ProductCard className='min-h-65 min-w-50' key={product.id} product={product} buttonBg={'--theme2'}/>
                             ))}
                             {/* <SeeAllProducts arrowDirection={`${isRTL ? "toLeft" : "toRight"}`} /> */}
