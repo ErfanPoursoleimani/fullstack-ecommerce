@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { productSchema } from '@/app/validation/validationSchemas'
-import { prisma } from "@/prisma/client";
+import { prisma } from "@/app/prisma/client";
 
 export async function GET(){
     const products = await prisma.product.findMany({

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { tagSchema } from '@/app/validation/validationSchemas'
-import { prisma } from "@/prisma/client";
+import { prisma } from "@/app/prisma/client";
 
 export async function GET(){
     const tags = await prisma.tag.findMany({
