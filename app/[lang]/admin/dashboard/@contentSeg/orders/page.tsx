@@ -1,13 +1,12 @@
 "use client"
 import useDataStore from '@/app/stores/dataStore'
+import { Order } from '@prisma/client'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import Image from 'next/image'
+import { useEffect, useMemo, useState } from 'react'
+import { FiPackage } from "react-icons/fi"
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
-import { useAuthStore } from '@/app/stores/authStore'
-import { Order } from '@prisma/client'
-import { FiPackage } from "react-icons/fi";
 
 const page = () => {
 

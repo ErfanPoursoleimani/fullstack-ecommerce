@@ -18,6 +18,8 @@ interface CartProductCartIdNullable{
     quantity: number;
     productId: number;
 }
+
+export type Order = PrismaOrder
 export type Product = ({images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct)
 export type Tag = ({products: ({images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct)[]} & {images: PrismaTagImage[]} & PrismaTag)
 export type CartProduct = ({product: {images: PrismaImage[]} & {reviews: PrismaReview[]} & PrismaProduct} & CartProductCartIdNullable)
