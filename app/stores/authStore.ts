@@ -34,7 +34,7 @@ interface AuthState {
 }
 
 interface LoginCredentials {
-  emailOrPhone: string
+  emailOrPhone?: string
 }
 
 // API functions (can be moved to separate file)

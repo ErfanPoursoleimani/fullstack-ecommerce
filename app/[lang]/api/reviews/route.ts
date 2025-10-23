@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { reviewSchema } from '@/app/validation/validationSchemas'
-import { prisma } from "@/app/prisma/client";
+import { prisma } from "@/prisma/client";
 
 export async function GET(req: NextRequest){
     const { searchParams } = new URL(req.url)
