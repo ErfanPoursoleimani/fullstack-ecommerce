@@ -25,7 +25,7 @@ const PhoneView = () => {
       <div className={`w-full sticky top-[103px] -z-2 flex items-center overflow-x-auto scrollbar-hide scroll-smooth`}>
         {product.images.map((image) => (
           <div key={image.id} className='min-w-full bg-neutral-100 min-h-full flex justify-center'>
-            <Image className='' key={image.id} src={image.url} width={200} height={200} alt='product image'/>
+            <img className='' key={image.id} src={image.url} width={200} height={200} alt='product image'/>
           </div>
         ))}
       </div>

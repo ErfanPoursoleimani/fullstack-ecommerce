@@ -11,7 +11,7 @@ const InCartProduct = ({ cartProduct }: {cartProduct: CartProduct}) => {
   return (
     <div className='space-y-3 flex flex-col items-start '>
       <div className={`flex gap-5 ${isRTL ? 'justify-end flex-row-reverse' : null} items-stretch`}>
-        <Image className='rounded-xl' src={cartProduct.product.images[0].url} alt={cartProduct.product.label} width={110} height={50} />
+        <img className='rounded-xl' src={cartProduct.product.images[0].url} alt={cartProduct.product.label} width={110} height={50} />
         <div className={`flex flex-1 gap-4 flex-col justify-between ${isRTL ? "items-end" : null}`}>
           <h1 className='text-xl truncate'>{dict.product.products[cartProduct.product.label as keyof typeof dict.product.products]}</h1>
           <div className={`flex items-end gap-5 max-xs:hidden ${isRTL ? "flex-row-reverse" : ""}`}>

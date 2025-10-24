@@ -1,16 +1,9 @@
 'use client'
 import useDataStore from '@/app/stores/dataStore'
-import { notFound, useParams } from 'next/navigation'
-import React, { useEffect } from 'react'
-import Image from 'next/image'
-import { Share2 } from 'lucide-react'
-import { FaStar } from 'react-icons/fa6'
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
-import { IoShareSocialOutline } from "react-icons/io5";
-import PricingAndButton from '@/app/[lang]/_ProductCard/components/PricingAndButton';
-import ProductCard from '../../_ProductCard/ProductCard'
-import PhoneView from './PhoneView'
+import { useParams } from 'next/navigation'
+import { useEffect } from 'react'
 import DesktopView from './DesktopView'
+import PhoneView from './PhoneView'
 
 const page = () => {
 

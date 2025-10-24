@@ -67,14 +67,6 @@ const {
                     <Image className='max-md:rounded-2xl min-w-full' src={'/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg'} width={10000} height={1000} alt={''} />
                     <div className='absolute max-md:rounded-2xl bg-black/30 min-w-full min-h-full'></div>
                 </div>
-                {/* <div {...getSlideProps(2)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>
-                    <Image className='max-md:rounded-2xl min-w-full' src={'/images/ricefield2.jpg'} width={10000} height={1000} alt={''} />
-                    <div className='absolute max-md:rounded-2xl bg-black/30 min-w-full min-h-full'></div>
-                </div>
-                <div {...getSlideProps(3)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>
-                    <Image className='max-md:rounded-2xl min-w-full' src={'/images/ricespoons.jpg'} width={10000} height={1000} alt={''} />
-                    <div className='absolute max-md:rounded-2xl bg-black/30 min-w-full min-h-full'></div>
-                </div> */}
             </div>
 
             <div className='absolute bottom-10 right-10 w-30 hidden md:block'>
@@ -101,8 +93,8 @@ const {
             {tags.map((tag: Tag, i: number) => (
             <div key={tag.id} {...tagGetSliderProps()} className={`relative xl:max-w-45 md:max-w-40 sm:max-w-37 xs:max-w-33 max-w-30 overflow-hidden ${i === 1 ? "max-xs:hidden" : ""} hover:scale-102 transition`}>
                 <div {...tagGetSlidesContainerProps()} className='flex h-full w-full'>
-                {tag.images.map((image: any, index: any) => (
-                    <Image key={image.id} {...tagGetSlideProps(index)} className='rounded-2xl h-full w-full' src={image.url} width={1000} height={1} alt={''} />
+                {tag.images.map((image, index) => (
+                    <img key={image.id} {...tagGetSlideProps(index)} className='rounded-2xl h-full w-full' src={image.url} width={500} height={1} alt={''} />
                 ))}
                 </div>
                 <div className='w-full h-full absolute inset-0 bg-[#020202a2] rounded-2xl z-2'></div>

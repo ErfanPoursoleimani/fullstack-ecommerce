@@ -1,9 +1,6 @@
 'use client';
-import { ReactNode, useState } from 'react';
-import OrdersDefault from './_components/OrdersDefault';
 import useDataStore from '@/app/stores/dataStore';
-import { useParams, usePathname } from 'next/navigation';
-import Footer from '../_components/Footer';
+import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode,
@@ -14,9 +11,6 @@ interface Props {
 export default function ClientLayoutWrapper({ children, contentSeg, navSeg }: Props) {
   
     const { isRTL } = useDataStore()
-    const [screenWidth, setScreenWidth] = useState<number>(
-        typeof window !== 'undefined' ? window.innerWidth : 0
-    );
 
   return (
     <>
@@ -25,7 +19,6 @@ export default function ClientLayoutWrapper({ children, contentSeg, navSeg }: Pr
           {navSeg}
           {contentSeg}
       </div>
-      {screenWidth >= 76 && <Footer />}
     </>
   );
 }
