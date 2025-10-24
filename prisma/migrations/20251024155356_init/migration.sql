@@ -3,8 +3,6 @@ CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `phoneNumber` VARCHAR(191) NULL,
     `email` VARCHAR(191) NULL,
-    `postalCode` VARCHAR(191) NOT NULL DEFAULT '',
-    `address` VARCHAR(191) NOT NULL DEFAULT '',
     `firstName` VARCHAR(191) NOT NULL DEFAULT '',
     `lastName` VARCHAR(191) NOT NULL DEFAULT '',
     `nationalCode` VARCHAR(191) NOT NULL DEFAULT '',
@@ -22,10 +20,15 @@ CREATE TABLE `User` (
 -- CreateTable
 CREATE TABLE `Address` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `text` VARCHAR(191) NOT NULL,
+    `address` VARCHAR(191) NOT NULL,
+    `province` VARCHAR(191) NOT NULL,
+    `city` VARCHAR(191) NOT NULL,
+    `postalCode` VARCHAR(191) NOT NULL,
+    `plaque` VARCHAR(191) NOT NULL,
+    `unit` VARCHAR(191) NULL,
+    `isActive` BOOLEAN NOT NULL DEFAULT false,
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Address_text_key`(`text`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -34,6 +37,7 @@ CREATE TABLE `Notification` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `text` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `Notification_text_key`(`text`),
     PRIMARY KEY (`id`)
@@ -69,9 +73,12 @@ CREATE TABLE `Product` (
 CREATE TABLE `Review` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `rating` INTEGER NOT NULL,
-    `comment` TEXT NOT NULL,
+    `title` VARCHAR(191) NOT NULL,
+    `message` VARCHAR(191) NOT NULL,
+    `isRead` BOOLEAN NOT NULL,
     `productId` INTEGER NOT NULL,
     `userId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -80,7 +87,6 @@ CREATE TABLE `Review` (
 CREATE TABLE `Tag` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `label` VARCHAR(191) NOT NULL,
-    `image` VARCHAR(191) NOT NULL DEFAULT 'https://i.imgur.com/JQMqjf4.jpeg',
 
     UNIQUE INDEX `Tag_label_key`(`label`),
     PRIMARY KEY (`id`)
@@ -112,11 +118,19 @@ CREATE TABLE `Order` (
 -- CreateTable
 CREATE TABLE `Image` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `label` VARCHAR(191) NOT NULL,
     `url` VARCHAR(191) NOT NULL,
     `productId` INTEGER NOT NULL,
 
     UNIQUE INDEX `Image_productId_key`(`productId`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `TagImage` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `url` VARCHAR(191) NOT NULL,
+    `tagId` INTEGER NOT NULL,
+
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -151,4 +165,7 @@ ALTER TABLE `Order` ADD CONSTRAINT `Order_userId_fkey` FOREIGN KEY (`userId`) RE
 ALTER TABLE `Order` ADD CONSTRAINT `Order_cartId_fkey` FOREIGN KEY (`cartId`) REFERENCES `Cart`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Image` ADD CONSTRAINT `Image_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Image` ADD CONSTRAINT `Image_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `TagImage` ADD CONSTRAINT `TagImage_tagId_fkey` FOREIGN KEY (`tagId`) REFERENCES `Tag`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
