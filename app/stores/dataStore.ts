@@ -69,7 +69,7 @@ interface DataStore {
 }
 
 const initialDict: Dict = {
-    logo: "SoleimaniRice",
+    logo: "SoleymaniRice",
     logoPt1: "Soleimani",
     logoPt2: "Rice",
     search: "Search",

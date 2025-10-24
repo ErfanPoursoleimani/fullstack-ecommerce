@@ -100,7 +100,7 @@ export const DataInitializer: React.FC<DataInitializerProps> = ({
             <div className="flex items-center justify-center fixed top-0 left-0 min-h-screen min-w-screen z-10000 bg-white/60">
                 <div className='flex flex-col items-center justify-center bg-white gap-10 rounded-2xl p-10'>
                     <div className="animate-spin rounded-full h-15 w-15 border-b-3 text-[var(--theme)]"></div>
-                    <p className='font-bold text-[var(--theme)]'>SoleimaniRice</p>
+                    <p className='font-bold text-[var(--theme)]'>SoleymaniRice</p>
                 </div>
             </div>
             {children}
