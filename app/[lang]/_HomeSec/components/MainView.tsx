@@ -23,7 +23,7 @@ const {
     getArrowProps,
     progress
   } = useCarousel({
-    itemCount: 4,
+    itemCount: 2,
     autoPlay: true,
     autoPlayDelay: 5000,
     loop: true,
@@ -67,14 +67,14 @@ const {
                     <Image className='max-md:rounded-2xl min-w-full' src={'/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg'} width={10000} height={1000} alt={''} />
                     <div className='absolute max-md:rounded-2xl bg-black/35 min-w-full min-h-full'></div>
                 </div>
-                <div {...getSlideProps(2)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>
+                {/* <div {...getSlideProps(2)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>
                     <Image className='max-md:rounded-2xl min-w-full' src={'/images/ricefield2.jpg'} width={10000} height={1000} alt={''} />
                     <div className='absolute max-md:rounded-2xl bg-black/35 min-w-full min-h-full'></div>
                 </div>
                 <div {...getSlideProps(3)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>
                     <Image className='max-md:rounded-2xl min-w-full' src={'/images/ricespoons.jpg'} width={10000} height={1000} alt={''} />
                     <div className='absolute max-md:rounded-2xl bg-black/35 min-w-full min-h-full'></div>
-                </div>
+                </div> */}
             </div>
 
             <div className='absolute bottom-10 right-10 w-30 hidden md:block'>
@@ -93,8 +93,8 @@ const {
             <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-3">
                 <button {...getDotProps(0)} />
                 <button {...getDotProps(1)} />
-                <button {...getDotProps(2)} />
-                <button {...getDotProps(3)} />
+                {/* <button {...getDotProps(2)} /> */}
+                {/* <button {...getDotProps(3)} /> */}
             </div>
         </div>
         <div className='px-5 flex flex-wrap items-stretch justify-center md:gap-4 gap-2 max-w-320 w-full'>
