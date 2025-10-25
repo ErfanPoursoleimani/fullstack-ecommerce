@@ -69,10 +69,10 @@ const Content = () => {
               </p>
             </div>
             <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl">
-              <Image 
+              <img 
                 src="/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg" 
                 alt="Rice fields in Northern Iran"
-                fill
+                /* fill */
                 className="object-cover"
               />
             </div>
@@ -90,10 +90,10 @@ const Content = () => {
             {products.filter(product => product.id !== 10 && product.tagId === 1 ).map((product) => (
               <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-64">
-                  <Image 
+                  <img 
                     src={product.images[0].url} 
                     alt={dict[product.label]}
-                    fill
+                    /* fill */
                     className="object-cover"
                   />
                 </div>
@@ -129,10 +129,10 @@ const Content = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
-              <Image 
+              <img 
                 src="/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg" 
                 alt="Northern Iran landscape"
-                fill
+                /* fill */
                 className="object-cover"
               />
             </div>
