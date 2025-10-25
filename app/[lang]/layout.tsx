@@ -24,6 +24,9 @@ const notoSansArabic = Noto_Sans_Arabic({
 
 
 export const metadata: Metadata = {
+  icons: {
+    apple: '/logo1.png',
+  },
   title: "برنج ایرانی ممتاز - برنج پورسلیمانی",
   description: "برنج اصیل ایرانی را از شمال ایران بخرید. باسماتی ممتاز، طارم فجر، طارم عطری و برنج کشت دوم. کیفیت سنتی از برنج پورسلیمانی",
 };

@@ -37,32 +37,31 @@ const Footer: React.FC = () => {
 
           {/* Shop Categories */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4">Shop Rice</h4>
+            <h4 className="text-lg font-semibold text-black mb-4">{dict.riceShop}</h4>
             <ul className="space-y-2">
               {products.filter((p) => p.tagId === 1).map((product) => (
                 <li key={product.id}><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.product.products[product.label as keyof typeof dict.product.products]}</Link></li>
               ))}
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">All Varieties</Link></li>
             </ul>
           </div>
 
           {/* Customer Service */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4">Customer Service</h4>
+            <h4 className="text-lg font-semibold text-black mb-4">امور مشتریان</h4>
             <ul className="space-y-2">
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Contact Us</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Shipping Information</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Returns & Refunds</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Track Your Order</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">FAQ</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Bulk Orders</Link></li>
-              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">Cooking Guides</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.contactUs}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.shippingInfo}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.returnsAndRefunds}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.trackYourOrder}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.FAQ}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.bulkOrders}</Link></li>
+              <li><Link href="#" className="text-gray-700 hover:text-cyan-700 transition-colors text-sm">{dict.cookingGuides}</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-black mb-4">Get In Touch</h4>
+            <h4 className="text-lg font-semibold text-black mb-4">{dict.getInTouch}</h4>
             <ul className="space-y-3">
               <li className="flex flex-row-reverse gap-3">
                 <MapPin size={18} className="text-[var(--theme)] mt-1 flex-shrink-0" />

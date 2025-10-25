@@ -166,7 +166,34 @@
     "ourDifference": "✓ Sourced from Northern Iran - Direct from Gilan and Mazandaran provinces ✓ Traditional Selection - Time-honored methods for quality assurance ✓ Premium Quality - Every grain inspected for excellence ✓ Authentic Taste - Genuine Persian rice varieties ✓ Family Heritage - Generations of rice expertise ✓ Freshness Guaranteed - Properly stored and quickly delivered",
     "originHeading": "Northern Iran - The Home of Premium Rice", 
     "origin": "The provinces of Northern Iran, particularly Gilan and Mazandaran, are blessed with ideal conditions for rice cultivation: abundant rainfall, rich alluvial soil, and the perfect climate. This region has been producing the world's finest rice for over a thousand years. At SoleymaniRice, we partner with trusted farmers in these regions to bring you rice that embodies the essence of Persian culinary tradition. Each variety is carefully harvested, aged when appropriate, and processed to maintain its natural characteristics.",
-    "footerContent": "SoleymaniRice is a family-owned business specializing in authentic Iranian rice from Northern Iran. We offer premium varieties including Basmati, Tarom Fajr, Tarom Atri, and Second Crop Rice, all sourced directly from trusted farmers in Gilan and Mazandaran provinces."
+    "footerContent": "SoleymaniRice is a family-owned business specializing in authentic Iranian rice from Northern Iran. We offer premium varieties including Basmati, Tarom Fajr, Tarom Atri, and Second Crop Rice, all sourced directly from trusted farmers in Gilan and Mazandaran provinces.",
+    
+    "newCategory": "New Category",
+  "label": "Label",
+  "imageUrl": "Image URL",
+  "primaryPrice": "Original Price",
+  "afterDiscount": "After Discount",
+  "inStock": "In Stock",
+  "stock": "Stock",
+  "noAddressesAdded": "No Addresses Added",
+  "addNewAddress": "Add New Address",
+  "addAnAddress": "Add an Address",
+  "chooseAddress": "Choose Address",
+  "addressSettings": "Address Settings",
+  "orderExists": "Order Exists",
+  "ordersCode": "Order Code",
+  "theCartIsEmpty": "The Cart is Empty",
+  "viewDetails": "View Details",
+  "shopNow": "Shop Now",
+  "riceShop": "Rice Shop",
+  "getInTouch": "Get in Touch",
+  "contactUs": "Contact Us",
+  "shippingInfo": "Shipping Information",
+  "returnsAndRefunds": "Returns and Refunds",
+  "trackYourOrder": "Track Your Order",
+  "bulkOrders": "Bulk Orders",
+  "FAQ": "Frequently Asked Questions",
+  "cookingGuides": "Cooking Guides"
 
 
 

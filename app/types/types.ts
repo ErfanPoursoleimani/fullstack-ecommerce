@@ -197,4 +197,31 @@ export interface Dict {
     origin: string,
     footerContent: string
 
+    newCategory: string,
+    label: string,
+    imageUrl: string,
+    primaryPrice: string,
+    afterDiscount: string,
+    inStock: string,
+    stock: string,
+    noAddressesAdded: string,
+    addNewAddress: string,
+    addAnAddress: string,
+    chooseAddress: string,
+    addressSettings: string,
+    orderExists: string,
+    ordersCode: string,
+    theCartIsEmpty: string,
+    viewDetails: string,
+    shopNow: string,
+    riceShop: string,
+    getInTouch: string,
+    contactUs: string,
+    shippingInfo: string,
+    returnsAndRefunds: string,
+    trackYourOrder: string,
+    bulkOrders: string,
+    FAQ: string,
+    cookingGuides: string
+
 }

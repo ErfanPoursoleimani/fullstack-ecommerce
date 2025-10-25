@@ -10,32 +10,22 @@ const Content = () => {
   return (
     <div className={`min-h-screen bg-white ${isRTL && "text-right"}`}>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-cyan-50 via-blue-50 to-teal-50 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-cyan-500 via-blue-50 to-teal-500 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/rice-pattern.svg')] opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               {dict.mainHeading.split(' - ')[0]}
             </h1>
-            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="xl:text-[1.3rem] max-md:text-[0.9rem] text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
               {dict.mainSection}
             </p>
-{/*             <div className="flex flex-wrap justify-center gap-4 mb-10">
-              {dict.features.map((feature, index) => (
-                <span key={index} className="bg-white px-6 py-2 rounded-full text-sm font-medium text-emerald-700 shadow-sm border border-emerald-100">
-                  {feature}
-                </span>
-              ))}
-            </div> */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={'#mainView'}>
                   <button className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg">
-                    Shop Our Collection
+                    از ما خرید کنید
                   </button>
               </Link>
-{/*               <button className="bg-white hover:bg-gray-50 text-emerald-700 px-8 py-4 rounded-lg text-lg font-semibold transition-colors border-2 border-emerald-600">
-                Learn More
-              </button> */}
             </div>
           </div>
         </div>
@@ -49,11 +39,11 @@ const Content = () => {
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                 {dict.aboutSectionHeading}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed md:text-lg text-[0.9rem]">
                 {dict.aboutSection}
               </p>
             </div>
-            <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative lg:h-full min-h-[200px] xl:min-h-[300px] rounded-2xl overflow-hidden shadow-xl">
               <Image
                 src="/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg" 
                 alt="Rice fields in Northern Iran"
@@ -73,7 +63,7 @@ const Content = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {products.filter(product => product.id !== 10 && product.tagId === 1 ).map((product) => (
-              <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={product.id} style={{backgroundImage: `url(${product.images[0].url})`}} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative bg-center bg-cover after:min-w-full after:min-h-full after:absolute after:inset-0 after:bg-white/85 after:z-0">
 {/*                 <div className="relative h-64">
                   <Image
                     src={product.images[0].url} 
@@ -83,13 +73,13 @@ const Content = () => {
                     className="object-cover"
                   />
                 </div> */}
-                <div className="p-8">
-                  <div className="flex flex-col gap-5 mb-4">
-                    <h3 className="text-2xl font-bold text-gray-900">{dict.product.products[product.label]}</h3>
-                    <span className="text-[0.9rem] text-gray-500">{dict[product.label]}</span>
+                <div className={`p-8 relative z-1`}>
+                  <div className="flex flex-col gap-8">
+                    <h3 className="text-2xl font-bold text-gray-900">{dict.product.products[product.label as keyof typeof dict.product.products]}</h3>
+                    <span className="text-[0.9rem] text-gray-700">{dict[product.label]}</span>
                   </div>
-                  <button className="mt-6 w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-lg font-semibold transition-colors">
-                    View Details
+                  <button className="mt-10 w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                    {dict.viewDetails}
                   </button>
                 </div>
               </div>
@@ -114,9 +104,9 @@ const Content = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
+            <div className="relative lg:h-full min-h-[200px] xl:min-h-[300px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
               <Image
-                src="/images/riceplantcloseup.jpg" 
+                src="/images/ricefield2.jpg" 
                 alt="Northern Iran landscape"
                 fill
                 className="object-cover"
@@ -126,7 +116,7 @@ const Content = () => {
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
                 {dict.originHeading}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-gray-700 leading-relaxed md:text-lg text-[0.9rem]">
                 {dict.origin}
               </p>
             </div>
@@ -145,7 +135,7 @@ const Content = () => {
           </p>
           <Link href={'#mainView'}>
             <button className="bg-white text-emerald-700 px-10 py-4 rounded-lg text-lg font-bold hover:bg-emerald-50 transition-colors shadow-lg">
-              Shop Now
+              {dict.shopNow}
             </button>
           </Link>
         </div>

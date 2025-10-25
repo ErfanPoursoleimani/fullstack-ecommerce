@@ -38,7 +38,7 @@ const Shoppingcart = () => {
         <div className="text-[100px] text-[var(--theme)]">
           <LiaOpencart />
         </div>
-        <p className="text-[0.8rem] font-medium text-neutral-500">The Cart is empty</p>
+        <p className="text-[0.8rem] font-medium text-neutral-500">{dict.theCartIsEmpty}</p>
       </div>
     )
   }
