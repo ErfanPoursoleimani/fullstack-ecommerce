@@ -26,7 +26,7 @@ const page = () => {
       <div className={`text-[13px] flex-1 flex justify-center gap-5 items-stretch ${isRTL ? "text-end" : "text-start"}`}>
         { !(user?.notifications)
         ? <div className={`space-y-5 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
-            <MdNotifications className='text-[150px]'/>
+            <MdNotifications className='text-[150px] text-[var(--theme)]'/>
             <p>{dict.youHaveNoNotifications}</p>
           </div>
         : user?.notifications && user?.notifications.map((notification) => (

@@ -56,7 +56,7 @@ const {
 
 
   return (
-    <div className={`w-[100vw] flex flex-col items-center pb-5 max-md:px-4 space-y-5 md:space-y-10`}>
+    <div id='mainView' className={`w-[100vw] flex flex-col items-center pb-5 max-md:px-4 space-y-5 md:space-y-10`}>
         <div {...getSliderProps()} className='relative overflow-hidden max-md:mt-3'>
             <div {...getSlidesContainerProps()}>
                 <div {...getSlideProps(0)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>

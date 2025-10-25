@@ -15,6 +15,7 @@ import ProductInfo from './ProductInfo'
 import React from 'react'
 import { CategoryPicker } from './CategoryPicker'
 import { FaRegEdit } from 'react-icons/fa'
+import Image from 'next/image'
 
 const page = () => {
 
@@ -61,7 +62,7 @@ const page = () => {
                 </span>
                 {tag.products.map((product) => (
                   <div key={product.id} className={`gap-2 md:gap-3 border-b-1 border-neutral-200 flex items-stretch justify-start ${isRTL ? "flex-row-reverse" : ""}`}>
-                    <ProductCard className='min-h-50 min-w-35 self-center' buttonBg='--theme' product={product}/>
+                    <Image src={product.images[0].url} alt={''} width={100} height={140} />
                     <ProductInfo tagId={tag.id} product={product}/>
                   </div>
                 ))}

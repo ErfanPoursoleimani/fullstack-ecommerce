@@ -68,7 +68,7 @@ const page = () => {
         {
          !(user?.orders)
         ? <div className={`space-y-5 flex max-md:justify-start max-md:mt-[10vh] flex-col items-center justify-center`}>
-            <FiPackage className='text-[150px]'/>
+            <FiPackage className='text-[150px] text-black/30'/>
             <p>{dict.noOrdersHistory}</p>
           </div>
         : user?.orders && !(user?.orders.filter((order: Order) => order.status === orderStatusFilter))

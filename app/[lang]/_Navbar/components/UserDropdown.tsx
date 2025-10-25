@@ -89,7 +89,7 @@ const UserDropdown = () => {
                 <div className='px-4'>
                     <Link onClick={() => setIsOpen(false)} href={`/${lang}/profile`} className={`flex justify-between items-center py-5 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
                         <span className={`flex flex-col justify-between ${isRTL ? "items-end" : "items-start"}`}>
-                            <p className='font-medium'>{ user?.lastName && user?.firstName ? user?.firstName + " " + user?.lastName : user?.phoneNumber }</p>
+                            <p className='font-medium'>{ user?.lastName && user?.firstName ? user?.firstName + " " + user?.lastName : user?.phoneNumber ? user?.phoneNumber : user?.email }</p>
                         </span>
                         <span className={`text-[11px]`}>{isRTL ? <MdArrowBackIos/> : <MdArrowForwardIos/>}</span>
                     </Link>

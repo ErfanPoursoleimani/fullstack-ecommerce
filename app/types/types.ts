@@ -180,5 +180,21 @@ export interface Dict {
     province: string,
     city: string,
     plate: string,
-    unit: string
+    unit: string,
+
+    mainHeading: string,
+    mainSection: string,
+    aboutSectionHeading: string,
+    aboutSection: string,
+    productsSectionHeading: "Our Premium Iranian Rice Collection",
+    برنج_کشت_دوم: string,
+    برنج_طارم_عطری: string,
+    برنج_طارم_فجر: string,
+    برنج_بسمتی: string,
+    ourDifferenceHeading: string,
+    ourDifference: string,
+    originHeading: string, 
+    origin: string,
+    footerContent: string
+
 }
