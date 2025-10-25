@@ -109,7 +109,7 @@ export const config = {
      * - public folder files
      * - files with extensions (like .js, .css, .png, etc.)
      */
-    '/((?!api/|_next/static|_next/image|favicon.ico|public/|.*\\.).*)',
+    '/((?!api/|_next/static|_next/image|logo1.ico|public/|.*\\.).*)',
   ],
 }
 

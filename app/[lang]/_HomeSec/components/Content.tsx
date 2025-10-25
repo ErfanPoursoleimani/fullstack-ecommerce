@@ -7,21 +7,6 @@ import Link from 'next/link'
 const Content = () => {
     const {dict, products, isRTL} = useDataStore()
 
-    {/* <div>
-      <h1>{dict.mainHeading}</h1>
-      <p></p>
-      <h2></h2>
-      <p></p>
-      <h2></h2>
-
-      <h2></h2>
-      <p></p>
-      
-      <h2></h2>
-      <p></p>
-      <h2></h2>
-      <p></p>
-    </div> */}
   return (
     <div className={`min-h-screen bg-white ${isRTL && "text-right"}`}>
       {/* Hero Section */}
@@ -69,10 +54,10 @@ const Content = () => {
               </p>
             </div>
             <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl">
-              <img 
+              <Image
                 src="/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg" 
                 alt="Rice fields in Northern Iran"
-                /* fill */
+                fill
                 className="object-cover"
               />
             </div>
@@ -89,14 +74,15 @@ const Content = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {products.filter(product => product.id !== 10 && product.tagId === 1 ).map((product) => (
               <div key={product.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative h-64">
-                  <img 
+{/*                 <div className="relative h-64">
+                  <Image
                     src={product.images[0].url} 
                     alt={dict[product.label]}
-                    /* fill */
+                    fill
+  
                     className="object-cover"
                   />
-                </div>
+                </div> */}
                 <div className="p-8">
                   <div className="flex flex-col gap-5 mb-4">
                     <h3 className="text-2xl font-bold text-gray-900">{dict.product.products[product.label]}</h3>
@@ -129,10 +115,10 @@ const Content = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative h-96 lg:h-full min-h-[400px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
-              <img 
-                src="/images/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed.jpg" 
+              <Image
+                src="/images/riceplantcloseup.jpg" 
                 alt="Northern Iran landscape"
-                /* fill */
+                fill
                 className="object-cover"
               />
             </div>
