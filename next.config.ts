@@ -33,6 +33,10 @@ module.exports = {
         protocol: 'https',
         hostname: 'i.postimg.cc',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   }
 }

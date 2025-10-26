@@ -1,16 +1,32 @@
 'use client'
 import useDataStore from '@/app/stores/dataStore'
-import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import DepthCarousel from './components/DepthCarousel'
+
+interface CarouselItem {
+  id: number;
+  url: string;
+  title: string;
+}
+interface DepthCarouselProps {
+  items?: CarouselItem[];
+  initialIndex?: number;
+  visibleRange?: number;
+}
+
 
 const Content = () => {
-    const {dict, products, isRTL} = useDataStore()
 
+
+    const {dict, products, isRTL} = useDataStore()
   return (
-    <div className={`min-h-screen bg-white ${isRTL && "text-right"}`}>
+    <div className={`min-h-screen ${isRTL && "text-right"}`}>
+
+      <DepthCarousel />
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-cyan-500 via-blue-50 to-teal-500 overflow-hidden">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/rice-pattern.svg')] opacity-5"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="text-center">
@@ -145,3 +161,7 @@ const Content = () => {
 }
 
 export default Content
+function useDepthCarousel(arg0: { itemCount: number; initialIndex: any }): { activeIndex: any; handlePrev: any; handleNext: any; goToIndex: any; getPosition: any } {
+  throw new Error('Function not implemented.')
+}
+

@@ -22,7 +22,7 @@ const ProductsSection = () => {
     }
 
   return (
-    <div id='productsSec' className='relative w-full pt-5 pb-30 flex flex-col items-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
+    <div id='productsSec' className='relative w-full py-5 flex flex-col items-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
         <div className="w-full max-w-350 flex flex-col text-white justify-center bg-white space-y-4 xl:rounded-2xl">
             <div className="bottom-to-top-animation flex flex-col justify-center w-full relative overflow-x-auto z-2 ">
                 <h2 className={`text-black ${isRTL ? "mr-4 text-right" : "text-left ml-4"} mb-2 px-5 md:hidden font-bold text-[1.1rem] bg-neutral-100 p-2`}>Iranian Rice</h2>
