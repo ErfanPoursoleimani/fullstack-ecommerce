@@ -161,7 +161,4 @@ const Content = () => {
 }
 
 export default Content
-function useDepthCarousel(arg0: { itemCount: number; initialIndex: any }): { activeIndex: any; handlePrev: any; handleNext: any; goToIndex: any; getPosition: any } {
-  throw new Error('Function not implemented.')
-}
 

@@ -32,7 +32,7 @@ const DepthCarousel = () => {
         });
   return (
     <div className="min-h-[50vh] p-8 my-10">
-        <div className="min-w-full min-h-max flex flex-col justify-center items-center">
+        <div className="min-w-full max-w-full overflow-hidden min-h-max flex flex-col justify-center items-center">
           <div className='min-w-full min-h-100 perspective- flex justify-center items-center'>
             {products.filter(product => product.tagId === 1).map((product, index) => {
               const itemProps = getItemProps(index);
@@ -43,13 +43,13 @@ const DepthCarousel = () => {
                 <div key={product.id} {...itemProps}>
                   <div className={`relative rounded-2xl overflow-hidden shadow-2xl`}>
                     <div className="relative w-80 h-100 max-md:w-60 max-md:h-80">
-                      <Image
+                      <img
                         src={product.images[0].url}
                         alt={product.label}
-                        fill
+                        // fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 320px"
-                        priority={itemProps['data-active']}
+                        // sizes="(max-width: 768px) 100vw, 320px"
+                        // priority={itemProps['data-active']}
                       />
                     </div>
 {/*                     {itemProps['data-active'] && (
