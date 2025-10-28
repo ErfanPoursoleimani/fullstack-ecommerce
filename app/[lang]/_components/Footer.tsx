@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li className="flex flex-row-reverse gap-3">
                 <MapPin size={18} className="text-[var(--theme)] mt-1 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">خیابان کاوه، خیابان ابوریحان بیرونی، کوچه مهرانگیز 1، نبش مهرانگیز 2، پلاک 4</span>
+                <span className="text-gray-700 text-sm">اصفهان، خیابان کاوه، خیابان ابوریحان بیرونی، کوچه مهرانگیز 1، نبش مهرانگیز 2، پلاک 4</span>
               </li>
               <li className={`flex ${isRTL && "flex-row-reverse"} gap-3`}>
                 <Phone size={18} className="text-[var(--theme)] flex-shrink-0" />

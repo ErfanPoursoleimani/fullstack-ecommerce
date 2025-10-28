@@ -17,7 +17,7 @@ const DesktopView = () => {
   return (
     <div className='hidden md:flex md:flex-col items-center mt-[103px] min-w-[100vw] min-h-[calc(100vh-103px)]'>
       <div className={`flex justify-stretch gap-5 p-10 xl:p-20 w-full max-w-[1400px] h-max ${isRTL ? "flex-row-reverse" : ""}`}>
-        <img className='w-max h-max rounded-2xl max-w-[200px]' src={product.images[0].url} alt={''} width={200} height={100} />
+        <img className='w-max h-max rounded-2xl max-w-[300px] object-cover' src={product.images[0].url} alt={''} width={200} height={100} />
         <div className={`flex flex-1 gap-10 flex-col justify-between ${isRTL ? "items-end" : null}`}>
           <h1 className='text-2xl font-medium'>{dict.product.products[product.label as keyof typeof dict.product.products]}</h1>
           <p className={`text-[0.8rem] ${isRTL ? "text-right" : ""}`}>{product.description}</p>
