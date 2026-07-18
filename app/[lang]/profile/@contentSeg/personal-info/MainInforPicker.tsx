@@ -1,16 +1,16 @@
 'use client'
 import { usePopup } from '@/app/hooks/usePopup'
 import React, { ReactNode, useState } from 'react'
-import Popup from '@/app/[lang]/_components/PopupRaw'
+import Popup from '@/app/[lang]/_components/general/PopupRaw'
 import useDataStore from '@/app/stores/dataStore'
 import { z } from 'zod'
-import { addressSchema, userSchema } from '@/app/validation/validationSchemas'
+import { addressSchema, userSchema } from '@/lib/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/app/stores/authStore'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 
 type userData = z.infer<typeof userSchema>
 
@@ -18,7 +18,7 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
   const popup = usePopup()
   const { lang } = useParams()
   const { isRTL, loading, dict } = useDataStore()
-  const { userId, user, initialize, setUser } = useAuthStore() // Make sure setUser is available
+  const { userId, user, initialize, reset: authReset, setUser } = useAuthStore() // Make sure setUser is available
   const router = useRouter()
 
   const {register, handleSubmit, control, formState: { errors, isSubmitted }, reset} = useForm<userData>({
@@ -27,7 +27,7 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
 
   const onSubmit = handleSubmit( async (data) => {
     try {
-      const response = await axios.patch(`/${lang}/api/users/${userId}`, {
+      await axios.patch(`/${lang}/api/users/${userId}`, {
         ...data, 
         email: user?.email, 
         phoneNumber: user?.phoneNumber
@@ -36,9 +36,7 @@ export const MainInfoPicker = ({className, buttonContent}: {className: string, b
           'Cache-Control': 'no-cache',
         }
       })
-      if (initialize) {
-        await initialize(lang as string)
-      }
+      await initialize(lang as string)
       router.refresh()
       popup.closePopup()
       reset()

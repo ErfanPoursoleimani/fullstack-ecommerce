@@ -1,4 +1,4 @@
-import { userLoginSchema } from '@/app/validation/validationSchemas';
+import { userLoginSchema } from '@/lib/validation/validationSchemas';
 import axios from "axios";
 import { SignJWT } from 'jose';
 import { cookies } from "next/headers";
@@ -11,7 +11,28 @@ export async function POST(request: NextRequest, { params }: {params: Promise<{l
     const validation = userLoginSchema.safeParse(body)
     if(!validation.success)
         return NextResponse.json(validation.error.errors, {status: 400})
+
     
+    
+    const { status } = await axios.post(`https://api.sms.ir/v1/send/verify`,
+        {
+            "mobile": "919xxxx904",
+            "templateId": 164666,
+            "parameters": [
+                {
+                    "name": "Code",
+                    "value": "12345"
+                }
+            ]
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'text/plain',
+                'x-api-key': `${process.env.SMS_API_KEY}`
+            },
+        }
+     )
     try {
         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/${lang}/api/users`, body)
         const userId = data.user.id

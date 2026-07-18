@@ -10,7 +10,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
 import { FaPlus } from 'react-icons/fa6'
 import ProductCard from '@/app/[lang]/_ProductCard/ProductCard'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import ProductInfo from './ProductInfo'
 import React from 'react'
 import { CategoryPicker } from './CategoryPicker'

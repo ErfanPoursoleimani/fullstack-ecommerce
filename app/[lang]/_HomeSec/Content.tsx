@@ -4,55 +4,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import DepthCarousel from './components/DepthCarousel'
 
-interface CarouselItem {
-  id: number;
-  url: string;
-  title: string;
-}
-interface DepthCarouselProps {
-  items?: CarouselItem[];
-  initialIndex?: number;
-  visibleRange?: number;
-}
-
-
 const Content = () => {
-
-
+  
     const {dict, products, isRTL} = useDataStore()
   return (
-    <div className={`min-h-screen ${isRTL && "text-right"}`}>
-
+    <div className={`bg-white min-h-screen ${isRTL && "text-right"}`}>
       <DepthCarousel />
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/rice-pattern.svg')] opacity-5"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              {dict.mainHeading.split(' - ')[0]}
-            </h1>
-            <p className="xl:text-[1.3rem] max-md:text-[0.9rem] text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-              {dict.mainSection}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={'#mainView'}>
-                  <button className="bg-cyan-600 hover:bg-cyan-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg">
-                    از ما خرید کنید
-                  </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* About Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 max-md:px-10 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 {dict.aboutSectionHeading}
               </h2>
               <p className="text-gray-700 leading-relaxed md:text-lg text-[0.9rem]">
@@ -70,9 +34,9 @@ const Content = () => {
           </div>
         </div>
       </section>
-
+      
       {/* Products Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section className="py-10 max-md:px-5 bg-gradient-to-b bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-16">
             {dict.productsSectionHeading}
@@ -80,21 +44,12 @@ const Content = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {products.filter(product => product.id !== 10 && product.tagId === 1 ).map((product) => (
               <div key={product.id} style={{backgroundImage: `url(${product.images[0].url})`}} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow relative bg-center bg-cover after:min-w-full after:min-h-full after:absolute after:inset-0 after:bg-white/85 after:z-0">
-{/*                 <div className="relative h-64">
-                  <Image
-                    src={product.images[0].url} 
-                    alt={dict[product.label]}
-                    fill
-  
-                    className="object-cover"
-                  />
-                </div> */}
                 <div className={`p-8 relative z-1`}>
                   <div className="flex flex-col gap-8">
                     <h3 className="text-2xl font-bold text-gray-900">{dict.product.products[product.label as keyof typeof dict.product.products]}</h3>
                     <span className="text-[0.9rem] text-gray-700">{dict[product.label]}</span>
                   </div>
-                  <button className="mt-10 w-full bg-cyan-600 hover:bg-cyan-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                  <button className="mt-10 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-lg font-semibold transition-colors">
                     {dict.viewDetails}
                   </button>
                 </div>
@@ -104,22 +59,10 @@ const Content = () => {
         </div>
       </section>
 
-      {/* Difference Section */}
-{/*       <section className="py-20 bg-emerald-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">
-            {dict.ourDifferenceHeading}
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {dict.ourDifference}
-          </div>
-        </div>
-      </section> */}
-
       {/* Origin Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-md:px-10">
             <div className="relative lg:h-full min-h-[200px] xl:min-h-[300px] rounded-2xl overflow-hidden shadow-xl order-2 lg:order-1">
               <Image
                 src="/images/ricefield2.jpg" 
@@ -129,7 +72,7 @@ const Content = () => {
               />
             </div>
             <div className="order-1 lg:order-2">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 {dict.originHeading}
               </h2>
               <p className="text-gray-700 leading-relaxed md:text-lg text-[0.9rem]">
@@ -143,14 +86,14 @@ const Content = () => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-emerald-600 to-teal-600 text-white min-w-[100vw]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+          <h2 className="text-xl sm:text-4xl font-bold mb-6">
             Order Premium Iranian Rice Today
           </h2>
-          <p className="text-xl mb-8 text-emerald-50">
+          <p className="text-[0.9rem] md:text-xl mb-8 text-emerald-50">
             Experience the authentic taste of Northern Iran delivered to your door
           </p>
           <Link href={'#mainView'}>
-            <button className="bg-white text-emerald-700 px-10 py-4 rounded-lg text-lg font-bold hover:bg-emerald-50 transition-colors shadow-lg">
+            <button className="bg-white text-emerald-800 px-10 py-4 rounded-lg text-lg font-bold hover:bg-emerald-50 transition-colors shadow-lg">
               {dict.shopNow}
             </button>
           </Link>

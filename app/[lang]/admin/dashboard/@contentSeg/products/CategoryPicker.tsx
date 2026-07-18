@@ -1,16 +1,16 @@
 'use client'
 import { usePopup } from '@/app/hooks/usePopup'
 import React, { ReactNode, useState } from 'react'
-import Popup from '@/app/[lang]/_components/PopupRaw'
+import Popup from '@/app/[lang]/_components/general/PopupRaw'
 import useDataStore from '@/app/stores/dataStore'
 import { z } from 'zod'
-import { tagImageSchema, tagSchema } from '@/app/validation/validationSchemas'
+import { tagImageSchema, tagSchema } from '@/lib/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/app/stores/authStore'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import { Tag } from '@/app/types/types'
 
 type tagData = z.infer<typeof tagSchema>
@@ -19,7 +19,7 @@ export const CategoryPicker = ({purpose, tag, className, buttonContent}: { purpo
   const popup = usePopup()
   const router = useRouter()
   const { lang } = useParams()
-  const { isRTL, fetchProducts, loading, dict } = useDataStore()
+  const { isRTL, loading, fetchTags } = useDataStore()
   const { userId } = useAuthStore()
 
   const {register, handleSubmit, control, formState: { errors, isSubmitted }, reset} = useForm<tagData>({
@@ -38,8 +38,7 @@ export const CategoryPicker = ({purpose, tag, className, buttonContent}: { purpo
         await axios.patch(`/${lang}/api/tags/${tag?.id}`, {...tagData, label: tagData.label.trim().replaceAll(" ", "_")})
         await axios.patch(`/${lang}/api/tagImages/${tag?.images[0].id}`, {...imageData, tagId: tag?.id}) 
       }
-
-      await fetchProducts(lang as string)
+      await fetchTags(lang as string)
       popup.closePopup()
     } catch (error) {
       console.log(error)

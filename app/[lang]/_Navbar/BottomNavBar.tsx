@@ -66,20 +66,105 @@ const PhoneNavBar = ({className}: { className?: string}) => {
 
   return (
     
-    <nav className={`${className} fixed w-[100%] border-neutral-200 shadow-2xl ${role === "ADMIN" && currentPath.startsWith(`/${lang}/admin/dashboard`) ? "bg-black text-white" : "bg-white text-[#9e9e9e] border-t-1" } bottom-0 h-12 z-102 flex md:hidden justify-between items-center`}>
-      {role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`) ? adminNavLinks.map((elem: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => (
-        <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
-            {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
-            <span className='text-[0.6rem]'>{elem.label}</span>
-        </Link>
-      )) : navLinks.map((elem: {id: number, label: string, selectedIcon: ReactNode, unselectedIcon: ReactNode, href: string}) => (
-        <Link key={elem.id} className='w-[calc(100%/3)] flex flex-col items-center justify-center gap-1' href={elem.href}>
-            {currentPath === elem.href ? elem.selectedIcon : elem.unselectedIcon}
-            <span className='text-[0.6rem]'>{elem.label}</span>
-        </Link>
-      ))}
-    </nav>
+<nav
+  className={`
+    ${className}
+    fixed
+    bottom-4
+    left-1/2
+    -translate-x-1/2
+
+    w-[calc(100%-1.5rem)]
+    max-w-md
+    h-16
+
+    rounded-3xl
+    border
+    border-neutral-200/70
+
+    backdrop-blur-2xl
+    shadow-[0_12px_40px_rgba(0,0,0,.18)]
+
+
+    flex
+    items-center
+    justify-between
+    gap-2
+
+    md:hidden
+    z-[120]
+
+    transition-all
+    duration-500
+
+    ${
+      role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`)
+        ? 'bg-black/90 text-white border-neutral-700'
+        : 'bg-white/85 text-neutral-500'
+    }
+  `}
+>
+  {(role === 'ADMIN' && currentPath.startsWith(`/${lang}/admin`)
+    ? adminNavLinks
+    : navLinks
+  ).map((elem) => {
+    const active =
+      currentPath === elem.href ||
+      (elem.href !== `/${lang}` && currentPath.startsWith(elem.href))
+
+    return (
+      <Link
+        key={elem.id}
+        href={elem.href}
+        className={`
+          relative
+          flex
+          flex-1
+          flex-col
+          items-center
+          justify-center
+          gap-2
+          rounded-3xl
+          py-2
+          transition-all
+          duration-300
+          ${
+            active
+              ? role === 'ADMIN' &&
+                currentPath.startsWith(`/${lang}/admin`)
+                ? 'bg-white/10 text-white scale-105'
+                : 'bg-[var(--theme)]/10 text-[var(--theme)] scale-105'
+              : 'hover:bg-black/5'
+          }
+        `}
+      >
+        <div
+          className={`
+            transition-all
+            duration-300
+            ${active ? 'scale-110' : ''}
+          `}
+        >
+          {active ? elem.selectedIcon : elem.unselectedIcon}
+        </div>
+
+        <span
+          className={`
+            text-[11px]
+            font-medium
+            transition-all
+            duration-300
+            ${active ? 'opacity-100' : 'opacity-70'}
+          `}
+        >
+          {elem.label}
+        </span>
+      </Link>
+    )
+  })}
+</nav>
   )
 }
 
 export default PhoneNavBar
+

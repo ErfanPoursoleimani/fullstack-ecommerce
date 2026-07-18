@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cartSchema } from '@/app/validation/validationSchemas'
+import { cartSchema } from '@/lib/validation/validationSchemas'
 import { prisma } from "@/prisma/client";
 import { CartProduct } from "@/app/types/types";
 

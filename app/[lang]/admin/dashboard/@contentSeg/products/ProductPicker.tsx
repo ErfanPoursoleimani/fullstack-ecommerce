@@ -1,16 +1,16 @@
 'use client'
 import { usePopup } from '@/app/hooks/usePopup'
 import React, { ReactNode, useState } from 'react'
-import Popup from '@/app/[lang]/_components/PopupRaw'
+import Popup from '@/app/[lang]/_components/general/PopupRaw'
 import useDataStore from '@/app/stores/dataStore'
 import { z } from 'zod'
-import { imageSchema, productSchema } from '@/app/validation/validationSchemas'
+import { imageSchema, productSchema } from '@/lib/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/app/stores/authStore'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import { Product } from '@/app/types/types'
 
 type productData = z.infer<typeof productSchema>
@@ -18,7 +18,7 @@ type productData = z.infer<typeof productSchema>
 export const ProductPicker = ({purpose, product, tagId, className, buttonContent}: { purpose: string, tagId: number, product?: Product, className: string, buttonContent: ReactNode}) => {
   const popup = usePopup()
   const { lang } = useParams()
-  const { isRTL, fetchProducts, loading, dict } = useDataStore()
+  const { isRTL, fetchTags, loading, dict } = useDataStore()
 
   const {register, handleSubmit, control, formState: { errors, isSubmitted }, reset} = useForm<productData>({
       resolver: zodResolver(productSchema)
@@ -37,7 +37,7 @@ export const ProductPicker = ({purpose, product, tagId, className, buttonContent
         await axios.patch(`/${lang}/api/images/${product?.images[0].id}`, {...imageData, productId: product?.id}) 
       }
 
-      await fetchProducts(lang as string)
+      await fetchTags(lang as string)
       popup.closePopup()
     } catch (error) {
       console.log(error)

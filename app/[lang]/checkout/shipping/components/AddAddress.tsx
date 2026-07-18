@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import { FaPlus } from 'react-icons/fa6'
-import { AddressPicker } from '../../../_components/AddressPicker'
-import Popup from '../../../_components/PopupRaw'
+import { AddressPicker } from '../../../_components/profile/AddressPicker'
+import Popup from '../../../_components/general/PopupRaw'
 
 const AddAddress = () => {
     const { isRTL, lang } = useDataStore()

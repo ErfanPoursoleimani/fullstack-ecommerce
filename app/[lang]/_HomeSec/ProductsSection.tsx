@@ -1,13 +1,11 @@
 "use client"
 import useDataStore from '@/app/stores/dataStore'
-import classNames from 'classnames'
-import React, { useEffect, useRef, useState } from 'react'
-import NavArrows from '../../_components/NavArrows'
-import ProductCard from '../../_ProductCard/ProductCard'
-import SeeAllProducts from './components/SeeAllProducts'
-import { useCarousel } from '@/app/hooks/useCarousel'
-import Image from 'next/image';
 import { Product, Tag } from '@/app/types/types'
+import classNames from 'classnames'
+import { useRef } from 'react'
+import NavArrows from '../_components/general/NavArrows'
+import ProductCard from '../_ProductCard/ProductCard'
+import SeeAllProducts from './components/SeeAllProducts'
 
 const ProductsSection = () => {
 
@@ -18,11 +16,11 @@ const ProductsSection = () => {
     const { dict, tags, isRTL } = useDataStore()
 
     if (!dict || !tags || tags.length === 0) {
-        return <></>
+        return null
     }
 
   return (
-    <div id='productsSec' className='relative w-full py-5 flex flex-col items-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
+    <div id='productsSec' className='relative w-full bg-white py-5 flex flex-col items-center overflow-hidden after:min-w-[200vw] after:min-h-80 after:md:min-h-100 after:absolute after:bg-[var(--theme2) after:top-[50%] after:-translate-y-[50%] after:-rotate-z-0'>
         <div className="w-full max-w-350 flex flex-col text-white justify-center bg-white space-y-4 xl:rounded-2xl">
             <div className="bottom-to-top-animation flex flex-col justify-center w-full relative overflow-x-auto z-2 ">
                 <h2 className={`text-black ${isRTL ? "mr-4 text-right" : "text-left ml-4"} mb-2 px-5 md:hidden font-bold text-[1.1rem] bg-neutral-100 p-2`}>Iranian Rice</h2>

@@ -1,5 +1,5 @@
 "use client"
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
 import { BiSolidDirections } from 'react-icons/bi'

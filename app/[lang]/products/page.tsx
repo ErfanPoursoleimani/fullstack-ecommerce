@@ -2,7 +2,7 @@
 import React from 'react'
 import ProductCard from '../_ProductCard/ProductCard'
 import useDataStore from '@/app/stores/dataStore'
-import Footer from '../_components/Footer'
+import Footer from '../_components/general/Footer'
 
 const page = () => {
 
@@ -28,7 +28,7 @@ const page = () => {
           </div>
         </div>
         <div className='flex flex-wrap justify-center items-center'>
-          {tags.filter((elem, i) => i != 0).map((category) => (
+          {tags.filter((elem, i) => i != 0 && elem.products.length !== 0).map((category) => (
             <div className='flex flex-col justify-center items-center gap-5 bg-[var(--theme] p-3 md:rounded-[15px]' key={category.id}>
                 <h2 className='font-bold text-[20px]'>{dict.product.categories[category.label as keyof typeof dict.product.categories]}</h2>
                 <div className='flex justify-center items-center gap-1'>

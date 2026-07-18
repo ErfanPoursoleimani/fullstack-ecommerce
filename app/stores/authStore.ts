@@ -19,6 +19,7 @@ interface AuthState {
   isInitialized: boolean
   isAuthenticated: boolean,
   error: string | null
+  verificationTarget: string | null
 
   // Configurations
   lang: string
@@ -31,6 +32,15 @@ interface AuthState {
   refreshSession: (lang: string) => Promise<void>
   clearError: () => void
   reset: () => void
+
+  setVerificationTarget: (
+    target: string | null
+  ) => void
+
+  verifyOtp: (
+    code: string,
+    lang: string
+  ) => Promise<void>
 }
 
 interface LoginCredentials {
@@ -59,6 +69,16 @@ const authApi = {
     await axios.post(`/${lang}/api/auth/logout`)
   },
 
+  verifyOtp: async (
+    code: string,
+    lang: string
+  ): Promise<void> => {
+    await axios.post(
+      `/${lang}/api/auth/verify`,
+      { code }
+    )
+  },
+
   getUser: async (userId: number, lang: string): Promise<User> => {
     const response = await axios.get(`/${lang}/api/users/${userId}`)
     return response.data
@@ -71,6 +91,7 @@ const initialState = {
   cartId: null,
   role: null,
   user: null,
+  verificationTarget: null,
   isLoading: false,
   isInitialized: false,
   isAuthenticated: false,
@@ -86,7 +107,7 @@ export const useAuthStore = create<AuthState>()(
 
       initialize: async (lang: string) => {
         const state = get()
-        if (state.isInitialized || state.isLoading) return
+        if (state.isLoading) return
 
         set((state) => {
           state.isLoading = true
@@ -141,31 +162,89 @@ export const useAuthStore = create<AuthState>()(
       },
 
       // Login action
-      login: async (credentials, lang) => {
+      login: async (
+        credentials,
+        lang
+      ) => {
         set((state) => {
           state.isLoading = true
           state.error = null
         })
 
         try {
-          const user = await authApi.login(credentials, lang)
+          await authApi.login(
+            credentials,
+            lang
+          )
 
           set((state) => {
-            state.user = user
-            state.userId = user.id
-            state.cartId = user.id
-            state.role = user.role
+            state.verificationTarget =
+              credentials.emailOrPhone ??
+              null
+
             state.isLoading = false
-            state.isAuthenticated = true
-            state.error = null
           })
-          await get().refreshSession(lang)
         } catch (error) {
           set((state) => {
-            state.error = error instanceof Error ? error.message : 'Login failed'
+            state.error =
+              error instanceof Error
+                ? error.message
+                : 'Login failed'
+
             state.isLoading = false
           })
-          throw error 
+
+          throw error
+        }
+      },
+
+      setVerificationTarget: (
+        target
+      ) => {
+        set((state) => {
+          state.verificationTarget = target
+        })
+      },
+
+      verifyOtp: async (
+        code,
+        lang
+      ) => {
+        set((state) => {
+          state.isLoading = true
+          state.error = null
+        })
+
+        try {
+          await authApi.verifyOtp(
+            code,
+            lang
+          )
+
+          await get().refreshSession(
+            lang
+          )
+
+          set((state) => {
+            state.isAuthenticated =
+              !!state.userId
+
+            state.verificationTarget =
+              null
+
+            state.isLoading = false
+          })
+        } catch (error) {
+          set((state) => {
+            state.error =
+              error instanceof Error
+                ? error.message
+                : 'Verification failed'
+
+            state.isLoading = false
+          })
+
+          throw error
         }
       },
 
@@ -220,14 +299,21 @@ export const useAuthStore = create<AuthState>()(
           })
 
           if (userId) {
-            try {
-              const user = await authApi.getUser(userId, lang)
-              set((state) => {
-                state.user = user
-              })
-            } catch (error) {
-              console.error('User refresh error:', error)
-            }
+            const user =
+              await authApi.getUser(
+                userId,
+                lang
+              )
+
+            set((state) => {
+              state.user = user
+              state.isAuthenticated = true
+            })
+          } else {
+            set((state) => {
+              state.user = null
+              state.isAuthenticated = false
+            })
           }
         } catch (error) {
           set((state) => {

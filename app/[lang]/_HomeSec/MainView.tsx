@@ -1,4 +1,5 @@
-import { useCarousel } from '@/app/hooks/useCarousel';
+
+import { useSlider } from '@/app/hooks/useSlider';
 import useDataStore from '@/app/stores/dataStore';
 import { Tag } from '@/app/types/types';
 import Image from 'next/image';
@@ -22,7 +23,7 @@ const {
     getDotProps,
     getArrowProps,
     progress
-  } = useCarousel({
+  } = useSlider({
     itemCount: 2,
     autoPlay: true,
     autoPlayDelay: 5000,
@@ -45,7 +46,7 @@ const {
     /*     getDotProps: tagGetDotsProps,
         getArrowProps: tagGetArrowProps,
         progress: tagProgress */
-    } = useCarousel({
+    } = useSlider({
         itemCount: 1,
         autoPlay: true,
         autoPlayDelay: 10000,
@@ -56,7 +57,7 @@ const {
 
 
   return (
-    <div id='mainView' className={`w-[100vw] flex flex-col items-center pb-5 max-md:px-4 space-y-5 md:space-y-10`}>
+    <div id='mainView' className={`w-[100vw] flex flex-col items-center pb-5 max-md:px-4 space-y-5 md:space-y-10 bg-white`}>
         <div {...getSliderProps()} className='relative overflow-hidden max-md:mt-3'>
             <div {...getSlidesContainerProps()}>
                 <div {...getSlideProps(0)} className='h-50 md:h-60 xl:h-70 flex justify-center items-center max-md:rounded-2xl overflow-hidden min-w-full'>

@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import CartButton from '../../_ProductCard/components/CartButton'
-import Footer from '../../_components/Footer'
+import Footer from '../../_components/general/Footer'
 
 const DesktopView = () => {
   const { id } = useParams()

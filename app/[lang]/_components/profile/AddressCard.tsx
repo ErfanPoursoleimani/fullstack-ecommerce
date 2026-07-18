@@ -1,6 +1,6 @@
 'use client'
-import { AddressPicker } from '@/app/[lang]/_components/AddressPicker'
-import Loading from '@/app/[lang]/_components/Loading'
+import { AddressPicker } from '@/app/[lang]/_components/profile/AddressPicker'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import { useAuthStore } from '@/app/stores/authStore'
 import useDataStore from '@/app/stores/dataStore'
 import { Address } from '@/app/types/types'

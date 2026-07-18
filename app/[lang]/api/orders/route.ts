@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { orderSchema } from '@/app/validation/validationSchemas'
+import { orderSchema } from '@/lib/validation/validationSchemas'
 import { prisma } from "@/prisma/client";
 
 export async function GET(){

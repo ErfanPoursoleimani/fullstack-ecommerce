@@ -15,7 +15,6 @@ const vazirmatn = Vazirmatn({
   variable: '--font-vazirmatn'
 })
 
-// Alternative: Noto Sans Arabic (supports Persian well)
 const notoSansArabic = Noto_Sans_Arabic({
   subsets: ['arabic'],
   display: 'swap',
@@ -37,7 +36,7 @@ export default async function RootLayout({children, params}: {children: React.Re
   
 
   return (
-    <html lang={lang} className={vazirmatn.variable}>
+    <html lang={lang} className={`${vazirmatn.variable}`}>
       <body
         className={`overflow-x-hidden select-none antialiased ${vazirmatn.className}`}
         style={{color: "var(--text)"}}

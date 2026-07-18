@@ -2,7 +2,7 @@
 import useDataStore from '@/app/stores/dataStore'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import AddressCard from '../../_components/AddressCard'
+import AddressCard from '../../_components/profile/AddressCard'
 import InCartProduct from '../cart/components/InCartProduct'
 import AddAddress from './components/AddAddress'
 import ShippingMethod from './components/ShippingMethod'

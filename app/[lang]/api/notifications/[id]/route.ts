@@ -1,4 +1,4 @@
-import { notificationSchema } from "@/app/validation/validationSchemas";
+import { notificationSchema } from "@/lib/validation/validationSchemas";
 import { prisma } from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 

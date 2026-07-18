@@ -1,3 +1,4 @@
+import { Resend } from 'resend';
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/prisma/client";
 import axios from "axios";
@@ -21,6 +22,15 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ lan
             phoneNumber: isPhoneNumber ? body.emailOrPhone : undefined,
             email: !isPhoneNumber ? body.emailOrPhone : undefined,
         }
+
+        
+        const resend = new Resend('re_Dph9ffoR_KXMrxNyQXSoYjfNju78MFSVw');
+            resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'iiiiiierfaniiiiii@gmail.com',
+            subject: 'Hello World',
+            html: '<p>Congrats on sending your <strong>first email</strong>!</p>'
+        });
         
         const user = await prisma.user.findUnique({
             where: 

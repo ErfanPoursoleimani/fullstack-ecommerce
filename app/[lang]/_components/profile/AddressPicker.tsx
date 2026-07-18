@@ -3,14 +3,14 @@ import { usePopup } from '@/app/hooks/usePopup'
 import { useAuthStore } from '@/app/stores/authStore'
 import useDataStore from '@/app/stores/dataStore'
 import { Address } from '@/app/types/types'
-import { addressSchema } from '@/app/validation/validationSchemas'
+import { addressSchema } from '@/lib/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { discriminatedUnion, z } from 'zod'
-import Popup from './PopupRaw'
+import Popup from '../general/PopupRaw'
 
 type addressData = z.infer<typeof addressSchema>
 

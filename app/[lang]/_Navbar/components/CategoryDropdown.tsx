@@ -1,28 +1,22 @@
-import useDataStore from '@/app/stores/dataStore';
-import classNames from 'classnames';
-import { Amphora, Bean, Citrus, Tractor, Wheat } from 'lucide-react';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import React, { ReactNode, useRef, useState } from 'react';
-import { BiCategory } from 'react-icons/bi';
-import ProductCard from '../../_ProductCard/ProductCard';
-import NavArrows from '../../_components/NavArrows';
+'use client'
+
+import AnimatedBox from '@/app/components/ui/AnimatedBox'
+import useDataStore from '@/app/stores/dataStore'
 import { Product, Tag } from '@/app/types/types'
-import AnimatedBox from '@/app/components/ui/AnimatedBox';
+import classNames from 'classnames'
+import React, { useEffect, useRef, useState } from 'react'
+import { BiCategory } from 'react-icons/bi'
+import ProductCard from '../../_ProductCard/ProductCard'
+import NavArrows from '../../_components/general/NavArrows'
 
-const options = [
-  { value: 'ir', label: 'Iran' },
-  { value: 'uae', label: 'United Arab Emirates' },
-  { value: 'tr', label: 'Turkey', disabled: true },
-];
-  
 const CategoryDropdown: React.FC = () => {
-
   const listRef = useRef<HTMLDivElement>(null!)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const { tags, dict, isRTL } = useDataStore()
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isTagOpen, setIsTagOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState(false)
+  const [isTagOpen, setIsTagOpen] = useState(true)
   const [tagHover, setTagHover] = useState<Tag>(tags[0])
 
   const handleEnterTag = (tag: Tag) => {
@@ -30,103 +24,190 @@ const CategoryDropdown: React.FC = () => {
     setIsTagOpen(true)
   }
 
-/*   const handleTagIcon = (label: string): ReactNode => {
-    switch (label) {
-      case 'برنج_ایرانی':
-        return <Tractor size={'1rem'} />
-      case "برنج_خارجی":
-        return <Tractor size={'1rem'} />
+  // Close when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+      }
     }
-    return null
-  } */
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+
+  // Close with Escape
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   return (
-        <div className='hidden md:block'>
-          <div className={`relative z-10 h-full flex flex-col 
-              ${isRTL ? "" : "items-start"}
-            `}
+    <div ref={containerRef} className="hidden md:block" onMouseLeave={() => setIsOpen(false)}>
+      <div
+        className={`relative z-10 flex h-full flex-col ${
+          isRTL ? '' : 'items-start'
+        }`}
+      >
+        <button
+          type="button"
+          onMouseEnter={() => setIsOpen(true)}
+          
+          className="h-full cursor-pointer p-1 text-[16px] transition-colors duration-200 focus:outline-none"
+        >
+          <div
+            className={`flex items-center gap-3 ${
+              isRTL ? 'flex-row-reverse' : 'flex-row'
+            }`}
           >
-            <button
-              type="button"
-              onClick={() => setIsOpen(!isOpen)}
-              onMouseEnter={() => setIsOpen(true)}
-              onMouseLeave={() => setIsOpen(false)}
-              className={`p-1 text-[16px] h-full focus:outline-none transition-colors duration-200 cursor-pointer`}
-                >
-              <div 
-                className={`flex items-center gap-3
-                  ${isRTL ? "flex-row-reverse" : "flex-row"}
-                `}
-              >
-                <span
-                  className={`flex items-center gap-1
-                    ${isRTL ? "flex-row-reverse" : "flex-row"}
-                  `}
-                >
-                  <BiCategory
-                    className={`w-4 h-4 transition-transform duration-200
-                      ${isOpen ? 'rotate-180' : 'rotate-0'}
-                      `}
-                    />
-                  <span className="block truncate">
-                    {dict.categories}
-                  </span>
-                </span>
-                <span className='text-[12px] text-[#8f8f8f]'>|</span>
+            <span
+              className={`flex items-center gap-1 ${
+                isRTL ? 'flex-row-reverse' : 'flex-row'
+              }`}
+            >
+              <BiCategory
+                className={`h-4 w-4 transition-transform duration-300 ${
+                  isOpen ? 'rotate-180' : ''
+                }`}
+              />
+
+              <span className="block truncate">
+                {dict.categories}
+              </span>
+            </span>
+
+            <span className="text-[12px] text-[#8f8f8f]">|</span>
+          </div>
+        </button>
+
+        {isOpen && (
+          <AnimatedBox className='shadow-2xl '>
+            <div
+              className={`
+                absolute
+                top-full
+                z-30
+                flex
+                min-h-[30vh]
+                max-w-[70vw]
+                border-t
+                border-neutral-200
+                shadow-xl
+                ${
+                  isRTL
+                    ? 'right-0 flex-row-reverse'
+                    : 'left-0 flex-row'
+                }
+              `}
+            >
+              {/* Categories */}
+              <div className="bg-[#e7e7e7]">
+                {tags.map((tag, index) => (
+                  <button
+                    key={tag.id}
+                    type="button"
+                    onMouseEnter={() => handleEnterTag(tag)}
+                    className={`
+                      flex
+                      cursor-pointer
+                      items-center
+                      gap-2
+                      truncate
+                      border-x
+                      w-full
+                      border-[#c7c7c7]
+                      px-6
+                      py-6
+                      transition-colors
+                      ${
+                        tagHover === tag
+                          ? 'bg-white text-[var(--theme)]'
+                          : 'hover:bg-neutral-100'
+                      }
+                      ${
+                        index !== tags.length - 1
+                          ? 'border-b'
+                          : ''
+                      }
+                      ${
+                        isRTL
+                          ? 'flex-row-reverse'
+                          : 'flex-row'
+                      }
+                    `}
+                  >
+                    {
+                      dict.product.categories[
+                        tag.label as keyof typeof dict.product.categories
+                      ]
+                    }
+                  </button>
+                ))}
               </div>
-            </button>
-            {isOpen &&
-              <AnimatedBox className=''>
+
+              {/* Products */}
+              {isTagOpen && (
                 <div
-                  className={`absolute top-[100%] ${isRTL ? "right-0" : ""} border-t-1 border-neutral-200 flex max-w-[70vw] min-h-[30vh]
-                    ${isRTL ? "flex-row-reverse" : "flex-row"}
+                  className={`
+                    relative
+                    z-20
+                    flex
+                    w-full
+                    flex-col
+                    justify-center
+                    overflow-hidden
+                    bg-white
+                    ${
+                      isRTL
+                        ? 'rounded-bl-xl'
+                        : 'rounded-br-xl'
+                    }
                   `}
-                  onMouseEnter={() => setIsOpen(true)}
-                  onMouseLeave={() => setIsOpen(false)}
                 >
-                  <div className='bg-[#e7e7e7]'>
-                    {tags.map((tag: Tag, i: number) => (
-                      <p
-                        key={tag.id}
-                        className={`flex items-center gap-2 truncate px-6 py-6 cursor-pointer border-x-1 border-[#c7c7c7]
-                          ${tagHover === tag ? "bg-white text-[var(--theme)]" : null}
-                          ${i !== tags.length - 1 ? "border-b-1" : null}
-                          ${isRTL ? "flex-row-reverse" : "flex-row"}
-                        `}
-                        onMouseEnter={() => handleEnterTag(tag)}
-                      >
-                        {dict.product.categories[tag.label as keyof typeof dict.product.categories]}
-                      </p>
+                  <div
+                    ref={listRef}
+                    className={classNames({
+                      'flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide p-5':
+                        true,
+                      'flex-row-reverse': isRTL,
+                      'flex-row': !isRTL,
+                    })}
+                  >
+                    {tagHover?.products.map((product: Product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        className="min-h-65 min-w-50"
+                        buttonBg="--theme2"
+                      />
                     ))}
                   </div>
-                  {isTagOpen &&
-                    <div className={`bg-white flex flex-col justify-center w-full relative overflow-x-auto z-2
-                      ${isRTL ? 'rounded-bl-xl' : 'rounded-br-xl'}
-                    `}>
-                        {/* <h2 className='font-bold mb-3 mx-5 text-[23px]'>{dict.product.categories[tagHover && tagHover.label as keyof typeof dict.product.categories]}</h2> */}
-                        <div
-                        ref={listRef}
-                        className={classNames({
-                            "flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide p-5": true,
-                            "flex-row-reverse": isRTL,
-                            "flex-row": !(isRTL),
-                        })}>
-                            {/* <h2 className='hidden md:flex flex-col justify-center items-center self-stretch px-2 text-center mx-13 text-[40px] font-bold'>{dict.product.categories[tagHover && tagHover.label as keyof typeof dict.product.categories]}</h2> */}
-                            {tagHover && tagHover.products.map((product: Product) => (
-                                <ProductCard className='min-h-65 min-w-50' key={product.id} product={product} buttonBg={'--theme2'}/>
-                            ))}
-                            {/* <SeeAllProducts arrowDirection={`${isRTL ? "toLeft" : "toRight"}`} /> */}
-                        </div>
-                        <NavArrows list={listRef}/>
-                    </div>
-                  }
-                </div>
-              </AnimatedBox>
-            }
-          </div>
-          {isOpen && <div className='fixed top-[50px] left-0 w-[100%] h-[100vh] bg-[#000000c0] z-9'></div>}
-        </div>
-  );
-};
 
-export default CategoryDropdown;
+                  <NavArrows list={listRef} />
+                </div>
+              )}
+            </div>
+          </AnimatedBox>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default CategoryDropdown

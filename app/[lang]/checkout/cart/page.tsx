@@ -5,7 +5,7 @@ import { LiaOpencart } from "react-icons/lia";
 import InCartProduct from "./components/InCartProduct";
 import { useMemo } from "react";
 import Link from "next/link";
-import Footer from "../../_components/Footer";
+import Footer from "../../_components/general/Footer";
 
 
 const Shoppingcart = () => {

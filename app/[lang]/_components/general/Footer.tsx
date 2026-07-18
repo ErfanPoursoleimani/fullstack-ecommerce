@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const {products, dict, isRTL} = useDataStore() 
   const currentYear = new Date().getFullYear();
   return (
-    <footer className={`${isRTL && "text-right"} w-full bg-gradient-to-b bg-black/5 max-md:mb-13`}>
+    <footer className={`${isRTL && "text-right"} w-full bg-gradient-to-b bg-neutral-200 max-md:mb-13`}>
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">

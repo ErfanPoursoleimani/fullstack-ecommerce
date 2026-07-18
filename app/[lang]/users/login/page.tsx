@@ -1,5 +1,5 @@
 'use client'
-import LoginForm from './LoginForm'
+import LoginForm from '../../_components/auth/LoginForm'
 
 const SignInPage = () => {
 

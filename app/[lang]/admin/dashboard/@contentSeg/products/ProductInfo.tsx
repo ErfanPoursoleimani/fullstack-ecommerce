@@ -1,6 +1,6 @@
 'use client'
 import { ProductPicker } from './ProductPicker'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import { useAuthStore } from '@/app/stores/authStore'
 import useDataStore from '@/app/stores/dataStore'
 import { Image } from '@prisma/client'
@@ -15,7 +15,7 @@ import { RiEdit2Fill } from 'react-icons/ri'
 const ProductInfo = ({product, tagId}: {product: Product, tagId: number}) => {
 
     const { lang } = useParams()
-    const { isRTL, fetchProducts, dict } = useDataStore()
+    const { isRTL, fetchTags, dict } = useDataStore()
     const { user, userId } = useAuthStore()
     const router = useRouter()
 
@@ -26,16 +26,15 @@ const ProductInfo = ({product, tagId}: {product: Product, tagId: number}) => {
     const handleDeleteProduct = async() => {
       try {
         setLoading(true);
-      
         removeProduct(product.id);
         await axios.delete(`/${lang}/api/products/${product.id}`);
-        
+        await fetchTags(lang as string)
         setIsOptionsOpen(false);
-        
       } catch (error) {
           console.error('Error deleting product:', error);
           // If delete failed, add the product back to the state
           addProduct(product);
+          await fetchTags(lang as string)
           alert('Failed to delete product. Please try again.');
       } finally {
           setLoading(false);

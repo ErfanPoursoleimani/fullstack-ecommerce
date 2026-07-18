@@ -1,213 +1,264 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+'use client';
 
-interface UseCarouselOptions {
-  itemCount: number
-  autoPlay?: boolean
-  autoPlayDelay?: number
-  loop?: boolean
-  startIndex?: number
-  onSlideChange?: (index: number) => void
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+
+// Types
+interface CarouselItem {
+  id: number;
+  url: string;
+  title: string;
 }
 
-interface UseCarouselReturn {
-  currentIndex: number
-  isPlaying: boolean
-  goToSlide: (index: number) => void
-  goToNext: () => void
-  goToPrevious: () => void
-  play: () => void
-  pause: () => void
-  toggle: () => void
-  getSliderProps: () => {
-    onMouseEnter: () => void
-    onMouseLeave: () => void
-    onTouchStart: () => void
-    onTouchEnd: () => void
-    className: string
-  }
-  getSlidesContainerProps: () => {
-    style: {
-      transform: string
-      transition: string
-    }
-    className: string
-  }
-  getSlideProps: (index: number) => {
-    className: string
-    'data-active': boolean
-  }
+interface useCarouselOptions {
+  itemCount: number;
+  distanceBetweenItems?: number;
+  initialIndex?: number;
+  visibleRange?: number;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+  dragThreshold?: number;
+}
+
+interface useCarouselReturn {
+  activeIndex: number;
+  isAutoPlaying: boolean;
+  goToIndex: (index: number) => void;
+  goToNext: () => void;
+  goToPrevious: () => void;
+  toggleAutoPlay: () => void;
+  getCarouselProps: () => {
+    className: string;
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
+    onKeyDown: (e: React.KeyboardEvent) => void;
+    tabIndex: number;
+    role: string;
+    'aria-label': string;
+  };
+  getContainerProps: () => {
+    onMouseDown: (e: React.MouseEvent) => void;
+    onMouseMove: (e: React.MouseEvent) => void;
+    onMouseUp: () => void;
+    onMouseLeave: () => void;
+    onTouchStart: (e: React.TouchEvent) => void;
+    onTouchMove: (e: React.TouchEvent) => void;
+    onTouchEnd: () => void;
+    className: string;
+    style: React.CSSProperties;
+  };
+  getItemProps: (index: number) => {
+    className: string;
+    style: React.CSSProperties;
+    'data-active': boolean;
+    'data-visible': boolean;
+  };
+  getNavigationProps: (direction: 'prev' | 'next') => {
+    onClick: () => void;
+    className: string;
+    'aria-label': string;
+  };
   getDotProps: (index: number) => {
-    onClick: () => void
-    className: string
-    'aria-label': string
-    'data-active': boolean
-  }
-  getArrowProps: (direction: 'prev' | 'next') => {
-    onClick: () => void
-    disabled: boolean
-    className: string
-    'aria-label': string
-  }
-  progress: number
+    onClick: () => void;
+    className: string;
+    'aria-label': string;
+    'data-active': boolean;
+  };
 }
 
+// Custom Hook
 export function useCarousel({
   itemCount,
-  autoPlay = true,
-  autoPlayDelay = 3000,
-  loop = true,
-  startIndex = 0,
-  onSlideChange
-}: UseCarouselOptions): UseCarouselReturn {
-  const [currentIndex, setCurrentIndex] = useState(startIndex)
-  const [isPlaying, setIsPlaying] = useState(autoPlay)
-  const [isPaused, setIsPaused] = useState(false)
-  const intervalRef = useRef<NodeJS.Timeout>(null!)
-  const progressRef = useRef(0)
-  const [progress, setProgress] = useState(0)
+  distanceBetweenItems = 250,
+  initialIndex = 2,
+  visibleRange = 2,
+  autoPlay = false,
+  autoPlayInterval = 3000,
+  dragThreshold = 50,
+}: useCarouselOptions): useCarouselReturn {
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(autoPlay);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef(0);
+  const dragCurrentX = useRef(0);
+  const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  
 
-  const goToSlide = useCallback((index: number) => {
+  const getPosition = useCallback((index: number) => {
+    return index - activeIndex;
+  }, [activeIndex]);
+
+  const goToIndex = useCallback((index: number) => {
     if (index >= 0 && index < itemCount) {
-      setCurrentIndex(index)
-      onSlideChange?.(index)
-      progressRef.current = 0
-      setProgress(0)
+      setActiveIndex(index);
     }
-  }, [itemCount, onSlideChange])
+  }, [itemCount]);
 
   const goToNext = useCallback(() => {
-    if (loop) {
-      const nextIndex = (currentIndex + 1) % itemCount
-      goToSlide(nextIndex)
-    } else if (currentIndex < itemCount - 1) {
-      goToSlide(currentIndex + 1)
-    }
-  }, [currentIndex, itemCount, loop, goToSlide])
+    setActiveIndex((prev) => (prev === itemCount - 1 ? 0 : prev + 1));
+  }, [itemCount]);
 
   const goToPrevious = useCallback(() => {
-    if (loop) {
-      const prevIndex = currentIndex === 0 ? itemCount - 1 : currentIndex - 1
-      goToSlide(prevIndex)
-    } else if (currentIndex > 0) {
-      goToSlide(currentIndex - 1)
+    setActiveIndex((prev) => (prev === 0 ? itemCount - 1 : prev - 1));
+  }, [itemCount]);
+
+  const toggleAutoPlay = useCallback(() => {
+    setIsAutoPlaying(prev => !prev);
+  }, []);
+
+  // Auto-play functionality
+/*   useEffect(() => {
+    if (isAutoPlaying && !isPaused && !isDragging) {
+      autoPlayTimerRef.current = setInterval(() => {
+        goToNext();
+      }, autoPlayInterval);
     }
-  }, [currentIndex, itemCount, loop, goToSlide])
 
-  const play = useCallback(() => {
-    setIsPlaying(true)
-    setIsPaused(false)
-  }, [])
+    return () => {
+      if (autoPlayTimerRef.current) {
+        clearInterval(autoPlayTimerRef.current);
+      }
+    };
+  }, [isAutoPlaying, isPaused, isDragging, goToNext, autoPlayInterval]); */
 
-  const pause = useCallback(() => {
-    setIsPlaying(false)
-    setIsPaused(true)
-  }, [])
+  // Drag handlers
+  const handleDragStart = useCallback((clientX: number) => {
+    setIsDragging(true);
+    dragStartX.current = clientX;
+    dragCurrentX.current = clientX;
+  }, []);
 
-  const toggle = useCallback(() => {
-    if (isPlaying) {
-      pause()
-    } else {
-      play()
+  const handleDragMove = useCallback((clientX: number) => {
+    if (!isDragging) return;
+    dragCurrentX.current = clientX;
+  }, [isDragging]);
+
+  const handleDragEnd = useCallback(() => {
+    if (!isDragging) return;
+    
+    const dragDistance = dragCurrentX.current - dragStartX.current;
+    
+    if (Math.abs(dragDistance) > dragThreshold) {
+      if (dragDistance > 0) {
+        goToPrevious();
+      } else {
+        goToNext();
+      }
     }
-  }, [isPlaying, play, pause])
+    
+    setIsDragging(false);
+    dragStartX.current = 0;
+    dragCurrentX.current = 0;
+  }, [isDragging, dragThreshold, goToNext, goToPrevious]);
 
-  // Auto-play logic with progress tracking
-  useEffect(() => {
-    if (isPlaying && !isPaused && itemCount > 1) {
-      const progressInterval = setInterval(() => {
-        progressRef.current += 50 // Update every 50ms
-        setProgress((progressRef.current / autoPlayDelay) * 100)
-        
-        if (progressRef.current >= autoPlayDelay) {
-          goToNext()
-        }
-      }, 50)
-
-      return () => clearInterval(progressInterval)
-    }
-  }, [isPlaying, isPaused, autoPlayDelay, goToNext, itemCount])
-
-  // Pause on hover/touch
-  const handleMouseEnter = useCallback(() => {
-    if (isPlaying) setIsPaused(true)
-  }, [isPlaying])
-
-  const handleMouseLeave = useCallback(() => {
-    if (isPlaying) setIsPaused(false)
-  }, [isPlaying])
-
-  const handleTouchStart = useCallback(() => {
-    if (isPlaying) setIsPaused(true)
-  }, [isPlaying])
-
-  const handleTouchEnd = useCallback(() => {
-    if (isPlaying) {
-      setTimeout(() => setIsPaused(false), 2000) // Resume after 2s
-    }
-  }, [isPlaying])
-
-  const getSliderProps = useCallback(() => ({
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
-    onTouchStart: handleTouchStart,
-    onTouchEnd: handleTouchEnd,
-    className: 'relative overflow-hidden group'
-  }), [handleMouseEnter, handleMouseLeave, handleTouchStart, handleTouchEnd])
-
-  const getSlidesContainerProps = useCallback(() => ({
-    style: {
-      transform: `translateX(-${currentIndex * 100}%)`,
-      transition: 'transform 0.5s ease-in-out'
+  const getCarouselProps = useCallback(() => ({
+    className: 'perspective-1000',
+    onMouseEnter: () => setIsPaused(true),
+    onMouseLeave: () => setIsPaused(false),
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToNext();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToIndex(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToIndex(itemCount - 1);
+      }
     },
-    className: 'flex w-full'
-  }), [currentIndex])
+    tabIndex: 0,
+    role: 'region',
+    'aria-label': 'Image carousel',
+  }), [goToPrevious, goToNext, goToIndex, itemCount]);
 
-  const getSlideProps = useCallback((index: number) => ({
-    className: 'flex-shrink-0',
-    'data-active': index === currentIndex
-  }), [currentIndex])
+  const getContainerProps = useCallback(() => ({
+    onMouseDown: (e: React.MouseEvent) => {
+      e.preventDefault();
+      handleDragStart(e.clientX);
+    },
+    onMouseMove: (e: React.MouseEvent) => {
+      handleDragMove(e.clientX);
+    },
+    onMouseUp: () => {
+      handleDragEnd();
+    },
+    onMouseLeave: () => {
+      if (isDragging) handleDragEnd();
+    },
+    onTouchStart: (e: React.TouchEvent) => {
+      handleDragStart(e.touches[0].clientX);
+    },
+    onTouchMove: (e: React.TouchEvent) => {
+      handleDragMove(e.touches[0].clientX);
+    },
+    onTouchEnd: () => {
+      handleDragEnd();
+    },
+    className: 'relative w-full h-full flex flex-col items-center justify-center',
+    style: {
+      userSelect: 'none' as const,
+    },
+  }), [isDragging, handleDragStart, handleDragMove, handleDragEnd]);
+
+  const getItemProps = useCallback((index: number) => {
+    const position = getPosition(index);
+    const isActive = position === 0;
+    const isAdjacent = Math.abs(position) === 1;
+    const isVisible = Math.abs(position) <= visibleRange;
+
+    return {
+      className: `transition-all absolute duration-600 ease-out 
+       ${isActive ? 'z-30' : isAdjacent ? 'z-20' : 'z-10'}`,
+      style: {
+        transform: `
+          translateX(${position * distanceBetweenItems}px)
+          translateZ(${-Math.abs(position) * 200}px)
+          scale(${isActive ? 1 : 0.7 - Math.abs(position) * 0.15})
+          rotateY(${position * 0}deg)
+        `,
+        opacity: isActive ? 1 : 0.5 - Math.abs(position) * 0.1,
+        // display: isVisible ? 'block' : 'none',
+        // pointerEvents: isDragging ? ('none' as const) : ('auto' as const),
+      },
+      'data-active': isActive,
+      'data-visible': isVisible,
+    };
+  }, [activeIndex, visibleRange, goToIndex, getPosition, isDragging]);
+
+  const getNavigationProps = useCallback((direction: 'prev' | 'next') => ({
+    onClick: direction === 'next' ? goToNext : goToPrevious,
+    className: 'bg-black/10 hover:bg-black/20 text-blakc rounded-full p-4 backdrop-blur-sm transition-all duration-300 hover:scale-110 active:scale-95',
+    'aria-label': direction === 'next' ? 'Next image' : 'Previous image',
+  }), [goToNext, goToPrevious]);
 
   const getDotProps = useCallback((index: number) => ({
-    onClick: () => goToSlide(index),
-    className: `w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
-      index === currentIndex 
-        ? 'bg-white scale-110' 
-        : 'bg-white/50 hover:bg-white/75'
+    onClick: () => goToIndex(index),
+    className: `w-2 h-2 rounded-full transition-all duration-300 ${
+      index === activeIndex
+        ? 'bg-(--theme) w-8'
+        : 'bg-black/30 hover:bg-black/50'
     }`,
-    'aria-label': `Go to slide ${index + 1}`,
-    'data-active': index === currentIndex
-  }), [currentIndex, goToSlide])
-
-  const getArrowProps = useCallback((direction: 'prev' | 'next') => {
-    const isNext = direction === 'next'
-    const canMove = loop || (isNext ? currentIndex < itemCount - 1 : currentIndex > 0)
-    
-    return {
-      onClick: isNext ? goToNext : goToPrevious,
-      disabled: !canMove,
-      className: `absolute top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/20 text-white 
-        hover:bg-black/40 transition-all duration-200 backdrop-blur-sm
-        ${isNext ? 'right-4' : 'left-4'} 
-        ${canMove ? 'opacity-100 cursor-pointer' : 'opacity-50 cursor-not-allowed'}
-        opacity-0 group-hover:opacity-100`,
-      'aria-label': isNext ? 'Next slide' : 'Previous slide'
-    }
-  }, [currentIndex, itemCount, loop, goToNext, goToPrevious])
+    'aria-label': `Go to image ${index + 1}`,
+    'data-active': index === activeIndex,
+  }), [activeIndex, goToIndex]);
 
   return {
-    currentIndex,
-    isPlaying: isPlaying && !isPaused,
-    goToSlide,
+    activeIndex,
+    isAutoPlaying,
+    goToIndex,
     goToNext,
     goToPrevious,
-    play,
-    pause,
-    toggle,
-    getSliderProps,
-    getSlidesContainerProps,
-    getSlideProps,
+    toggleAutoPlay,
+    getCarouselProps,
+    getContainerProps,
+    getItemProps,
+    getNavigationProps,
     getDotProps,
-    getArrowProps,
-    progress
-  }
+  };
 }

@@ -1,16 +1,16 @@
 'use client'
 import { usePopup } from '@/app/hooks/usePopup'
 import React, { ReactNode, useState } from 'react'
-import Popup from '@/app/[lang]/_components/PopupRaw'
+import Popup from '@/app/[lang]/_components/general/PopupRaw'
 import useDataStore from '@/app/stores/dataStore'
 import { z } from 'zod'
-import { addressSchema, userSchema } from '@/app/validation/validationSchemas'
+import { addressSchema, userSchema } from '@/lib/validation/validationSchemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useParams, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/app/stores/authStore'
-import Loading from '@/app/[lang]/_components/Loading'
+import Loading from '@/app/[lang]/_components/general/Loading'
 
 type userData = z.infer<typeof userSchema>
 
@@ -28,6 +28,7 @@ export const EmailPicker = ({className, buttonContent}: {className: string, butt
   const onSubmit = handleSubmit( async (data) => {
     try {
       await axios.patch(`/${lang}/api/users/${userId}`, {firstName: user?.firstName, lastName: user?.lastName, phoneNumber: user?.phoneNumber, nationalCode: user?.nationalCode, email: data.email})
+      await initialize(lang as string)
       popup.closePopup()
       reset()
     } catch (error) {

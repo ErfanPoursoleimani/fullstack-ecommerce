@@ -1,12 +1,12 @@
 "use client"
-import { AddressPicker } from '@/app/[lang]/_components/AddressPicker'
-import Loading from '@/app/[lang]/_components/Loading'
+import { AddressPicker } from '@/app/[lang]/_components/profile/AddressPicker'
+import Loading from '@/app/[lang]/_components/general/Loading'
 import useDataStore from '@/app/stores/dataStore'
 import { useParams, useRouter } from 'next/navigation'
 import { BiSolidDirections } from 'react-icons/bi'
 import { FaPlus } from 'react-icons/fa6'
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md'
-import AddressCard from '../../../_components/AddressCard'
+import AddressCard from '../../../_components/profile/AddressCard'
 import { Didact_Gothic } from 'next/font/google'
 
 const page = () => {
